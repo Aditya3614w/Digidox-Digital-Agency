@@ -64,27 +64,13 @@
     .brand {
       display: inline-flex;
       align-items: center;
-      gap: 12px;
-      font-weight: 800;
-      letter-spacing: 0.2px;
       min-width: 0;
     }
 
-    .brand-mark {
-      width: 42px;
+    .brand-logo {
       height: 42px;
-      border-radius: 14px;
-      display: grid;
-      place-items: center;
-      background: linear-gradient(135deg, var(--primary), var(--accent));
-      color: #06101d;
-      font-weight: 900;
-      box-shadow: var(--shadow);
-      flex-shrink: 0;
-    }
-
-    .brand span:last-child {
-      white-space: nowrap;
+      width: auto;
+      display: block;
     }
 
     .nav-links {
@@ -664,10 +650,8 @@
 
     @media (max-width: 520px) {
       .nav-inner { min-height: 70px; }
-      .brand span:last-child {
-        max-width: 180px;
-        overflow: hidden;
-        text-overflow: ellipsis;
+      .brand-logo {
+        height: 34px;
       }
       .eyebrow,
       .chip { font-size: 12px; }
@@ -693,8 +677,7 @@
   <header class="navbar">
     <div class="container nav-inner">
       <a href="#home" class="brand">
-        <span class="brand-mark">D</span>
-        <span>Digidox PVT LTD</span>
+        <img src="https://digidox360.com/assets/brandlogo.png" alt="Digidox PVT LTD" class="brand-logo" />
       </a>
 
       <nav class="nav-links" id="navLinks">
