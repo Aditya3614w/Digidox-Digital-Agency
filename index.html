@@ -330,6 +330,10 @@
 
     .section { padding: 40px 0; }
 
+    #contact {
+      scroll-margin-top: 100px;
+    }
+
     .section-head {
       display: flex;
       justify-content: space-between;
@@ -550,25 +554,24 @@
       position: fixed;
       right: 18px;
       bottom: 18px;
-      width: 58px;
-      height: 58px;
-      border-radius: 16px;
-      display: grid;
-      place-items: center;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       background: #ffffff;
-      color: #25d366;
       box-shadow: 0 18px 40px rgba(0, 0, 0, 0.18);
-      border: 1px solid rgba(37, 211, 102, 0.18);
+      border: 2px solid #e6f7ef;
       z-index: 60;
       transition: transform 0.22s ease;
-      font-size: 0;
     }
 
     .whatsapp-float:hover { transform: translateY(-2px); }
 
     .whatsapp-float svg {
-      width: 30px;
-      height: 30px;
+      width: 28px;
+      height: 28px;
       display: block;
       fill: #25d366;
     }
@@ -674,9 +677,9 @@
       .whatsapp-float {
         right: 14px;
         bottom: 14px;
-        width: 52px;
-        height: 52px;
-        border-radius: 14px;
+        width: 54px;
+        height: 54px;
+        border-radius: 50%;
       }
 
       .whatsapp-float svg {
@@ -702,7 +705,7 @@
       </nav>
 
       <div style="display:flex; align-items:center; gap:12px;">
-        <a href=".eyebrow" class="btn btn-primary nav-cta">Book a Free Consultation</a>
+        <a href="#contact" class="btn btn-primary nav-cta" onclick="handleScroll(event)">Book a Free Consultation</a>
         <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">☰</button>
       </div>
     </div>
@@ -718,7 +721,7 @@
             Digidox PVT LTD helps ecommerce brands grow through Shopify development, enterprise-level Shopify projects, Meta Ads, Google Ads, Shopify app development, WordPress websites, technical SEO, and conversion-focused execution.
           </p>
           <div class="hero-actions">
-            <a href=".eyebrow" class="btn btn-primary">Get Free Strategy Call</a>
+            <a href="#contact" class="btn btn-primary" onclick="handleScroll(event)">Get Free Strategy Call</a>
             <a href="#services" class="btn btn-secondary">Explore Services</a>
           </div>
           <div class="hero-chips">
@@ -1052,6 +1055,14 @@
   </a>
 
   <script>
+    function handleScroll(e){
+      e.preventDefault();
+      const el = document.querySelector('#contact');
+      if(el){
+        const y = el.getBoundingClientRect().top + window.pageYOffset - 90;
+        window.scrollTo({ top: y, behavior: 'smooth' });
+      }
+    }
     const menuToggle = document.getElementById('menuToggle');
     const navLinks = document.getElementById('navLinks');
 
