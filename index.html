@@ -1,0 +1,943 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Digidox PVT LTD | Ecommerce Growth Partners</title>
+  <meta name="description" content="Digidox PVT LTD helps brands scale with Shopify development, performance marketing, ecommerce listing, ecommerce ads, Shopify app development, and WordPress website development." />
+  <style>
+    :root {
+      --bg: #0b1020;
+      --bg-soft: #111833;
+      --card: rgba(255,255,255,0.06);
+      --card-border: rgba(255,255,255,0.12);
+      --text: #eef2ff;
+      --muted: #b7c0de;
+      --accent: #7c9cff;
+      --accent-2: #64e1c6;
+      --shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+      --radius: 22px;
+      --max: 1180px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(124,156,255,0.22), transparent 34%),
+        radial-gradient(circle at top right, rgba(100,225,198,0.16), transparent 25%),
+        linear-gradient(180deg, #09101f 0%, #0b1020 100%);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+
+    .container {
+      width: min(var(--max), calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(14px);
+      background: rgba(8, 12, 24, 0.72);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 0;
+      gap: 16px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 800;
+      letter-spacing: 0.4px;
+    }
+
+    .brand-mark {
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      color: #08101f;
+      box-shadow: var(--shadow);
+      font-weight: 900;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active { color: var(--text); }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      border: none;
+      cursor: pointer;
+      padding: 14px 20px;
+      border-radius: 999px;
+      font-weight: 700;
+      transition: 0.25s ease;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      color: #07101d;
+      box-shadow: var(--shadow);
+    }
+
+    .btn-primary:hover { transform: translateY(-2px); }
+
+    .btn-secondary {
+      background: rgba(255,255,255,0.06);
+      color: var(--text);
+      border: 1px solid rgba(255,255,255,0.12);
+    }
+
+    .hero {
+      padding: 88px 0 48px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 28px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(124,156,255,0.12);
+      border: 1px solid rgba(124,156,255,0.2);
+      color: #d6dfff;
+      font-size: 13px;
+      margin-bottom: 18px;
+    }
+
+    .hero h1 {
+      font-size: clamp(40px, 6vw, 72px);
+      line-height: 1.03;
+      margin: 0 0 18px;
+      letter-spacing: -1.8px;
+    }
+
+    .gradient-text {
+      background: linear-gradient(135deg, #ffffff 0%, #bcd1ff 45%, #78ffd7 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero p {
+      margin: 0 0 26px;
+      font-size: 18px;
+      color: var(--muted);
+      max-width: 720px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-bottom: 26px;
+    }
+
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 10px;
+    }
+
+    .stat {
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      border-radius: 18px;
+      padding: 18px;
+      box-shadow: var(--shadow);
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 24px;
+      margin-bottom: 4px;
+    }
+
+    .hero-card {
+      position: relative;
+      background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.04));
+      border: 1px solid rgba(255,255,255,0.14);
+      border-radius: 28px;
+      padding: 24px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .hero-card::before {
+      content: "";
+      position: absolute;
+      inset: -20% auto auto -10%;
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      background: rgba(124,156,255,0.18);
+      filter: blur(14px);
+    }
+
+    .mini-panel {
+      position: relative;
+      background: rgba(8,12,24,0.74);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 20px;
+      padding: 18px;
+      margin-bottom: 14px;
+    }
+
+    .mini-label {
+      color: var(--muted);
+      font-size: 13px;
+      margin-bottom: 6px;
+    }
+
+    .mini-value {
+      font-size: 26px;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+
+    .progress {
+      height: 10px;
+      background: rgba(255,255,255,0.08);
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .progress > span {
+      display: block;
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      width: 78%;
+      animation: grow 2s ease;
+    }
+
+    @keyframes grow {
+      from { width: 0; }
+      to { width: 78%; }
+    }
+
+    section {
+      padding: 42px 0;
+    }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      align-items: end;
+      margin-bottom: 24px;
+    }
+
+    .section-head h2 {
+      margin: 0 0 6px;
+      font-size: clamp(28px, 4vw, 42px);
+      letter-spacing: -1px;
+    }
+
+    .section-head p {
+      margin: 0;
+      color: var(--muted);
+      max-width: 680px;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius);
+      padding: 24px;
+      box-shadow: var(--shadow);
+      transition: transform 0.25s ease, border-color 0.25s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(124,156,255,0.4);
+    }
+
+    .icon {
+      width: 54px;
+      height: 54px;
+      border-radius: 16px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, rgba(124,156,255,0.18), rgba(100,225,198,0.14));
+      border: 1px solid rgba(255,255,255,0.1);
+      font-size: 24px;
+      margin-bottom: 16px;
+    }
+
+    .card h3 {
+      margin: 0 0 10px;
+      font-size: 22px;
+    }
+
+    .card p {
+      margin: 0 0 14px;
+      color: var(--muted);
+    }
+
+    .card ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      gap: 10px;
+      color: #e5ebff;
+      font-size: 14px;
+    }
+
+    .card li::before {
+      content: "•";
+      color: var(--accent-2);
+      font-weight: 900;
+      margin-right: 10px;
+    }
+
+    .about-wrap,
+    .process-wrap,
+    .cta-wrap {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .about-copy,
+    .process-copy,
+    .cta-box,
+    .contact-box {
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      border-radius: 26px;
+      padding: 28px;
+      box-shadow: var(--shadow);
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .chip {
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      color: #dce5ff;
+      font-size: 14px;
+    }
+
+    .steps {
+      display: grid;
+      gap: 14px;
+    }
+
+    .step {
+      display: grid;
+      grid-template-columns: 56px 1fr;
+      gap: 14px;
+      align-items: start;
+      padding: 16px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .step-no {
+      width: 56px;
+      height: 56px;
+      border-radius: 16px;
+      display: grid;
+      place-items: center;
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      color: #07101d;
+    }
+
+    .step h4,
+    .contact-box h3,
+    .cta-box h3 { margin: 0 0 8px; }
+    .step p,
+    .contact-box p,
+    .cta-box p,
+    .about-copy p { margin: 0; color: var(--muted); }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 20px;
+    }
+
+    form {
+      display: grid;
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .field {
+      display: grid;
+      gap: 8px;
+    }
+
+    label {
+      font-size: 14px;
+      color: #dfe7ff;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 14px 16px;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,0.1);
+      background: rgba(255,255,255,0.04);
+      color: var(--text);
+      outline: none;
+      font: inherit;
+    }
+
+    textarea {
+      min-height: 128px;
+      resize: vertical;
+    }
+
+    input:focus, textarea:focus {
+      border-color: rgba(124,156,255,0.5);
+      box-shadow: 0 0 0 4px rgba(124,156,255,0.12);
+    }
+
+    .contact-list {
+      display: grid;
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .contact-item {
+      padding: 16px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .contact-item small {
+      display: block;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+
+    footer {
+      padding: 26px 0 40px;
+      color: var(--muted);
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: center;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding-top: 20px;
+    }
+
+    .menu-toggle {
+      display: none;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      color: var(--text);
+      border-radius: 12px;
+      padding: 10px 12px;
+      font-size: 18px;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .reveal.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .success-message {
+      display: none;
+      margin-top: 14px;
+      padding: 14px 16px;
+      border-radius: 16px;
+      background: rgba(100,225,198,0.14);
+      color: #d8fff4;
+      border: 1px solid rgba(100,225,198,0.24);
+    }
+
+    @media (max-width: 980px) {
+      .hero-grid,
+      .services-grid,
+      .about-wrap,
+      .process-wrap,
+      .contact-grid,
+      .cta-wrap {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-stats {
+        grid-template-columns: 1fr;
+      }
+
+      .nav-links {
+        position: absolute;
+        top: calc(100% + 10px);
+        left: 16px;
+        right: 16px;
+        padding: 14px;
+        border-radius: 20px;
+        background: rgba(8, 12, 24, 0.96);
+        border: 1px solid rgba(255,255,255,0.08);
+        display: none;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .nav-links.open { display: flex; }
+      .menu-toggle { display: inline-flex; }
+      .nav-cta { display: none; }
+      .section-head { align-items: start; flex-direction: column; }
+      .footer-inner { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+  <header class="navbar">
+    <div class="container nav-inner">
+      <a href="#home" class="brand">
+        <span class="brand-mark">D</span>
+        <span>Digidox PVT LTD</span>
+      </a>
+
+      <nav class="nav-links" id="navLinks">
+        <a href="#services">Services</a>
+        <a href="#about">About</a>
+        <a href="#process">Process</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <div style="display:flex; align-items:center; gap:12px;">
+        <a href="#contact" class="btn btn-primary nav-cta">Book a Free Consultation</a>
+        <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="container hero-grid">
+        <div class="reveal show">
+          <span class="eyebrow">Ecommerce Growth • Development • Marketing</span>
+          <h1>
+            Growth-driven digital solutions for <span class="gradient-text">modern ecommerce brands</span>
+          </h1>
+          <p>
+            Digidox PVT LTD helps brands scale online with conversion-focused Shopify development, performance marketing, ecommerce listings, digital ads, Shopify app development, and WordPress websites built for growth.
+          </p>
+          <div class="hero-actions">
+            <a href="#contact" class="btn btn-primary">Start Your Project</a>
+            <a href="#services" class="btn btn-secondary">Explore Services</a>
+          </div>
+          <div class="hero-stats">
+            <div class="stat">
+              <strong>6 Core Services</strong>
+              <span>From store builds to growth campaigns</span>
+            </div>
+            <div class="stat">
+              <strong>ROI Focused</strong>
+              <span>Everything designed around performance</span>
+            </div>
+            <div class="stat">
+              <strong>Brand Ready</strong>
+              <span>Clean experiences built to convert</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-card reveal">
+          <div class="mini-panel">
+            <div class="mini-label">Growth Snapshot</div>
+            <div class="mini-value">+178% Revenue Potential</div>
+            <div class="progress"><span></span></div>
+          </div>
+          <div class="mini-panel">
+            <div class="mini-label">Core Expertise</div>
+            <div style="display:grid; gap:10px; color:#e9efff;">
+              <div>Shopify Development</div>
+              <div>Performance Marketing</div>
+              <div>Shopify App Development</div>
+              <div>WordPress Website Development</div>
+            </div>
+          </div>
+          <div class="mini-panel" style="margin-bottom:0;">
+            <div class="mini-label">Ideal For</div>
+            <div style="color:#e9efff;">D2C brands, marketplace sellers, growth-stage ecommerce businesses, and service-led brands moving online.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="services">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <h2>Services built to scale ecommerce</h2>
+            <p>Everything you need to launch, optimize, market, and grow your online brand under one digital growth partner.</p>
+          </div>
+        </div>
+
+        <div class="services-grid">
+          <article class="card reveal">
+            <div class="icon">🛍️</div>
+            <h3>Shopify Development</h3>
+            <p>Custom Shopify experiences tailored for conversion, usability, and long-term scale.</p>
+            <ul>
+              <li>Store setup and redesign</li>
+              <li>Theme customization</li>
+              <li>Landing pages and CRO</li>
+              <li>Custom Shopify features</li>
+            </ul>
+          </article>
+
+          <article class="card reveal">
+            <div class="icon">📈</div>
+            <h3>Performance Marketing</h3>
+            <p>Data-led strategies focused on profitable acquisition, retention, and measurable business growth.</p>
+            <ul>
+              <li>Meta and Google strategy</li>
+              <li>Audience targeting</li>
+              <li>Funnel optimization</li>
+              <li>Campaign performance reporting</li>
+            </ul>
+          </article>
+
+          <article class="card reveal">
+            <div class="icon">📦</div>
+            <h3>Ecommerce Listing</h3>
+            <p>Well-structured product listings that improve discoverability, clarity, and conversion.</p>
+            <ul>
+              <li>Product title optimization</li>
+              <li>SEO-friendly descriptions</li>
+              <li>Catalog organization</li>
+              <li>Variant and image structuring</li>
+            </ul>
+          </article>
+
+          <article class="card reveal">
+            <div class="icon">🎯</div>
+            <h3>Ecommerce Ads</h3>
+            <p>Creative-led ad campaigns designed to drive traffic, conversions, and repeat customers.</p>
+            <ul>
+              <li>Creative strategy</li>
+              <li>Retargeting campaigns</li>
+              <li>Marketplace promotions</li>
+              <li>ROAS-focused optimization</li>
+            </ul>
+          </article>
+
+          <article class="card reveal">
+            <div class="icon">⚙️</div>
+            <h3>Shopify App Development</h3>
+            <p>Custom apps and integrations that extend Shopify with workflows unique to your business.</p>
+            <ul>
+              <li>Private/custom apps</li>
+              <li>API integrations</li>
+              <li>Automation tools</li>
+              <li>Merchant workflow enhancement</li>
+            </ul>
+          </article>
+
+          <article class="card reveal">
+            <div class="icon">🌐</div>
+            <h3>WordPress Website Development</h3>
+            <p>Fast, responsive WordPress websites built for credibility, content, and lead generation.</p>
+            <ul>
+              <li>Corporate websites</li>
+              <li>Portfolio and brochure sites</li>
+              <li>SEO-ready structures</li>
+              <li>Speed and mobile optimization</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="container about-wrap">
+        <div class="about-copy reveal">
+          <div class="section-head" style="margin-bottom:14px;">
+            <div>
+              <h2>About Digidox PVT LTD</h2>
+            </div>
+          </div>
+          <p>
+            We partner with brands that want more than just a website. Our approach combines design, development, marketing, and ecommerce operations to create systems that support real business growth.
+          </p>
+          <div class="chips">
+            <span class="chip">Conversion-focused builds</span>
+            <span class="chip">Marketplace-ready listings</span>
+            <span class="chip">Campaign-led growth</span>
+            <span class="chip">Scalable digital infrastructure</span>
+          </div>
+        </div>
+
+        <div class="about-copy reveal">
+          <div class="section-head" style="margin-bottom:14px;">
+            <div>
+              <h2>Why brands choose us</h2>
+            </div>
+          </div>
+          <p>
+            We bring strategy and execution together. That means fewer handoffs, faster delivery, and better outcomes across your storefront, marketing engine, and customer journey.
+          </p>
+          <div class="chips">
+            <span class="chip">Shopify specialists</span>
+            <span class="chip">Growth mindset</span>
+            <span class="chip">Clean, modern UI</span>
+            <span class="chip">Performance-first delivery</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="process">
+      <div class="container process-wrap">
+        <div class="process-copy reveal">
+          <div class="section-head" style="margin-bottom:12px;">
+            <div>
+              <h2>Our working process</h2>
+              <p>A streamlined approach built for speed, clarity, and long-term value.</p>
+            </div>
+          </div>
+          <div class="steps">
+            <div class="step">
+              <div class="step-no">01</div>
+              <div>
+                <h4>Discovery</h4>
+                <p>We understand your brand, goals, product, audience, and current digital gaps.</p>
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-no">02</div>
+              <div>
+                <h4>Strategy</h4>
+                <p>We map the right service mix across development, listings, ads, and marketing.</p>
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-no">03</div>
+              <div>
+                <h4>Execution</h4>
+                <p>We build, launch, test, and refine every touchpoint for stronger performance.</p>
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-no">04</div>
+              <div>
+                <h4>Growth</h4>
+                <p>We optimize over time with data-backed improvements and market-ready iterations.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="cta-box reveal">
+          <h3>Need a team that can both build and grow?</h3>
+          <p>
+            From building Shopify stores to managing ecommerce ads and WordPress websites, Digidox PVT LTD delivers solutions that look polished and perform with purpose.
+          </p>
+          <div class="chips" style="margin-top:22px; margin-bottom:22px;">
+            <span class="chip">Shopify</span>
+            <span class="chip">WordPress</span>
+            <span class="chip">Ads</span>
+            <span class="chip">Listings</span>
+            <span class="chip">Marketing</span>
+            <span class="chip">Custom Apps</span>
+          </div>
+          <a href="#contact" class="btn btn-primary">Let’s Talk</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container contact-grid">
+        <div class="contact-box reveal">
+          <h3>Start a conversation</h3>
+          <p>Tell us about your brand, website, or growth goals. This demo form is front-end only and can be connected to Formspree, Netlify Forms, or your backend later.</p>
+
+          <form id="contactForm">
+            <div class="field">
+              <label for="name">Full Name</label>
+              <input id="name" name="name" type="text" placeholder="Your name" required />
+            </div>
+
+            <div class="field">
+              <label for="email">Email Address</label>
+              <input id="email" name="email" type="email" placeholder="you@example.com" required />
+            </div>
+
+            <div class="field">
+              <label for="service">Service Needed</label>
+              <input id="service" name="service" type="text" placeholder="Shopify Development / Ads / WordPress etc." />
+            </div>
+
+            <div class="field">
+              <label for="message">Project Details</label>
+              <textarea id="message" name="message" placeholder="Tell us what you need..."></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Send Inquiry</button>
+          </form>
+
+          <div class="success-message" id="successMessage">
+            Thanks! Your inquiry has been captured on this demo page. Connect this form to email or a backend to receive real submissions.
+          </div>
+        </div>
+
+        <div class="contact-box reveal">
+          <h3>Company information</h3>
+          <p>Replace the placeholders below with your real contact details before publishing.</p>
+
+          <div class="contact-list">
+            <div class="contact-item">
+              <small>Company</small>
+              <strong>Digidox PVT LTD</strong>
+            </div>
+            <div class="contact-item">
+              <small>Email</small>
+              <strong>hello@digidox.com</strong>
+            </div>
+            <div class="contact-item">
+              <small>Phone</small>
+              <strong>+91 00000 00000</strong>
+            </div>
+            <div class="contact-item">
+              <small>Location</small>
+              <strong>India</strong>
+            </div>
+          </div>
+
+          <div class="chips" style="margin-top:22px;">
+            <span class="chip">Custom domain ready</span>
+            <span class="chip">GitHub Pages compatible</span>
+            <span class="chip">Responsive design</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <div>© <span id="year"></span> Digidox PVT LTD. All rights reserved.</div>
+      <div>Built for ecommerce growth.</div>
+    </div>
+  </footer>
+
+  <script>
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
+
+    menuToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('open');
+    });
+
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => navLinks.classList.remove('open'));
+    });
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('show');
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    const sections = document.querySelectorAll('section[id]');
+    const navAnchors = document.querySelectorAll('.nav-links a');
+
+    function setActiveLink() {
+      let current = '';
+      sections.forEach(section => {
+        const top = window.scrollY;
+        const offset = section.offsetTop - 120;
+        const height = section.offsetHeight;
+        if (top >= offset && top < offset + height) {
+          current = section.getAttribute('id');
+        }
+      });
+
+      navAnchors.forEach(link => {
+        link.classList.toggle('active', link.getAttribute('href') === `#${current}`);
+      });
+    }
+
+    window.addEventListener('scroll', setActiveLink);
+    setActiveLink();
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    const form = document.getElementById('contactForm');
+    const successMessage = document.getElementById('successMessage');
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      successMessage.style.display = 'block';
+      form.reset();
+      setTimeout(() => {
+        successMessage.style.display = 'none';
+      }, 5000);
+    });
+  </script>
+</body>
+</html>
