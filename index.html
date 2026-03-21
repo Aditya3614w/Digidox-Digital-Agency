@@ -496,6 +496,17 @@
             transition: 0.2s ease;
         }
 
+        select {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            padding-right: 44px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23a0aec0' d='M1.41 0L6 4.58 10.59 0 12 1.41l-6 6-6-6z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 16px center;
+            cursor: pointer;
+        }
+
         textarea {
             min-height: 130px;
             resize: vertical;
@@ -876,6 +887,10 @@
                 height: 26px;
             }
         }
+
+        button#submitBtn {
+            margin-top: 20px
+        }
     </style>
 </head>
 
@@ -890,11 +905,11 @@
                 <a href="#services">Services</a>
                 <a href="#industries">Industries</a>
                 <a href="#testimonials">Testimonials</a>
-                <a href="#contactForm">Contact</a>
+                <a href="#digidoxform">Contact</a>
             </nav>
 
             <div style="display:flex; align-items:center; gap:12px;">
-                <a href="#contactForm" class="btn btn-primary nav-cta" onclick="handleScroll(event)">Book a Free
+                <a href="#digidoxform" class="btn btn-primary nav-cta" onclick="handleScroll(event)">Book a Free
                     Consultation</a>
                 <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">☰</button>
             </div>
@@ -914,7 +929,7 @@
                         SEO, and conversion-focused execution.
                     </p>
                     <div class="hero-actions">
-                        <a href="#contactForm" class="btn btn-primary" onclick="handleScroll(event)">Get Free Strategy
+                        <a href="#digidoxform" class="btn btn-primary" onclick="handleScroll(event)">Get Free Strategy
                             Call</a>
                         <a href="#services" class="btn btn-secondary">Explore Services</a>
                     </div>
@@ -1032,7 +1047,7 @@
                     </div>
 
                     <div class="panel reveal">
-                        <div class="eyebrow">Book your free consultation</div>
+                        <div id="digidoxform" class="eyebrow">Book your free consultation</div>
                         <h3>Send your inquiry</h3>
                         <p class="muted">Use the form below and we’ll get back to you on email.</p>
 
@@ -1256,7 +1271,8 @@
                         <span class="chip">Google Ads</span>
                         <span class="chip">Technical SEO</span>
                     </div>
-                    <a href="#contactForm" class="btn btn-primary">Book a Free Consultation</a>
+                    <a href="#digidoxform" class="btn btn-primary" style="margin-top: 20px;">Book a Free
+                        Consultation</a>
                 </div>
 
                 <div class="cta-card reveal">
@@ -1293,7 +1309,7 @@
     <script>
         function handleScroll(e) {
             e.preventDefault();
-            const el = document.querySelector('#contactForm');
+            const el = document.querySelector('#digidoxform');
             if (el) {
                 const y = el.getBoundingClientRect().top + window.pageYOffset - 90;
                 window.scrollTo({ top: y, behavior: 'smooth' });
