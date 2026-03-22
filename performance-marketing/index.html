@@ -891,7 +891,7 @@
         }
 
         .industries-grid::-webkit-scrollbar {
-            height: 6px;
+            display: none;
         }
 
         .industries-grid::-webkit-scrollbar-track {
@@ -908,7 +908,7 @@
         }
 
         .industry-card {
-            flex: 0 0 calc(33.333% - 14px);
+            flex: 0 0 calc(33.333% - 12px) !important;
             scroll-snap-align: start;
             min-width: 280px;
             background: var(--panel);
@@ -999,8 +999,8 @@
                         </svg>
                     </a>
                     <div class="dropdown-menu">
-                        <a href="https://digidox360.com/shopify-development.html">Shopify Development</a>
-                        <a href="https://digidox360.com/Performance-marketing.html">Performance Marketing</a>
+                        <a href="https://digidox360.com/shopify-development/">Shopify Development</a>
+                        <a href="https://digidox360.com/performance-marketing/">Performance Marketing</a>
                     </div>
                 </div>
                 <a href="#why-us">Why Us</a>
@@ -1245,7 +1245,7 @@
             </div>
         </section>
 
-        <section class="section" id="industries">
+        <section class="section" id="industries" style="overflow-x: hidden;">
             <div class="container">
                 <div class="section-head reveal">
                     <div>
