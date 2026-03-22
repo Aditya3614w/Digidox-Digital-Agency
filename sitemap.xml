@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <url>
+    <loc>https://digidx360.com/</loc>
+    <priority>1.00</priority>
+  </url>
+
+  <url>
+    <loc>https://digidx360.com/shopify-development/</loc>
+    <priority>0.90</priority>
+  </url>
+
+  <url>
+    <loc>https://digidx360.com/performance-marketing/</loc>
+    <priority>0.90</priority>
+  </url>
+
+</urlset>
