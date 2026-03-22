@@ -101,6 +101,47 @@
             color: var(--text);
         }
 
+        /* Dropdown styles */
+        .has-dropdown {
+            position: relative;
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            min-width: 240px;
+            background: rgba(6, 12, 23, 0.98);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 14px;
+            padding: 8px 0;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all 0.2s ease;
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4);
+            z-index: 100;
+        }
+
+        .has-dropdown:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown-menu a {
+            display: block;
+            padding: 10px 20px;
+            color: var(--muted) !important;
+            transition: all 0.2s ease;
+            font-size: 14px;
+        }
+
+        .dropdown-menu a:hover {
+            background: rgba(255, 255, 255, 0.06);
+            color: var(--text) !important;
+        }
+
         .menu-toggle {
             display: none;
             width: 42px;
@@ -774,6 +815,24 @@
                 border: 1px solid rgba(255, 255, 255, 0.08);
             }
 
+            .dropdown-menu {
+                position: static;
+                opacity: 1;
+                visibility: visible;
+                transform: none;
+                box-shadow: none;
+                background: transparent;
+                border: none;
+                padding: 4px 0 0 16px;
+                min-width: auto;
+                display: block;
+                margin-top: 8px;
+            }
+
+            .dropdown-menu a {
+                padding: 8px 12px;
+            }
+
             .nav-links.open {
                 display: flex;
             }
@@ -920,7 +979,14 @@
             </a>
 
             <nav class="nav-links" id="navLinks">
-                <a href="#services">Services</a>
+                <div class="has-dropdown">
+                    <a href="#services" style="display:flex; align-items:center; gap:6px;">Services 
+                        <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </a>
+                    <div class="dropdown-menu">
+                        <a href="shopify-development.html">Shopify Development</a>
+                    </div>
+                </div>
                 <a href="#industries">Industries</a>
                 <a href="#testimonials">Testimonials</a>
                 <a href="#digidoxform">Contact</a>
@@ -1544,6 +1610,39 @@
                 submitBtn.textContent = 'Send Inquiry';
             });
         });
+
+        // --- Anti-Inspect Protection ---
+        // Disable right-click context menu
+        document.addEventListener('contextmenu', e => e.preventDefault());
+
+        // Disable DevTools shortcuts
+        document.addEventListener('keydown', function (e) {
+            // F12
+            if (e.key === 'F12') { e.preventDefault(); return false; }
+            // Ctrl+Shift+I (Inspect), Ctrl+Shift+J (Console), Ctrl+Shift+C (Element picker)
+            if (e.ctrlKey && e.shiftKey && ['I', 'J', 'C'].includes(e.key.toUpperCase())) { e.preventDefault(); return false; }
+            // Ctrl+U (View Source)
+            if (e.ctrlKey && e.key.toUpperCase() === 'U') { e.preventDefault(); return false; }
+            // Ctrl+S (Save page)
+            if (e.ctrlKey && e.key.toUpperCase() === 'S') { e.preventDefault(); return false; }
+        });
+
+        // Disable text selection
+        document.addEventListener('selectstart', e => e.preventDefault());
+
+        // Disable drag
+        document.addEventListener('dragstart', e => e.preventDefault());
+
+        // Detect DevTools open (console clear trick)
+        (function () {
+            const el = new Image();
+            Object.defineProperty(el, 'id', {
+                get: function () {
+                    window.location.href = 'about:blank';
+                }
+            });
+            setInterval(function () { console.log(el); console.clear(); }, 1000);
+        })();
     </script>
 </body>
 
