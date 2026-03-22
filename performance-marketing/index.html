@@ -1,837 +1,1541 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Performance Marketing | Digidox Digital Agency</title>
-  <meta name="description" content="Performance marketing by Digidox Digital Agency for ecommerce and growth brands. Meta Ads, Google Ads, creative strategy, funnel optimization, reporting, and profit-focused campaign scaling." />
-  <style>
-    :root {
-      --bg: #07111f;
-      --bg-soft: #0c1728;
-      --panel: rgba(255,255,255,0.05);
-      --panel-2: rgba(255,255,255,0.07);
-      --border: rgba(255,255,255,0.1);
-      --text: #f6f8ff;
-      --muted: #aeb9d2;
-      --primary: #80a8ff;
-      --accent: #79e6d1;
-      --success: #25d366;
-      --shadow: 0 18px 50px rgba(0, 0, 0, 0.28);
-      --radius: 24px;
-      --max: 1160px;
-    }
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Performance Marketing | Digidox Digital Agency</title>
+    <meta name="description"
+        content="Performance marketing by Digidox Digital Agency for ecommerce and growth brands. Meta Ads, Google Ads, creative strategy, funnel optimization, reporting, and profit-focused campaign scaling." />
+    <style>
+        :root {
+            --bg: #07111f;
+            --bg-soft: #0c1728;
+            --panel: rgba(255, 255, 255, 0.05);
+            --panel-2: rgba(255, 255, 255, 0.07);
+            --border: rgba(255, 255, 255, 0.1);
+            --text: #f6f8ff;
+            --muted: #aeb9d2;
+            --primary: #80a8ff;
+            --accent: #79e6d1;
+            --success: #25d366;
+            --shadow: 0 18px 50px rgba(0, 0, 0, 0.28);
+            --radius: 24px;
+            --max: 1160px;
+        }
 
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body {
-      margin: 0;
-      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      color: var(--text);
-      background:
-        radial-gradient(circle at top left, rgba(128,168,255,0.16), transparent 26%),
-        radial-gradient(circle at top right, rgba(121,230,209,0.12), transparent 22%),
-        linear-gradient(180deg, #06101d 0%, #0a1423 100%);
-      line-height: 1.6;
-      overflow-x: hidden;
-    }
+        * {
+            box-sizing: border-box;
+        }
 
-    a { color: inherit; text-decoration: none; }
-    .container { width: min(var(--max), calc(100% - 32px)); margin: 0 auto; }
+        html {
+            scroll-behavior: smooth;
+        }
 
-    .navbar {
-      position: sticky; top: 0; z-index: 50;
-      background: rgba(6, 12, 23, 0.82);
-      backdrop-filter: blur(16px);
-      border-bottom: 1px solid rgba(255,255,255,0.08);
-    }
-    .nav-inner {
-      min-height: 78px; display: flex; align-items: center; justify-content: space-between; gap: 16px;
-    }
-    .brand {
-      display: inline-flex; align-items: center; gap: 12px; font-weight: 800; letter-spacing: 0.2px; min-width: 0;
-    }
-    .brand-logo { max-height: 48px; width: auto; }
-    .brand span:last-child { white-space: nowrap; }
-    
-    .nav-links { display: flex; align-items: center; gap: 22px; color: var(--muted); font-size: 15px; }
-    .nav-links a:hover, .nav-links a.active { color: var(--text); }
-    
-    .has-dropdown { position: relative; }
-    .dropdown-menu {
-      position: absolute; top: 100%; left: 0; background: rgba(6, 12, 23, 0.98);
-      border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 12px; padding: 8px 0;
-      min-width: 220px; opacity: 0; visibility: hidden; transform: translateY(10px);
-      transition: all 0.3s ease; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); z-index: 100;
-    }
-    .has-dropdown:hover .dropdown-menu { opacity: 1; visibility: visible; transform: translateY(0); }
-    .dropdown-menu a { display: block; padding: 10px 20px; color: var(--muted); transition: all 0.2s ease; }
-    .dropdown-menu a:hover { color: var(--text); background: rgba(255, 255, 255, 0.05); }
+        body {
+            margin: 0;
+            font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            color: var(--text);
+            background:
+                radial-gradient(circle at top left, rgba(128, 168, 255, 0.16), transparent 26%),
+                radial-gradient(circle at top right, rgba(121, 230, 209, 0.12), transparent 22%),
+                linear-gradient(180deg, #06101d 0%, #0a1423 100%);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
 
-    .menu-toggle {
-      display: none; width: 42px; height: 42px; border-radius: 12px; border: 1px solid var(--border);
-      background: rgba(255,255,255,0.04); color: var(--text); font-size: 18px; cursor: pointer; flex-shrink: 0;
-    }
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
 
-    .btn {
-      display: inline-flex; align-items: center; justify-content: center; gap: 10px; border-radius: 999px;
-      padding: 14px 22px; font-weight: 700; border: 1px solid transparent; transition: 0.22s ease; cursor: pointer;
-    }
-    .btn-primary {
-      background: linear-gradient(135deg, var(--primary), var(--accent)); color: #06101d; box-shadow: var(--shadow);
-    }
-    .btn-secondary { background: rgba(255,255,255,0.04); border-color: var(--border); color: var(--text); }
-    .btn-primary:hover, .btn-secondary:hover { transform: translateY(-2px); }
+        .container {
+            width: min(var(--max), calc(100% - 32px));
+            margin: 0 auto;
+        }
 
-    .hero { padding: 72px 0 36px; }
-    .hero-grid {
-      display: grid; grid-template-columns: minmax(0, 1.02fr) minmax(0, 0.98fr); gap: 24px; align-items: stretch;
-    }
-    .eyebrow {
-      display: inline-flex; align-items: center; gap: 10px; padding: 8px 14px; border-radius: 999px;
-      background: rgba(128,168,255,0.1); border: 1px solid rgba(128,168,255,0.18); color: #d8e4ff;
-      font-size: 13px; margin-bottom: 18px;
-    }
-    .eyebrow-dot {
-      width: 10px; height: 10px; border-radius: 50%; background: var(--accent);
-      box-shadow: 0 0 0 0 rgba(121,230,209,0.7); animation: pulse 1.8s infinite; flex-shrink: 0;
-    }
-    @keyframes pulse {
-      0% { box-shadow: 0 0 0 0 rgba(121,230,209,0.7); }
-      70% { box-shadow: 0 0 0 10px rgba(121,230,209,0); }
-      100% { box-shadow: 0 0 0 0 rgba(121,230,209,0); }
-    }
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            background: rgba(6, 12, 23, 0.82);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
 
-    h1 {
-      margin: 0 0 18px; font-size: clamp(38px, 5.6vw, 66px); line-height: 1.02; letter-spacing: -1.8px; max-width: 720px;
-    }
-    .gradient-text {
-      background: linear-gradient(135deg, #ffffff 0%, #bed1ff 48%, #7de9d4 100%);
-      -webkit-background-clip: text; background-clip: text; color: transparent;
-    }
-    .hero-copy p { margin: 0 0 22px; color: var(--muted); font-size: 18px; max-width: 690px; }
-    .hero-actions, .hero-chips, .chips { display: flex; flex-wrap: wrap; gap: 12px; }
-    .hero-actions { margin-bottom: 20px; }
-    .chip {
-      padding: 10px 14px; border-radius: 999px; background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.08); color: #dce5fb; font-size: 14px;
-    }
+        .nav-inner {
+            min-height: 78px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+        }
 
-    .panel, .mini-card, .value-card, .service-card, .feature-card, .faq-card, .testimonial-card, .cta-card {
-      background: linear-gradient(180deg, rgba(255,255,255,0.07), rgba(255,255,255,0.04));
-      border: 1px solid var(--border); border-radius: 22px; box-shadow: var(--shadow);
-    }
-    .hero-content-card, .form-panel { padding: 28px; height: 100%; }
-    .hero-mini-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin-top: 18px; }
-    .mini-card { padding: 15px; min-height: 112px; }
-    .mini-card strong { display: block; font-size: 16px; color: #8ff0dd; margin-bottom: 6px; }
-    .mini-card span { display: block; color: var(--muted); font-size: 13px; line-height: 1.45; }
+        .brand {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 800;
+            letter-spacing: 0.2px;
+            min-width: 0;
+        }
 
-    .form-panel h3, .section-head h2, .cta-card h3 { margin: 0 0 10px; line-height: 1.2; }
-    .form-panel h3 { font-size: 30px; }
-    form { display: grid; gap: 14px; margin-top: 18px; }
-    .field { display: grid; gap: 8px; }
-    label { font-size: 14px; color: #dfe8ff; }
-    input, select, textarea {
-      width: 100%; padding: 15px 16px; border-radius: 16px; border: 1px solid rgba(255,255,255,0.12);
-      background: rgba(7, 14, 26, 0.82); color: white; font: inherit; outline: none; transition: 0.2s ease;
-    }
-    textarea { min-height: 120px; resize: vertical; }
-    input:focus, select:focus, textarea:focus {
-      border-color: rgba(128,168,255,0.45); box-shadow: 0 0 0 4px rgba(128,168,255,0.12);
-    }
+        .brand-logo {
+            max-height: 48px;
+            width: auto;
+        }
 
-    .section { padding: 38px 0; }
-    .section-head {
-      display: flex; justify-content: space-between; align-items: end; gap: 18px; margin-bottom: 24px;
-    }
-    .section-head h2 { font-size: clamp(28px, 4vw, 46px); letter-spacing: -1.2px; }
-    .section-head p, .muted { margin: 0; color: var(--muted); }
+        .brand span:last-child {
+            white-space: nowrap;
+        }
 
-    .value-grid, .services-grid, .feature-grid, .faq-grid, .testimonials-grid, .cta-grid {
-      display: grid; gap: 18px;
-    }
-    .value-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
-    .services-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-    .feature-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-    .faq-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-    .testimonials-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-    .cta-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 22px;
+            color: var(--muted);
+            font-size: 15px;
+        }
 
-    .value-card, .service-card, .feature-card, .faq-card, .testimonial-card, .cta-card {
-      padding: 24px; transition: transform 0.22s ease, border-color 0.22s ease;
-    }
-    .value-card:hover, .service-card:hover, .feature-card:hover, .faq-card:hover, .testimonial-card:hover, .cta-card:hover {
-      transform: translateY(-4px); border-color: rgba(128,168,255,0.3);
-    }
-    .value-card small { display: block; color: var(--muted); margin-bottom: 8px; }
-    .value-card strong {
-      display: block; font-size: 40px; line-height: 1; margin-bottom: 8px; color: #18d5ff; letter-spacing: -1px;
-    }
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--text);
+        }
 
-    .service-icon, .feature-icon {
-      width: 56px; height: 56px; border-radius: 18px; display: grid; place-items: center;
-      background: linear-gradient(135deg, rgba(128,168,255,0.18), rgba(121,230,209,0.12));
-      border: 1px solid rgba(255,255,255,0.08); font-size: 24px; margin-bottom: 16px;
-    }
-    .service-card h3, .feature-card h3, .faq-card h3, .testimonial-card h3 { margin: 0 0 10px; font-size: 26px; line-height: 1.2; }
-    .service-card p, .feature-card p, .faq-card p, .testimonial-card p, .cta-card p { color: var(--muted); margin: 0 0 14px; }
-    .service-card ul, .feature-card ul {
-      list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; color: #e7eeff; font-size: 14px;
-    }
-    .service-card li::before, .feature-card li::before {
-      content: "•"; color: var(--accent); margin-right: 10px; font-weight: 900;
-    }
-    .testimonial-card strong { display: block; margin-top: 12px; color: #edf2ff; }
+        .has-dropdown {
+            position: relative;
+        }
 
-    footer { padding: 28px 0 88px; color: var(--muted); }
-    .footer-inner {
-      display: flex; justify-content: space-between; gap: 16px; align-items: center;
-      border-top: 1px solid rgba(255,255,255,0.08); padding-top: 20px;
-    }
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: rgba(6, 12, 23, 0.98);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            padding: 8px 0;
+            min-width: 220px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            z-index: 100;
+        }
 
-    .whatsapp-float {
-      position: fixed; right: 18px; bottom: 18px; width: 60px; height: 60px; border-radius: 50%;
-      display: flex; align-items: center; justify-content: center; background: #ffffff;
-      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.18); border: 2px solid #e6f7ef; z-index: 60; transition: transform 0.22s ease;
-    }
-    .whatsapp-float:hover { transform: translateY(-2px); }
-    .whatsapp-float img { width: 34px; height: auto; display: block; }
+        .has-dropdown:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown-menu a {
+            display: block;
+            padding: 10px 20px;
+            color: var(--muted);
+            transition: all 0.2s ease;
+        }
+
+        .dropdown-menu a:hover {
+            color: var(--text);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .menu-toggle {
+            display: none;
+            width: 42px;
+            height: 42px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--text);
+            font-size: 18px;
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            border-radius: 999px;
+            padding: 14px 22px;
+            font-weight: 700;
+            border: 1px solid transparent;
+            transition: 0.22s ease;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: #06101d;
+            box-shadow: var(--shadow);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.04);
+            border-color: var(--border);
+            color: var(--text);
+        }
+
+        .btn-primary:hover,
+        .btn-secondary:hover {
+            transform: translateY(-2px);
+        }
+
+        .hero {
+            padding: 72px 0 36px;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1.02fr) minmax(0, 0.98fr);
+            gap: 24px;
+            align-items: stretch;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 14px;
+            border-radius: 999px;
+            background: rgba(128, 168, 255, 0.1);
+            border: 1px solid rgba(128, 168, 255, 0.18);
+            color: #d8e4ff;
+            font-size: 13px;
+            margin-bottom: 18px;
+        }
+
+        .eyebrow-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--accent);
+            box-shadow: 0 0 0 0 rgba(121, 230, 209, 0.7);
+            animation: pulse 1.8s infinite;
+            flex-shrink: 0;
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(121, 230, 209, 0.7);
+            }
+
+            70% {
+                box-shadow: 0 0 0 10px rgba(121, 230, 209, 0);
+            }
+
+            100% {
+                box-shadow: 0 0 0 0 rgba(121, 230, 209, 0);
+            }
+        }
+
+        h1 {
+            margin: 0 0 18px;
+            font-size: clamp(38px, 5.6vw, 66px);
+            line-height: 1.02;
+            letter-spacing: -1.8px;
+            max-width: 720px;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #ffffff 0%, #bed1ff 48%, #7de9d4 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .hero-copy p {
+            margin: 0 0 22px;
+            color: var(--muted);
+            font-size: 18px;
+            max-width: 690px;
+        }
+
+        .hero-actions,
+        .hero-chips,
+        .chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .hero-actions {
+            margin-bottom: 20px;
+        }
+
+        .chip {
+            padding: 10px 14px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            color: #dce5fb;
+            font-size: 14px;
+        }
+
+        .panel,
+        .mini-card,
+        .value-card,
+        .service-card,
+        .feature-card,
+        .faq-card,
+        .testimonial-card,
+        .cta-card {
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.04));
+            border: 1px solid var(--border);
+            border-radius: 22px;
+            box-shadow: var(--shadow);
+        }
+
+        .hero-content-card,
+        .form-panel {
+            padding: 28px;
+            height: 100%;
+        }
+
+        .hero-mini-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 12px;
+            margin-top: 18px;
+        }
+
+        .mini-card {
+            padding: 15px;
+            min-height: 112px;
+        }
+
+        .mini-card strong {
+            display: block;
+            font-size: 16px;
+            color: #8ff0dd;
+            margin-bottom: 6px;
+        }
+
+        .mini-card span {
+            display: block;
+            color: var(--muted);
+            font-size: 13px;
+            line-height: 1.45;
+        }
+
+        .form-panel h3,
+        .section-head h2,
+        .cta-card h3 {
+            margin: 0 0 10px;
+            line-height: 1.2;
+        }
+
+        .form-panel h3 {
+            font-size: 30px;
+        }
+
+        form {
+            display: grid;
+            gap: 14px;
+            margin-top: 18px;
+        }
+
+        .field {
+            display: grid;
+            gap: 8px;
+        }
+
+        label {
+            font-size: 14px;
+            color: #dfe8ff;
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+            padding: 15px 16px;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            background: rgba(7, 14, 26, 0.82);
+            color: white;
+            font: inherit;
+            outline: none;
+            transition: 0.2s ease;
+        }
+
+        textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            border-color: rgba(128, 168, 255, 0.45);
+            box-shadow: 0 0 0 4px rgba(128, 168, 255, 0.12);
+        }
+
+        .section {
+            padding: 38px 0;
+        }
+
+        .section-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: end;
+            gap: 18px;
+            margin-bottom: 24px;
+        }
+
+        .section-head h2 {
+            font-size: clamp(28px, 4vw, 46px);
+            letter-spacing: -1.2px;
+        }
+
+        .section-head p,
+        .muted {
+            margin: 0;
+            color: var(--muted);
+        }
+
+        .value-grid,
+        .services-grid,
+        .feature-grid,
+        .faq-grid,
+        .testimonials-grid,
+        .cta-grid {
+            display: grid;
+            gap: 18px;
+        }
+
+        .value-grid {
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+        }
+
+        .services-grid {
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+
+        .feature-grid {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .faq-grid {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .testimonials-grid {
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+
+        .cta-grid {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .value-card,
+        .service-card,
+        .feature-card,
+        .faq-card,
+        .testimonial-card,
+        .cta-card {
+            padding: 24px;
+            transition: transform 0.22s ease, border-color 0.22s ease;
+        }
+
+        .value-card:hover,
+        .service-card:hover,
+        .feature-card:hover,
+        .faq-card:hover,
+        .testimonial-card:hover,
+        .cta-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(128, 168, 255, 0.3);
+        }
+
+        .value-card small {
+            display: block;
+            color: var(--muted);
+            margin-bottom: 8px;
+        }
+
+        .value-card strong {
+            display: block;
+            font-size: 40px;
+            line-height: 1;
+            margin-bottom: 8px;
+            color: #18d5ff;
+            letter-spacing: -1px;
+        }
+
+        .service-icon,
+        .feature-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 18px;
+            display: grid;
+            place-items: center;
+            background: linear-gradient(135deg, rgba(128, 168, 255, 0.18), rgba(121, 230, 209, 0.12));
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            font-size: 24px;
+            margin-bottom: 16px;
+        }
+
+        .service-card h3,
+        .feature-card h3,
+        .faq-card h3,
+        .testimonial-card h3 {
+            margin: 0 0 10px;
+            font-size: 26px;
+            line-height: 1.2;
+        }
+
+        .service-card p,
+        .feature-card p,
+        .faq-card p,
+        .testimonial-card p,
+        .cta-card p {
+            color: var(--muted);
+            margin: 0 0 14px;
+        }
+
+        .service-card ul,
+        .feature-card ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: grid;
+            gap: 10px;
+            color: #e7eeff;
+            font-size: 14px;
+        }
+
+        .service-card li::before,
+        .feature-card li::before {
+            content: "•";
+            color: var(--accent);
+            margin-right: 10px;
+            font-weight: 900;
+        }
+
+        .testimonial-card strong {
+            display: block;
+            margin-top: 12px;
+            color: #edf2ff;
+        }
+
+        footer {
+            padding: 28px 0 88px;
+            color: var(--muted);
+        }
+
+        .footer-inner {
+            display: flex;
+            justify-content: space-between;
+            gap: 16px;
+            align-items: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            padding-top: 20px;
+        }
+
+        .whatsapp-float {
+            position: fixed;
+            right: 18px;
+            bottom: 18px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #ffffff;
+            box-shadow: 0 18px 40px rgba(0, 0, 0, 0.18);
+            border: 2px solid #e6f7ef;
+            z-index: 60;
+            transition: transform 0.22s ease;
+        }
+
+        .whatsapp-float:hover {
+            transform: translateY(-2px);
+        }
+
+        .whatsapp-float img {
+            width: 34px;
+            height: auto;
+            display: block;
+        }
 
 
-    select {
-      appearance: none; -webkit-appearance: none;
-      background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
-      background-repeat: no-repeat; background-position: right 14px center; background-size: 16px; padding-right: 40px;
-    }
-    
-    .faq-accordion { display: flex; flex-direction: column; gap: 16px; max-width: 800px; margin: 0 auto; }
-    .faq-item { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 16px; overflow: hidden; transition: all 0.3s ease; cursor: pointer; }
-    .faq-item:hover { background: rgba(255, 255, 255, 0.05); border-color: rgba(128, 168, 255, 0.3); }
-    .faq-question { padding: 20px 24px; display: flex; justify-content: space-between; align-items: center; font-size: 18px; font-weight: 600; color: #fff; gap: 16px; }
-    .faq-icon { width: 24px; height: 24px; border-radius: 50%; background: rgba(128, 168, 255, 0.1); display: grid; place-items: center; color: #80a8ff; transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1); flex-shrink: 0; }
-    .faq-item.active { border-color: #80a8ff; background: rgba(255, 255, 255, 0.04); }
-    .faq-item.active .faq-icon { transform: rotate(180deg); background: #80a8ff; color: #000; }
-    .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
-    .faq-answer-inner { padding: 0 24px 20px; color: #aeb9d2; font-size: 15px; line-height: 1.6; }
+        select {
+            appearance: none;
+            -webkit-appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 14px center;
+            background-size: 16px;
+            padding-right: 40px;
+        }
 
-    .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
-    .reveal.show { opacity: 1; transform: translateY(0); }
+        .faq-accordion {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
 
-    @media (max-width: 1024px) {
-      .hero-grid, .value-grid, .services-grid, .feature-grid, .faq-grid, .testimonials-grid, .cta-grid {
-        grid-template-columns: 1fr 1fr;
-      }
-      .value-grid { grid-template-columns: repeat(2, 1fr); }
-    }
+        .faq-item {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
 
-    @media (max-width: 820px) {
-      .container { width: min(var(--max), calc(100% - 24px)); }
-      .nav-links {
-        position: absolute; top: calc(100% + 8px); left: 12px; right: 12px; display: none;
-        flex-direction: column; align-items: flex-start; gap: 14px; padding: 16px; border-radius: 18px;
-        background: rgba(6, 12, 23, 0.98); border: 1px solid rgba(255,255,255,0.08);
-      }
-      .nav-links.open { display: flex; }
-      .menu-toggle { display: inline-grid; place-items: center; }
-      .nav-cta { display: none; }
-      .hero, .section { padding: 28px 0; }
-      .hero-grid, .value-grid, .services-grid, .feature-grid, .faq-grid, .testimonials-grid, .cta-grid, .hero-mini-grid {
-        grid-template-columns: 1fr;
-      }
-      h1 { font-size: clamp(32px, 10vw, 44px); letter-spacing: -1.2px; }
-      .hero-copy p { font-size: 16px; }
-      .hero-content-card, .form-panel, .value-card, .service-card, .feature-card, .faq-card, .testimonial-card, .cta-card {
-        padding: 20px; border-radius: 20px;
-      }
-      .form-panel h3, .service-card h3, .feature-card h3, .faq-card h3, .testimonial-card h3, .cta-card h3 { font-size: 24px; }
-      .value-card strong { font-size: 34px; }
-      .footer-inner { flex-direction: column; align-items: flex-start; }
-      footer { padding-bottom: 92px; }
-    }
+        .faq-item:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(128, 168, 255, 0.3);
+        }
 
-    @media (max-width: 520px) {
-      .nav-inner { min-height: 70px; }
-      .brand span:last-child { max-width: 180px; overflow: hidden; text-overflow: ellipsis; }
-      .eyebrow, .chip { font-size: 12px; }
-      .btn { width: 100%; }
-      .hero-actions { flex-direction: column; }
-      .section-head h2 { font-size: 30px; }
-      .whatsapp-float { right: 14px; bottom: 14px; width: 54px; height: 54px; border-radius: 50%; }
-      .whatsapp-float img { width: 30px; }
-    }
-  </style>
+        .faq-question {
+            padding: 20px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 18px;
+            font-weight: 600;
+            color: #fff;
+            gap: 16px;
+        }
+
+        .faq-icon {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: rgba(128, 168, 255, 0.1);
+            display: grid;
+            place-items: center;
+            color: #80a8ff;
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            flex-shrink: 0;
+        }
+
+        .faq-item.active {
+            border-color: #80a8ff;
+            background: rgba(255, 255, 255, 0.04);
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(180deg);
+            background: #80a8ff;
+            color: #000;
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .faq-answer-inner {
+            padding: 0 24px 20px;
+            color: #aeb9d2;
+            font-size: 15px;
+            line-height: 1.6;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .reveal.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (max-width: 1024px) {
+
+            .hero-grid,
+            .value-grid,
+            .services-grid,
+            .feature-grid,
+            .faq-grid,
+            .testimonials-grid,
+            .cta-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .value-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 820px) {
+            .container {
+                width: min(var(--max), calc(100% - 24px));
+            }
+
+            .nav-links {
+                position: absolute;
+                top: calc(100% + 8px);
+                left: 12px;
+                right: 12px;
+                display: none;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 14px;
+                padding: 16px;
+                border-radius: 18px;
+                background: rgba(6, 12, 23, 0.98);
+                border: 1px solid rgba(255, 255, 255, 0.08);
+            }
+
+            .nav-links.open {
+                display: flex;
+            }
+
+            .menu-toggle {
+                display: inline-grid;
+                place-items: center;
+            }
+
+            .nav-cta {
+                display: none;
+            }
+
+            .hero,
+            .section {
+                padding: 28px 0;
+            }
+
+            .hero-grid,
+            .value-grid,
+            .services-grid,
+            .feature-grid,
+            .faq-grid,
+            .testimonials-grid,
+            .cta-grid,
+            .hero-mini-grid {
+                grid-template-columns: 1fr;
+            }
+
+            h1 {
+                font-size: clamp(32px, 10vw, 44px);
+                letter-spacing: -1.2px;
+            }
+
+            .hero-copy p {
+                font-size: 16px;
+            }
+
+            .hero-content-card,
+            .form-panel,
+            .value-card,
+            .service-card,
+            .feature-card,
+            .faq-card,
+            .testimonial-card,
+            .cta-card {
+                padding: 20px;
+                border-radius: 20px;
+            }
+
+            .form-panel h3,
+            .service-card h3,
+            .feature-card h3,
+            .faq-card h3,
+            .testimonial-card h3,
+            .cta-card h3 {
+                font-size: 24px;
+            }
+
+            .value-card strong {
+                font-size: 34px;
+            }
+
+            .footer-inner {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            footer {
+                padding-bottom: 92px;
+            }
+        }
+
+        @media (max-width: 520px) {
+            .nav-inner {
+                min-height: 70px;
+            }
+
+            .brand span:last-child {
+                max-width: 180px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+
+            .eyebrow,
+            .chip {
+                font-size: 12px;
+            }
+
+            .btn {
+                width: 100%;
+            }
+
+            .hero-actions {
+                flex-direction: column;
+            }
+
+            .section-head h2 {
+                font-size: 30px;
+            }
+
+            .whatsapp-float {
+                right: 14px;
+                bottom: 14px;
+                width: 54px;
+                height: 54px;
+                border-radius: 50%;
+            }
+
+            .whatsapp-float img {
+                width: 30px;
+            }
+        }
+
+        .sticky-cta {
+            position: fixed;
+            bottom: 24px;
+            left: 50%;
+            transform: translate(-50%, 100px);
+            z-index: 55;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            pointer-events: none;
+        }
+
+        .sticky-cta.visible {
+            transform: translate(-50%, 0);
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+        }
+
+        .sticky-cta .btn {
+            box-shadow: 0 12px 30px rgba(121, 230, 209, 0.25);
+            padding: 16px 32px;
+            font-size: 16px;
+        }
+
+        @media (max-width: 520px) {
+            .sticky-cta {
+                bottom: 14px;
+                left: 14px;
+                transform: translateY(100px);
+                width: calc(100% - 80px);
+                justify-content: flex-start;
+            }
+
+            .sticky-cta.visible {
+                transform: translateY(0);
+            }
+
+            .sticky-cta .btn {
+                width: 100%;
+                font-size: 15px;
+                padding: 14px 20px;
+            }
+        }
+    </style>
 
     <!-- Meta Pixel Code -->
     <script>
-    !function(f,b,e,v,n,t,s)
-    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-    n.queue=[];t=b.createElement(e);t.async=!0;
-    t.src=v;s=b.getElementsByTagName(e)[0];
-    s.parentNode.insertBefore(t,s)}(window, document,'script',
-    'https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', '1466235984886727');
-    fbq('track', 'PageView');
-      document.querySelectorAll('.faq-question').forEach(button => {
-      button.addEventListener('click', () => {
-        const item = button.parentElement;
-        const isActive = item.classList.contains('active');
-        document.querySelectorAll('.faq-item').forEach(faq => {
-          faq.classList.remove('active');
-          if(faq.querySelector('.faq-answer')) { faq.querySelector('.faq-answer').style.maxHeight = null; }
+        !function (f, b, e, v, n, t, s) {
+            if (f.fbq) return; n = f.fbq = function () {
+                n.callMethod ?
+                n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+            };
+            if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0';
+            n.queue = []; t = b.createElement(e); t.async = !0;
+            t.src = v; s = b.getElementsByTagName(e)[0];
+            s.parentNode.insertBefore(t, s)
+        }(window, document, 'script',
+            'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', '1466235984886727');
+        fbq('track', 'PageView');
+        document.querySelectorAll('.faq-question').forEach(button => {
+            button.addEventListener('click', () => {
+                const item = button.parentElement;
+                const isActive = item.classList.contains('active');
+                document.querySelectorAll('.faq-item').forEach(faq => {
+                    faq.classList.remove('active');
+                    if (faq.querySelector('.faq-answer')) { faq.querySelector('.faq-answer').style.maxHeight = null; }
+                });
+                if (!isActive) {
+                    item.classList.add('active');
+                    const answer = item.querySelector('.faq-answer');
+                    if (answer) { answer.style.maxHeight = answer.scrollHeight + "px"; }
+                }
+            });
         });
-        if (!isActive) {
-          item.classList.add('active');
-          const answer = item.querySelector('.faq-answer');
-          if(answer) { answer.style.maxHeight = answer.scrollHeight + "px"; }
-        }
-      });
-    });
-  </script>
+    </script>
     <noscript><img height="1" width="1" style="display:none"
-    src="https://www.facebook.com/tr?id=1466235984886727&ev=PageView&noscript=1"
-    /></noscript>
+            src="https://www.facebook.com/tr?id=1466235984886727&ev=PageView&noscript=1" /></noscript>
     <!-- End Meta Pixel Code -->
 </head>
+
 <body>
-  <header class="navbar">
-    <div class="container nav-inner">
-      <a href="https://digidox360.com/" class="brand">
-        <img src="https://digidox360.com/assets/brandlogo.png" alt="Digidox Digital Agency" class="brand-logo" />
-      </a>
-      <nav class="nav-links" id="navLinks">
-        <a href="https://digidox360.com/">Home</a>
-        <div class="has-dropdown">
-            <a href="#services" style="display:flex; align-items:center; gap:6px;">Services
-                <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                </svg>
+    <header class="navbar">
+        <div class="container nav-inner">
+            <a href="https://digidox360.com/" class="brand">
+                <img src="https://digidox360.com/assets/brandlogo.png" alt="Digidox Digital Agency"
+                    class="brand-logo" />
             </a>
-            <div class="dropdown-menu">
-                <a href="https://digidox360.com/shopify-development/index.html">Shopify Development</a>
-                <a href="https://digidox360.com/Performance-marketing.html">Performance Marketing</a>
-            </div>
-        </div>
-        <a href="#why-us">Why Us</a>
-        <a href="#faq">FAQ</a>
-        <a href="#contact">Contact</a>
-      </nav>
-      <div style="display:flex; align-items:center; gap:12px;">
-        <a href="#contact" class="btn btn-primary nav-cta" onclick="handleScroll(event)">Book a Free Consultation</a>
-        <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">☰</button>
-      </div>
-    </div>
-  </header>
-
-  <main>
-    <section class="hero" id="home">
-      <div class="container">
-        <div class="panel hero-content-card reveal show" style="max-width: 1000px; margin: 0 auto;">
-          <div class="eyebrow"><span class="eyebrow-dot"></span> Profit-Focused Performance Marketing</div>
-          <h1>Optimize your <span class="gradient-text">ads for more profit</span> with a clean, data-driven growth system.</h1>
-          <p>
-            Digidox Digital Agency helps brands grow through performance marketing built around <strong>Meta Ads, Google Ads, creative strategy, landing page alignment, funnel optimization, and real reporting</strong>. We focus on profitable scaling, not just traffic numbers. We actively leverage Meta’s AI to improve signal quality and push toward stronger ROAS outcomes.
-          </p>
-          <div class="hero-actions">
-            <a href="#contact" class="btn btn-primary" onclick="handleScroll(event)">Schedule a Strategy Call</a>
-            <a href="#services" class="btn btn-secondary">Explore Services</a>
-          </div>
-          <div class="hero-chips">
-            <span class="chip">Meta AI Optimization</span>
-            <span class="chip">Advantage+ Campaigns</span>
-            <span class="chip">Creative Testing System</span>
-            <span class="chip">Target: 3–5x ROAS</span>
-          </div>
-
-          <div class="hero-mini-grid">
-            <div class="mini-card">
-              <strong>Meta AI Powered Scaling</strong>
-              <span>We use Meta’s AI features like Advantage+, broad targeting, and dynamic creatives to improve conversion signals.</span>
-            </div>
-            <div class="mini-card">
-              <strong>Ad Strategy</strong>
-              <span>Campaign planning based on business goals, offer clarity, and real acquisition logic.</span>
-            </div>
-            <div class="mini-card">
-              <strong>Creative Direction</strong>
-              <span>We align hooks, messaging, offers, and visuals to improve ad performance.</span>
-            </div>
-            <div class="mini-card">
-              <strong>Landing Page Fit</strong>
-              <span>We make sure ad traffic lands on pages built to convert, not just impress.</span>
-            </div>
-            <div class="mini-card">
-              <strong>Reporting & Scaling</strong>
-              <span>Clear performance tracking with optimization decisions built around profitability.</span>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-    <section class="section" id="why-us">
-      <div class="container">
-        <div class="section-head reveal">
-          <div>
-            <h2>Why our performance marketing works (AI + data driven)</h2>
-            <p>We build a cleaner growth engine by connecting media buying, creative strategy, offers, tracking, and conversion-focused landing pages.</p>
-          </div>
-        </div>
-        <div class="value-grid">
-          <div class="value-card reveal">
-            <small>Ad Spend Managed</small>
-            <strong>50Cr+</strong>
-            <p class="muted">Campaign execution experience across growth-focused ecommerce accounts using AI-driven optimization and structured scaling.</p>
-          </div>
-          <div class="value-card reveal">
-            <small>Brand Experience</small>
-            <strong>150+</strong>
-            <p class="muted">Worked across multiple business models, categories, and acquisition stages.</p>
-          </div>
-          <div class="value-card reveal">
-            <small>Focus</small>
-            <strong>Profit</strong>
-            <p class="muted">We optimize for sustainable revenue and return, not vanity metrics — targeting stronger efficiency benchmarks like 3x–5x ROAS depending on product and funnel.</p>
-          </div>
-          <div class="value-card reveal">
-            <small>Approach</small>
-            <strong>Full Funnel</strong>
-            <p class="muted">Audience, creative, ads, landing pages, and reporting are handled together.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="services">
-      <div class="container">
-        <div class="section-head reveal">
-          <div>
-            <h2>What’s included in our performance marketing service</h2>
-            <p>Everything required to create a sharper, cleaner, and more profitable ad system.</p>
-          </div>
-        </div>
-        <div class="services-grid">
-          <article class="service-card reveal">
-            <div class="service-icon">📣</div>
-            <h3>Meta Ads <span class="gradient-text">Management</span></h3>
-            <p>Campaign setup, structure, audience targeting, budget control, and daily performance optimization.</p>
-            <ul>
-              <li>Prospecting and retargeting</li>
-              <li>Creative testing structure</li>
-              <li>Offer-led campaign planning</li>
-              <li>Scaling using Meta AI + real performance signals</li>
-            </ul>
-          </article>
-          <article class="service-card reveal">
-            <div class="service-icon">🔎</div>
-            <h3>Google Ads <span class="gradient-text">Management</span></h3>
-            <p>Search, shopping, and high-intent campaign systems planned for profitable acquisition.</p>
-            <ul>
-              <li>Search and shopping campaigns</li>
-              <li>Keyword and intent mapping</li>
-              <li>Conversion tracking setup</li>
-              <li>Bid and budget optimization</li>
-            </ul>
-          </article>
-          <article class="service-card reveal">
-            <div class="service-icon">🎯</div>
-            <h3>Growth <span class="gradient-text">Strategy</span></h3>
-            <p>We identify the right angle, offer, funnel, and channel priorities before scaling spend.</p>
-            <ul>
-              <li>Funnel planning</li>
-              <li>Offer positioning</li>
-              <li>Audience segmentation</li>
-              <li>Scaling roadmap</li>
-            </ul>
-          </article>
-          <article class="service-card reveal">
-            <div class="service-icon">🎨</div>
-            <h3>Creative <span class="gradient-text">Direction</span></h3>
-            <p>We help shape ad creatives that connect with the right customer and improve performance.</p>
-            <ul>
-              <li>Hook and message planning</li>
-              <li>Visual direction</li>
-              <li>Ad angle testing</li>
-              <li>Creative iteration process</li>
-            </ul>
-          </article>
-          <article class="service-card reveal">
-            <div class="service-icon">🧭</div>
-            <h3>Landing Page <span class="gradient-text">Alignment</span></h3>
-            <p>Ads perform better when the page experience matches the promise made in the campaign.</p>
-            <ul>
-              <li>Offer-to-page consistency</li>
-              <li>Conversion pathway review</li>
-              <li>Drop-off reduction</li>
-              <li>Ad-ready page suggestions</li>
-            </ul>
-          </article>
-          <article class="service-card reveal">
-            <div class="service-icon">📊</div>
-            <h3>Reporting & <span class="gradient-text">Optimization</span></h3>
-            <p>Transparent performance reporting with ongoing optimization built around real business numbers.</p>
-            <ul>
-              <li>Performance dashboards</li>
-              <li>Weekly / monthly insights</li>
-              <li>Profitability-focused decisions</li>
-              <li>Clear next-step action plan</li>
-            </ul>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- NEW AUTOMATION SECTION -->
-    <section class="section" id="automation">
-        <div class="container">
-            <div class="section-head reveal" style="margin-bottom: 24px;">
-                <div>
-                    <h2>Email Marketing & WhatsApp Automation</h2>
-                    <p>We build your complete email marketing and WhatsApp automation flows—an essential need for a good brand to maximize retention and revenue.</p>
-                </div>
-            </div>
-
-            <div class="services-grid" style="grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));">
-                <article class="service-card reveal" style="background: linear-gradient(180deg, rgba(37, 211, 102, 0.08), rgba(255, 255, 255, 0.02)); border-color: rgba(37, 211, 102, 0.2);">
-                    <div class="service-icon" style="background: rgba(37, 211, 102, 0.1);">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#25d366" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+            <nav class="nav-links" id="navLinks">
+                <a href="https://digidox360.com/">Home</a>
+                <div class="has-dropdown">
+                    <a href="#services" style="display:flex; align-items:center; gap:6px;">Services
+                        <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                                stroke-linejoin="round" />
                         </svg>
+                    </a>
+                    <div class="dropdown-menu">
+                        <a href="https://digidox360.com/shopify-development/index.html">Shopify Development</a>
+                        <a href="https://digidox360.com/Performance-marketing.html">Performance Marketing</a>
                     </div>
-                    <h3>WhatsApp Automation <span class="gradient-text">Flows</span></h3>
-                    <p>We configure automated WhatsApp journeys for order updates, cart recovery, and targeted broadcasts directly to customers' phones.</p>
-                    <ul style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 16px; margin-top: 16px; list-style: none; padding-left: 0;">
-                        <li style="margin-bottom: 12px; display: flex; align-items: flex-start; gap: 12px;">
-                            <svg width="18" height="18" fill="none" stroke="#25d366" stroke-width="2" viewBox="0 0 24 24" style="flex-shrink:0; margin-top:2px;"><path d="M20 6L9 17l-5-5"></path></svg> 
-                            <span>Abandoned cart recovery sequences</span>
-                        </li>
-                        <li style="margin-bottom: 12px; display: flex; align-items: flex-start; gap: 12px;">
-                            <svg width="18" height="18" fill="none" stroke="#25d366" stroke-width="2" viewBox="0 0 24 24" style="flex-shrink:0; margin-top:2px;"><path d="M20 6L9 17l-5-5"></path></svg> 
-                            <span>Order confirmation and shipping updates</span>
-                        </li>
-                        <li style="display: flex; align-items: flex-start; gap: 12px;">
-                            <svg width="18" height="18" fill="none" stroke="#25d366" stroke-width="2" viewBox="0 0 24 24" style="flex-shrink:0; margin-top:2px;"><path d="M20 6L9 17l-5-5"></path></svg> 
-                            <span>Automated review collection and upsell flows</span>
-                        </li>
-                    </ul>
-                </article>
-
-                <article class="service-card reveal" style="background: linear-gradient(180deg, rgba(82, 102, 235, 0.08), rgba(255, 255, 255, 0.02)); border-color: rgba(82, 102, 235, 0.2);">
-                    <div class="service-icon" style="background: rgba(82, 102, 235, 0.1);">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#80a8ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-                            <polyline points="22,6 12,13 2,6"></polyline>
-                        </svg>
-                    </div>
-                    <h3>Email Marketing <span class="gradient-text">Automation</span></h3>
-                    <p>We establish robust email marketing pipelines with professional templates to nurture your audience and convert subscribers into loyal buyers.</p>
-                    <ul style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 16px; margin-top: 16px; list-style: none; padding-left: 0;">
-                        <li style="margin-bottom: 12px; display: flex; align-items: flex-start; gap: 12px;">
-                            <svg width="18" height="18" fill="none" stroke="#80a8ff" stroke-width="2" viewBox="0 0 24 24" style="flex-shrink:0; margin-top:2px;"><path d="M20 6L9 17l-5-5"></path></svg> 
-                            <span>Welcome flows for new subscribers</span>
-                        </li>
-                        <li style="margin-bottom: 12px; display: flex; align-items: flex-start; gap: 12px;">
-                            <svg width="18" height="18" fill="none" stroke="#80a8ff" stroke-width="2" viewBox="0 0 24 24" style="flex-shrink:0; margin-top:2px;"><path d="M20 6L9 17l-5-5"></path></svg> 
-                            <span>Post-purchase nurture and retention campaigns</span>
-                        </li>
-                        <li style="display: flex; align-items: flex-start; gap: 12px;">
-                            <svg width="18" height="18" fill="none" stroke="#80a8ff" stroke-width="2" viewBox="0 0 24 24" style="flex-shrink:0; margin-top:2px;"><path d="M20 6L9 17l-5-5"></path></svg> 
-                            <span>Win-back sequences for dormant customers</span>
-                        </li>
-                    </ul>
-                </article>
+                </div>
+                <a href="#why-us">Why Us</a>
+                <a href="#faq">FAQ</a>
+                <a href="#contact">Contact</a>
+            </nav>
+            <div style="display:flex; align-items:center; gap:12px;">
+                <a href="#contact" class="btn btn-primary nav-cta" onclick="handleScroll(event)">Book a Free
+                    Consultation</a>
+                <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">☰</button>
             </div>
         </div>
-    </section>
+    </header>
 
-    <section class="section">
-      <div class="container">
-        <div class="section-head reveal">
-          <div>
-            <h2>Built around what actually drives conversions</h2>
-            <p>Good campaigns need more than media buying. We connect the full system that impacts conversion.</p>
-          </div>
-        </div>
-        <div class="feature-grid">
-          <article class="feature-card reveal">
-            <div class="feature-icon">🧠</div>
-            <h3>Strategy before scaling</h3>
-            <p>We don’t increase spend blindly. We first make sure the offer, ad angle, and customer journey are strong enough.</p>
-            <ul>
-              <li>Clear growth direction</li>
-              <li>Smarter budget deployment</li>
-              <li>Lower wasted spend</li>
-            </ul>
-          </article>
-          <article class="feature-card reveal">
-            <div class="feature-icon">🛍️</div>
-            <h3>Ecommerce-first execution</h3>
-            <p>Our performance marketing approach is built for stores, products, and buyer behavior — not generic lead-gen templates.</p>
-            <ul>
-              <li>Store and catalog understanding</li>
-              <li>Retention and repeat logic</li>
-              <li>Revenue-driven optimization</li>
-            </ul>
-          </article>
-          <article class="feature-card reveal">
-            <div class="feature-icon">⚡</div>
-            <h3>Fast feedback loop</h3>
-            <p>Creative testing, offer improvements, audience refinement, and landing page changes happen as part of one connected workflow.</p>
-            <ul>
-              <li>Quicker learning cycles</li>
-              <li>Stronger campaign adaptation</li>
-              <li>Better long-term scaling</li>
-            </ul>
-          </article>
-          <article class="feature-card reveal">
-            <div class="feature-icon">📈</div>
-            <h3>Reporting that makes sense</h3>
-            <p>We focus on numbers that matter to the business, not just dashboard decoration.</p>
-            <ul>
-              <li>Clarity over complexity</li>
-              <li>Business-centric insights</li>
-              <li>Actionable optimization path</li>
-            </ul>
-          </article>
-        </div>
-      </div>
-    </section>
+    <main>
+        <section class="hero" id="home">
+            <div class="container">
+                <div class="panel hero-content-card reveal show" style="max-width: 1000px; margin: 0 auto;">
+                    <div class="eyebrow"><span class="eyebrow-dot"></span> Profit-Focused Performance Marketing</div>
+                    <h1>Optimize your <span class="gradient-text">ads for more profit</span> with a clean, data-driven
+                        growth system.</h1>
+                    <p>
+                        Digidox Digital Agency helps brands grow through performance marketing built around <strong>Meta
+                            Ads, Google Ads, creative strategy, landing page alignment, funnel optimization, and real
+                            reporting</strong>. We focus on profitable scaling, not just traffic numbers. We actively
+                        leverage Meta’s AI to improve signal quality and push toward stronger ROAS outcomes.
+                    </p>
+                    <div class="hero-actions">
+                        <a href="#contact" class="btn btn-primary" onclick="handleScroll(event)">Schedule a Strategy
+                            Call</a>
+                        <a href="#services" class="btn btn-secondary">Explore Services</a>
+                    </div>
+                    <div class="hero-chips">
+                        <span class="chip">Meta AI Optimization</span>
+                        <span class="chip">Advantage+ Campaigns</span>
+                        <span class="chip">Creative Testing System</span>
+                        <span class="chip">Target: 3–5x ROAS</span>
+                    </div>
 
-    <section class="section" id="faq">
-      <div class="container">
-        <div class="section-head reveal">
-          <div>
-            <h2>Frequently asked questions</h2>
-            <p>Quick answers to common performance marketing questions.</p>
-          </div>
-        </div>
-        <div class="faq-accordion reveal">
-            <div class="faq-item">
-                <div class="faq-question">
-                    Do you manage both Meta Ads and Google Ads for enterprise performance marketing?
-                    <div class="faq-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg></div>
+                    <div class="hero-mini-grid">
+                        <div class="mini-card">
+                            <strong>Meta AI Powered Scaling</strong>
+                            <span>We use Meta’s AI features like Advantage+, broad targeting, and dynamic creatives to
+                                improve conversion signals.</span>
+                        </div>
+                        <div class="mini-card">
+                            <strong>Ad Strategy</strong>
+                            <span>Campaign planning based on business goals, offer clarity, and real acquisition
+                                logic.</span>
+                        </div>
+                        <div class="mini-card">
+                            <strong>Creative Direction</strong>
+                            <span>We align hooks, messaging, offers, and visuals to improve ad performance.</span>
+                        </div>
+                        <div class="mini-card">
+                            <strong>Landing Page Fit</strong>
+                            <span>We make sure ad traffic lands on pages built to convert, not just impress.</span>
+                        </div>
+                        <div class="mini-card">
+                            <strong>Reporting & Scaling</strong>
+                            <span>Clear performance tracking with optimization decisions built around
+                                profitability.</span>
+                        </div>
+                    </div>
                 </div>
-                <div class="faq-answer">
-                    <div class="faq-answer-inner">
-                        Yes. We build holistic, high-ROAS systems managing both Meta and Google campaigns to capture top-of-funnel discovery and high-intent search traffic simultaneously.
+
+            </div>
+        </section>
+
+        <section class="section" id="why-us">
+            <div class="container">
+                <div class="section-head reveal">
+                    <div>
+                        <h2>Why our performance marketing works (AI + data driven)</h2>
+                        <p>We build a cleaner growth engine by connecting media buying, creative strategy, offers,
+                            tracking, and conversion-focused landing pages.</p>
+                    </div>
+                </div>
+                <div class="value-grid">
+                    <div class="value-card reveal">
+                        <small>Ad Spend Managed</small>
+                        <strong>50Cr+</strong>
+                        <p class="muted">Campaign execution experience across growth-focused ecommerce accounts using
+                            AI-driven optimization and structured scaling.</p>
+                    </div>
+                    <div class="value-card reveal">
+                        <small>Brand Experience</small>
+                        <strong>150+</strong>
+                        <p class="muted">Worked across multiple business models, categories, and acquisition stages.</p>
+                    </div>
+                    <div class="value-card reveal">
+                        <small>Focus</small>
+                        <strong>Profit</strong>
+                        <p class="muted">We optimize for sustainable revenue and return, not vanity metrics — targeting
+                            stronger efficiency benchmarks like 3x–5x ROAS depending on product and funnel.</p>
+                    </div>
+                    <div class="value-card reveal">
+                        <small>Approach</small>
+                        <strong>Full Funnel</strong>
+                        <p class="muted">Audience, creative, ads, landing pages, and reporting are handled together.</p>
                     </div>
                 </div>
             </div>
-            <div class="faq-item">
-                <div class="faq-question">
-                    Do you provide creative direction and AI video creation for ad campaigns?
-                    <div class="faq-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg></div>
+        </section>
+
+        <section class="section" id="services">
+            <div class="container">
+                <div class="section-head reveal">
+                    <div>
+                        <h2>What’s included in our performance marketing service</h2>
+                        <p>Everything required to create a sharper, cleaner, and more profitable ad system.</p>
+                    </div>
                 </div>
-                <div class="faq-answer">
-                    <div class="faq-answer-inner">
-                        Absolutely. We guide creative strategy, testing angles, and message clarity. We also leverage AI tools for scalable video ad creation to constantly feed new creatives into advantage+ campaigns.
+                <div class="services-grid">
+                    <article class="service-card reveal">
+                        <div class="service-icon">📣</div>
+                        <h3>Meta Ads <span class="gradient-text">Management</span></h3>
+                        <p>Campaign setup, structure, audience targeting, budget control, and daily performance
+                            optimization.</p>
+                        <ul>
+                            <li>Prospecting and retargeting</li>
+                            <li>Creative testing structure</li>
+                            <li>Offer-led campaign planning</li>
+                            <li>Scaling using Meta AI + real performance signals</li>
+                        </ul>
+                    </article>
+                    <article class="service-card reveal">
+                        <div class="service-icon">🔎</div>
+                        <h3>Google Ads <span class="gradient-text">Management</span></h3>
+                        <p>Search, shopping, and high-intent campaign systems planned for profitable acquisition.</p>
+                        <ul>
+                            <li>Search and shopping campaigns</li>
+                            <li>Keyword and intent mapping</li>
+                            <li>Conversion tracking setup</li>
+                            <li>Bid and budget optimization</li>
+                        </ul>
+                    </article>
+                    <article class="service-card reveal">
+                        <div class="service-icon">🎯</div>
+                        <h3>Growth <span class="gradient-text">Strategy</span></h3>
+                        <p>We identify the right angle, offer, funnel, and channel priorities before scaling spend.</p>
+                        <ul>
+                            <li>Funnel planning</li>
+                            <li>Offer positioning</li>
+                            <li>Audience segmentation</li>
+                            <li>Scaling roadmap</li>
+                        </ul>
+                    </article>
+                    <article class="service-card reveal">
+                        <div class="service-icon">🎨</div>
+                        <h3>Creative <span class="gradient-text">Direction</span></h3>
+                        <p>We help shape ad creatives that connect with the right customer and improve performance.</p>
+                        <ul>
+                            <li>Hook and message planning</li>
+                            <li>Visual direction</li>
+                            <li>Ad angle testing</li>
+                            <li>Creative iteration process</li>
+                        </ul>
+                    </article>
+                    <article class="service-card reveal">
+                        <div class="service-icon">🧭</div>
+                        <h3>Landing Page <span class="gradient-text">Alignment</span></h3>
+                        <p>Ads perform better when the page experience matches the promise made in the campaign.</p>
+                        <ul>
+                            <li>Offer-to-page consistency</li>
+                            <li>Conversion pathway review</li>
+                            <li>Drop-off reduction</li>
+                            <li>Ad-ready page suggestions</li>
+                        </ul>
+                    </article>
+                    <article class="service-card reveal">
+                        <div class="service-icon">📊</div>
+                        <h3>Reporting & <span class="gradient-text">Optimization</span></h3>
+                        <p>Transparent performance reporting with ongoing optimization built around real business
+                            numbers.</p>
+                        <ul>
+                            <li>Performance dashboards</li>
+                            <li>Weekly / monthly insights</li>
+                            <li>Profitability-focused decisions</li>
+                            <li>Clear next-step action plan</li>
+                        </ul>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- NEW AUTOMATION SECTION -->
+        <section class="section" id="automation">
+            <div class="container">
+                <div class="section-head reveal" style="margin-bottom: 24px;">
+                    <div>
+                        <h2>Email Marketing & WhatsApp Automation</h2>
+                        <p>We build your complete email marketing and WhatsApp automation flows—an essential need for a
+                            good brand to maximize retention and revenue.</p>
+                    </div>
+                </div>
+
+                <div class="services-grid" style="grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));">
+                    <article class="service-card reveal"
+                        style="background: linear-gradient(180deg, rgba(37, 211, 102, 0.08), rgba(255, 255, 255, 0.02)); border-color: rgba(37, 211, 102, 0.2);">
+                        <div class="service-icon" style="background: rgba(37, 211, 102, 0.1);">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#25d366"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path
+                                    d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z">
+                                </path>
+                            </svg>
+                        </div>
+                        <h3>WhatsApp Automation <span class="gradient-text">Flows</span></h3>
+                        <p>We configure automated WhatsApp journeys for order updates, cart recovery, and targeted
+                            broadcasts directly to customers' phones.</p>
+                        <ul
+                            style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 16px; margin-top: 16px; list-style: none; padding-left: 0;">
+                            <li style="margin-bottom: 12px; display: flex; align-items: flex-start; gap: 12px;">
+                                <svg width="18" height="18" fill="none" stroke="#25d366" stroke-width="2"
+                                    viewBox="0 0 24 24" style="flex-shrink:0; margin-top:2px;">
+                                    <path d="M20 6L9 17l-5-5"></path>
+                                </svg>
+                                <span>Abandoned cart recovery sequences</span>
+                            </li>
+                            <li style="margin-bottom: 12px; display: flex; align-items: flex-start; gap: 12px;">
+                                <svg width="18" height="18" fill="none" stroke="#25d366" stroke-width="2"
+                                    viewBox="0 0 24 24" style="flex-shrink:0; margin-top:2px;">
+                                    <path d="M20 6L9 17l-5-5"></path>
+                                </svg>
+                                <span>Order confirmation and shipping updates</span>
+                            </li>
+                            <li style="display: flex; align-items: flex-start; gap: 12px;">
+                                <svg width="18" height="18" fill="none" stroke="#25d366" stroke-width="2"
+                                    viewBox="0 0 24 24" style="flex-shrink:0; margin-top:2px;">
+                                    <path d="M20 6L9 17l-5-5"></path>
+                                </svg>
+                                <span>Automated review collection and upsell flows</span>
+                            </li>
+                        </ul>
+                    </article>
+
+                    <article class="service-card reveal"
+                        style="background: linear-gradient(180deg, rgba(82, 102, 235, 0.08), rgba(255, 255, 255, 0.02)); border-color: rgba(82, 102, 235, 0.2);">
+                        <div class="service-icon" style="background: rgba(82, 102, 235, 0.1);">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#80a8ff"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z">
+                                </path>
+                                <polyline points="22,6 12,13 2,6"></polyline>
+                            </svg>
+                        </div>
+                        <h3>Email Marketing <span class="gradient-text">Automation</span></h3>
+                        <p>We establish robust email marketing pipelines with professional templates to nurture your
+                            audience and convert subscribers into loyal buyers.</p>
+                        <ul
+                            style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 16px; margin-top: 16px; list-style: none; padding-left: 0;">
+                            <li style="margin-bottom: 12px; display: flex; align-items: flex-start; gap: 12px;">
+                                <svg width="18" height="18" fill="none" stroke="#80a8ff" stroke-width="2"
+                                    viewBox="0 0 24 24" style="flex-shrink:0; margin-top:2px;">
+                                    <path d="M20 6L9 17l-5-5"></path>
+                                </svg>
+                                <span>Welcome flows for new subscribers</span>
+                            </li>
+                            <li style="margin-bottom: 12px; display: flex; align-items: flex-start; gap: 12px;">
+                                <svg width="18" height="18" fill="none" stroke="#80a8ff" stroke-width="2"
+                                    viewBox="0 0 24 24" style="flex-shrink:0; margin-top:2px;">
+                                    <path d="M20 6L9 17l-5-5"></path>
+                                </svg>
+                                <span>Post-purchase nurture and retention campaigns</span>
+                            </li>
+                            <li style="display: flex; align-items: flex-start; gap: 12px;">
+                                <svg width="18" height="18" fill="none" stroke="#80a8ff" stroke-width="2"
+                                    viewBox="0 0 24 24" style="flex-shrink:0; margin-top:2px;">
+                                    <path d="M20 6L9 17l-5-5"></path>
+                                </svg>
+                                <span>Win-back sequences for dormant customers</span>
+                            </li>
+                        </ul>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <div class="section-head reveal">
+                    <div>
+                        <h2>Built around what actually drives conversions</h2>
+                        <p>Good campaigns need more than media buying. We connect the full system that impacts
+                            conversion.</p>
+                    </div>
+                </div>
+                <div class="feature-grid">
+                    <article class="feature-card reveal">
+                        <div class="feature-icon">🧠</div>
+                        <h3>Strategy before scaling</h3>
+                        <p>We don’t increase spend blindly. We first make sure the offer, ad angle, and customer journey
+                            are strong enough.</p>
+                        <ul>
+                            <li>Clear growth direction</li>
+                            <li>Smarter budget deployment</li>
+                            <li>Lower wasted spend</li>
+                        </ul>
+                    </article>
+                    <article class="feature-card reveal">
+                        <div class="feature-icon">🛍️</div>
+                        <h3>Ecommerce-first execution</h3>
+                        <p>Our performance marketing approach is built for stores, products, and buyer behavior — not
+                            generic lead-gen templates.</p>
+                        <ul>
+                            <li>Store and catalog understanding</li>
+                            <li>Retention and repeat logic</li>
+                            <li>Revenue-driven optimization</li>
+                        </ul>
+                    </article>
+                    <article class="feature-card reveal">
+                        <div class="feature-icon">⚡</div>
+                        <h3>Fast feedback loop</h3>
+                        <p>Creative testing, offer improvements, audience refinement, and landing page changes happen as
+                            part of one connected workflow.</p>
+                        <ul>
+                            <li>Quicker learning cycles</li>
+                            <li>Stronger campaign adaptation</li>
+                            <li>Better long-term scaling</li>
+                        </ul>
+                    </article>
+                    <article class="feature-card reveal">
+                        <div class="feature-icon">📈</div>
+                        <h3>Reporting that makes sense</h3>
+                        <p>We focus on numbers that matter to the business, not just dashboard decoration.</p>
+                        <ul>
+                            <li>Clarity over complexity</li>
+                            <li>Business-centric insights</li>
+                            <li>Actionable optimization path</li>
+                        </ul>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="faq">
+            <div class="container">
+                <div class="section-head reveal">
+                    <div>
+                        <h2>Frequently asked questions</h2>
+                        <p>Quick answers to common performance marketing questions.</p>
+                    </div>
+                </div>
+                <div class="faq-accordion reveal">
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            Do you manage both Meta Ads and Google Ads for enterprise performance marketing?
+                            <div class="faq-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <polyline points="6 9 12 15 18 9"></polyline>
+                                </svg></div>
+                        </div>
+                        <div class="faq-answer">
+                            <div class="faq-answer-inner">
+                                Yes. We build holistic, high-ROAS systems managing both Meta and Google campaigns to
+                                capture top-of-funnel discovery and high-intent search traffic simultaneously.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            Do you provide creative direction and AI video creation for ad campaigns?
+                            <div class="faq-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <polyline points="6 9 12 15 18 9"></polyline>
+                                </svg></div>
+                        </div>
+                        <div class="faq-answer">
+                            <div class="faq-answer-inner">
+                                Absolutely. We guide creative strategy, testing angles, and message clarity. We also
+                                leverage AI tools for scalable video ad creation to constantly feed new creatives into
+                                advantage+ campaigns.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            Can you work with direct-to-consumer (D2C) and ecommerce brands?
+                            <div class="faq-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <polyline points="6 9 12 15 18 9"></polyline>
+                                </svg></div>
+                        </div>
+                        <div class="faq-answer">
+                            <div class="faq-answer-inner">
+                                Yes, ecommerce and D2C brands are our specialty. Our scaling strategies center around
+                                product offer clarity, AOV optimization, and continuous conversion rate improvements.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            Do you only optimize the ad account, or the full funnel?
+                            <div class="faq-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <polyline points="6 9 12 15 18 9"></polyline>
+                                </svg></div>
+                        </div>
+                        <div class="faq-answer">
+                            <div class="faq-answer-inner">
+                                We optimize the full funnel. Traffic is useless if it doesn't convert, so we ensure your
+                                ad hooks, landing page alignment, friction points, and retention marketing flows are all
+                                perfectly tuned together.
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="faq-item">
-                <div class="faq-question">
-                    Can you work with direct-to-consumer (D2C) and ecommerce brands?
-                    <div class="faq-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg></div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <div class="section-head reveal">
+                    <div>
+                        <h2>What clients value most</h2>
+                        <p>Sharper strategy, cleaner execution, and a more profit-focused campaign system.</p>
+                    </div>
                 </div>
-                <div class="faq-answer">
-                    <div class="faq-answer-inner">
-                        Yes, ecommerce and D2C brands are our specialty. Our scaling strategies center around product offer clarity, AOV optimization, and continuous conversion rate improvements.
+                <div class="testimonials-grid">
+                    <div class="testimonial-card reveal">
+                        <p>“The ad account finally felt structured. We had clearer strategy, better reporting, and
+                            stronger alignment between creatives and landing pages.”</p>
+                        <strong>— Ecommerce Founder</strong>
+                    </div>
+                    <div class="testimonial-card reveal">
+                        <p>“They didn’t just manage campaigns. They helped improve the full growth setup around the
+                            ads.”</p>
+                        <strong>— Growth Client</strong>
+                    </div>
+                    <div class="testimonial-card reveal">
+                        <p>“Much cleaner communication, better optimization decisions, and a stronger focus on real
+                            business performance.”</p>
+                        <strong>— Brand Owner</strong>
                     </div>
                 </div>
             </div>
-            <div class="faq-item">
-                <div class="faq-question">
-                    Do you only optimize the ad account, or the full funnel?
-                    <div class="faq-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg></div>
+        </section>
+
+        <section class="section">
+            <div class="container cta-grid">
+                <div class="cta-card reveal">
+                    <div class="eyebrow">Need stronger campaign performance?</div>
+                    <h3>Let’s build a cleaner growth engine.</h3>
+                    <p>We connect strategy, creative direction, Meta Ads, Google Ads, landing page alignment, and
+                        reporting into one performance system.</p>
+                    <div class="chips">
+                        <span class="chip">Meta Ads</span>
+                        <span class="chip">Google Ads</span>
+                        <span class="chip">Funnel Optimization</span>
+                        <span class="chip">Scaling Strategy</span>
+                    </div>
+                    <a href="#contact" class="btn btn-primary" onclick="handleScroll(event)">Schedule a Strategy
+                        Call</a>
                 </div>
-                <div class="faq-answer">
-                    <div class="faq-answer-inner">
-                        We optimize the full funnel. Traffic is useless if it doesn't convert, so we ensure your ad hooks, landing page alignment, friction points, and retention marketing flows are all perfectly tuned together.
+                <div class="cta-card reveal">
+                    <div class="eyebrow">Why Digidox Digital Agency</div>
+                    <h3>Performance marketing with business understanding.</h3>
+                    <p>We combine ad execution, creative logic, landing page alignment, and commercial thinking to help
+                        brands scale more confidently.</p>
+                    <div class="chips">
+                        <span class="chip">Profit Focus</span>
+                        <span class="chip">Clear Reporting</span>
+                        <span class="chip">Creative Strategy</span>
+                        <span class="chip">Full Funnel View</span>
                     </div>
                 </div>
             </div>
-        </div>
-      </div>
-    </section>
+        </section>
+        <section class="section" id="contact">
+            <div class="container" style="max-width: 700px; margin: 0 auto;">
+                <div class="panel form-panel reveal" style="padding: 40px;">
+                    <div class="eyebrow">Book your free strategy call</div>
+                    <h3>Tell us about your growth goals</h3>
+                    <p class="muted">Share your business type, ad challenges, or campaign goals and we’ll recommend a
+                        sharper performance marketing setup.</p>
 
-    <section class="section">
-      <div class="container">
-        <div class="section-head reveal">
-          <div>
-            <h2>What clients value most</h2>
-            <p>Sharper strategy, cleaner execution, and a more profit-focused campaign system.</p>
-          </div>
-        </div>
-        <div class="testimonials-grid">
-          <div class="testimonial-card reveal">
-            <p>“The ad account finally felt structured. We had clearer strategy, better reporting, and stronger alignment between creatives and landing pages.”</p>
-            <strong>— Ecommerce Founder</strong>
-          </div>
-          <div class="testimonial-card reveal">
-            <p>“They didn’t just manage campaigns. They helped improve the full growth setup around the ads.”</p>
-            <strong>— Growth Client</strong>
-          </div>
-          <div class="testimonial-card reveal">
-            <p>“Much cleaner communication, better optimization decisions, and a stronger focus on real business performance.”</p>
-            <strong>— Brand Owner</strong>
-          </div>
-        </div>
-      </div>
-    </section>
+                    <form action="https://formspree.io/f/xlgpkeow" method="POST">
+                        <div class="field">
+                            <label for="name">Full Name</label>
+                            <input id="name" name="name" type="text" placeholder="Your name" required />
+                        </div>
+                        <div class="field">
+                            <label for="email">Email Address</label>
+                            <input id="email" name="email" type="email" placeholder="you@example.com" required />
+                        </div>
 
-    <section class="section">
-      <div class="container cta-grid">
-        <div class="cta-card reveal">
-          <div class="eyebrow">Need stronger campaign performance?</div>
-          <h3>Let’s build a cleaner growth engine.</h3>
-          <p>We connect strategy, creative direction, Meta Ads, Google Ads, landing page alignment, and reporting into one performance system.</p>
-          <div class="chips">
-            <span class="chip">Meta Ads</span>
-            <span class="chip">Google Ads</span>
-            <span class="chip">Funnel Optimization</span>
-            <span class="chip">Scaling Strategy</span>
-          </div>
-          <a href="#contact" class="btn btn-primary" onclick="handleScroll(event)">Schedule a Strategy Call</a>
-        </div>
-        <div class="cta-card reveal">
-          <div class="eyebrow">Why Digidox Digital Agency</div>
-          <h3>Performance marketing with business understanding.</h3>
-          <p>We combine ad execution, creative logic, landing page alignment, and commercial thinking to help brands scale more confidently.</p>
-          <div class="chips">
-            <span class="chip">Profit Focus</span>
-            <span class="chip">Clear Reporting</span>
-            <span class="chip">Creative Strategy</span>
-            <span class="chip">Full Funnel View</span>
-          </div>
-        </div>
-      </div>
-    </section>
-    <section class="section" id="contact">
-      <div class="container" style="max-width: 700px; margin: 0 auto;">
-        <div class="panel form-panel reveal" style="padding: 40px;">
-          <div class="eyebrow">Book your free strategy call</div>
-          <h3>Tell us about your growth goals</h3>
-          <p class="muted">Share your business type, ad challenges, or campaign goals and we’ll recommend a sharper performance marketing setup.</p>
+                        <div class="field">
+                            <label for="phone">Phone Number</label>
+                            <div style="display: flex; gap: 8px;">
+                                <select id="country-code" name="country_code" style="width: 110px; padding-left: 10px;"
+                                    required>
+                                    <option value="+1">+1 (US)</option>
+                                    <option value="+44">+44 (UK)</option>
+                                    <option value="+91" selected>+91 (IN)</option>
+                                    <option value="+61">+61 (AU)</option>
+                                    <option value="+971">+971 (AE)</option>
+                                    <option value="+65">+65 (SG)</option>
+                                </select>
+                                <input id="phone" name="phone" type="tel" placeholder="Phone number" style="flex: 1;"
+                                    required />
+                            </div>
+                        </div>
 
-          <form action="https://formspree.io/f/xlgpkeow" method="POST">
-            <div class="field">
-              <label for="name">Full Name</label>
-              <input id="name" name="name" type="text" placeholder="Your name" required />
-            </div>
-            <div class="field">
-              <label for="email">Email Address</label>
-              <input id="email" name="email" type="email" placeholder="you@example.com" required />
-            </div>
-
-            <div class="field">
-                <label for="phone">Phone Number</label>
-                <div style="display: flex; gap: 8px;">
-                    <select id="country-code" name="country_code" style="width: 110px; padding-left: 10px;" required>
-                        <option value="+1">+1 (US)</option>
-                        <option value="+44">+44 (UK)</option>
-                        <option value="+91" selected>+91 (IN)</option>
-                        <option value="+61">+61 (AU)</option>
-                        <option value="+971">+971 (AE)</option>
-                        <option value="+65">+65 (SG)</option>
-                    </select>
-                    <input id="phone" name="phone" type="tel" placeholder="Phone number" style="flex: 1;" required />
+                        <div class="field">
+                            <label for="platform">Primary Channel</label>
+                            <select id="platform" name="primary_channel">
+                                <option value="">Select primary channel</option>
+                                <option>Meta Ads</option>
+                                <option>Google Ads</option>
+                                <option>Meta + Google Ads</option>
+                                <option>Need full performance strategy</option>
+                            </select>
+                        </div>
+                        <div class="field">
+                            <label for="requirements">Campaign Goals / Challenges</label>
+                            <textarea id="requirements" name="message"
+                                placeholder="Tell us about your current ads, ROAS goals, scaling challenges, landing pages, or creative needs..."></textarea>
+                        </div>
+                        <input type="hidden" name="service" value="Performance Marketing" />
+                        <input type="hidden" name="_subject"
+                            value="New Performance Marketing inquiry from Digidox website" />
+                        <input type="hidden" name="_captcha" value="false" />
+                        <button type="submit" class="btn btn-primary" style="width:100%;">Request Free
+                            Consultation</button>
+                    </form>
                 </div>
             </div>
+        </section>
+    </main>
 
-            <div class="field">
-              <label for="platform">Primary Channel</label>
-              <select id="platform" name="primary_channel">
-                <option value="">Select primary channel</option>
-                <option>Meta Ads</option>
-                <option>Google Ads</option>
-                <option>Meta + Google Ads</option>
-                <option>Need full performance strategy</option>
-              </select>
-            </div>
-            <div class="field">
-              <label for="requirements">Campaign Goals / Challenges</label>
-              <textarea id="requirements" name="message" placeholder="Tell us about your current ads, ROAS goals, scaling challenges, landing pages, or creative needs..."></textarea>
-            </div>
-            <input type="hidden" name="service" value="Performance Marketing" />
-            <input type="hidden" name="_subject" value="New Performance Marketing inquiry from Digidox website" />
-            <input type="hidden" name="_captcha" value="false" />
-            <button type="submit" class="btn btn-primary" style="width:100%;">Request Free Consultation</button>
-          </form>
+    <footer>
+        <div class="container footer-inner">
+            <div>© <span id="year"></span> Digidox Digital Agency. All rights reserved.</div>
+            <div>Performance Marketing • Meta Ads • Google Ads • Creative Strategy • Funnel Optimization</div>
         </div>
-      </div>
-    </section>
-  </main>
+    </footer>
 
-  <footer>
-    <div class="container footer-inner">
-      <div>© <span id="year"></span> Digidox Digital Agency. All rights reserved.</div>
-      <div>Performance Marketing • Meta Ads • Google Ads • Creative Strategy • Funnel Optimization</div>
+    <a class="whatsapp-float"
+        href="https://wa.me/919643650586?text=Hi%20Digidox%20Digital%20Agency%2C%20I%20want%20to%20discuss%20performance%20marketing%20for%20my%20business."
+        target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
+        <img src="https://digidox360.com/assets/whatsapp.png" alt="WhatsApp" loading="lazy" />
+    </a>
+
+    <div class="sticky-cta" id="stickyCta">
+        <a href="#contact" class="btn btn-primary" onclick="handleScroll(event)">Schedule a Strategy Call</a>
     </div>
-  </footer>
 
-  <a class="whatsapp-float" href="https://wa.me/919643650586?text=Hi%20Digidox%20Digital%20Agency%2C%20I%20want%20to%20discuss%20performance%20marketing%20for%20my%20business." target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
-    <img src="https://digidox360.com/assets/whatsapp.png" alt="WhatsApp" loading="lazy" />
-  </a>
-
-  <script>
-    function handleScroll(e){
-      e.preventDefault();
-      const el = document.querySelector('#contact');
-      if(el){
-        const y = el.getBoundingClientRect().top + window.pageYOffset - 90;
-        window.scrollTo({ top: y, behavior: 'smooth' });
-      }
-    }
-
-    const menuToggle = document.getElementById('menuToggle');
-    const navLinks = document.getElementById('navLinks');
-    menuToggle.addEventListener('click', () => navLinks.classList.toggle('open'));
-    document.querySelectorAll('.nav-links a').forEach(link => {
-      link.addEventListener('click', () => navLinks.classList.remove('open'));
-    });
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) entry.target.classList.add('show');
-      });
-    }, { threshold: 0.12 });
-    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-    const sections = document.querySelectorAll('section[id]');
-    const navAnchors = document.querySelectorAll('.nav-links a');
-    function setActiveLink() {
-      let current = '';
-      sections.forEach(section => {
-        const top = window.scrollY;
-        const offset = section.offsetTop - 140;
-        const height = section.offsetHeight;
-        if (top >= offset && top < offset + height) current = section.getAttribute('id');
-      });
-      navAnchors.forEach(link => {
-        link.classList.toggle('active', link.getAttribute('href') === `#${current}`);
-      });
-    }
-    window.addEventListener('scroll', setActiveLink);
-    setActiveLink();
-    document.getElementById('year').textContent = new Date().getFullYear();
-    document.querySelectorAll('.faq-question').forEach(button => {
-      button.addEventListener('click', () => {
-        const item = button.parentElement;
-        const isActive = item.classList.contains('active');
-        document.querySelectorAll('.faq-item').forEach(faq => {
-          faq.classList.remove('active');
-          if(faq.querySelector('.faq-answer')) { faq.querySelector('.faq-answer').style.maxHeight = null; }
-        });
-        if (!isActive) {
-          item.classList.add('active');
-          const answer = item.querySelector('.faq-answer');
-          if(answer) { answer.style.maxHeight = answer.scrollHeight + "px"; }
+    <script>
+        function handleScroll(e) {
+            e.preventDefault();
+            const el = document.querySelector('#contact');
+            if (el) {
+                const y = el.getBoundingClientRect().top + window.pageYOffset - 90;
+                window.scrollTo({ top: y, behavior: 'smooth' });
+            }
         }
-      });
-    });
-  </script>
+
+        const menuToggle = document.getElementById('menuToggle');
+
+        // Sticky CTA Logic
+        const stickyCta = document.getElementById('stickyCta');
+        const heroSection = document.getElementById('home');
+        const contactSection = document.getElementById('contact');
+
+        window.addEventListener('scroll', () => {
+            if (!stickyCta || !heroSection) return;
+            const heroBottom = heroSection.getBoundingClientRect().bottom;
+            let contactTop = Infinity;
+            if (contactSection) contactTop = contactSection.getBoundingClientRect().top;
+
+            if (heroBottom < 0 && contactTop > window.innerHeight * 0.7) {
+                stickyCta.classList.add('visible');
+            } else {
+                stickyCta.classList.remove('visible');
+            }
+        });
+        const navLinks = document.getElementById('navLinks');
+        menuToggle.addEventListener('click', () => navLinks.classList.toggle('open'));
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => navLinks.classList.remove('open'));
+        });
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('show');
+            });
+        }, { threshold: 0.12 });
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        const sections = document.querySelectorAll('section[id]');
+        const navAnchors = document.querySelectorAll('.nav-links a');
+        function setActiveLink() {
+            let current = '';
+            sections.forEach(section => {
+                const top = window.scrollY;
+                const offset = section.offsetTop - 140;
+                const height = section.offsetHeight;
+                if (top >= offset && top < offset + height) current = section.getAttribute('id');
+            });
+            navAnchors.forEach(link => {
+                link.classList.toggle('active', link.getAttribute('href') === `#${current}`);
+            });
+        }
+        window.addEventListener('scroll', setActiveLink);
+        setActiveLink();
+        document.getElementById('year').textContent = new Date().getFullYear();
+        document.querySelectorAll('.faq-question').forEach(button => {
+            button.addEventListener('click', () => {
+                const item = button.parentElement;
+                const isActive = item.classList.contains('active');
+                document.querySelectorAll('.faq-item').forEach(faq => {
+                    faq.classList.remove('active');
+                    if (faq.querySelector('.faq-answer')) { faq.querySelector('.faq-answer').style.maxHeight = null; }
+                });
+                if (!isActive) {
+                    item.classList.add('active');
+                    const answer = item.querySelector('.faq-answer');
+                    if (answer) { answer.style.maxHeight = answer.scrollHeight + "px"; }
+                }
+            });
+        });
+    </script>
 </body>
+
 </html>
