@@ -2,36 +2,36 @@
 <html lang="en">
 
 <head>
-  <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=GT-NN6NP559"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GT-NN6NP559"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
 
-  gtag('config', 'GT-NN6NP559');
-</script>
-  <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-YZS0DEK7JW"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+        gtag('config', 'GT-NN6NP559');
+    </script>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-YZS0DEK7JW"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
 
-  gtag('config', 'G-YZS0DEK7JW');
-</script>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=AW-11102631010"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+        gtag('config', 'G-YZS0DEK7JW');
+    </script>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-11102631010"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
 
-  gtag('config', 'AW-11102631010');
-</script>
+        gtag('config', 'AW-11102631010');
+    </script>
     <!-- Add this inside the <head> section of your HTML -->
-<link rel="icon" type="image/png" href="https://digidox360.com/assets/fevicon.png">
-<link rel="shortcut icon" type="image/png" href="https://digidox360.com/assets/fevicon.png">
+    <link rel="icon" type="image/png" href="https://digidox360.com/assets/fevicon.png">
+    <link rel="shortcut icon" type="image/png" href="https://digidox360.com/assets/fevicon.png">
 
     <script type="application/ld+json">
 {
@@ -180,18 +180,21 @@
 </script>
     <meta charset="UTF-8" />
     <!-- Google Tag Manager -->
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-N96RC9ZN');</script>
+    <script>(function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-N96RC9ZN');</script>
     <!-- End Google Tag Manager -->
     <!-- Microsoft Clarity -->
     <script type="text/javascript">
-        (function(c,l,a,r,i,t,y){
-            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+        (function (c, l, a, r, i, t, y) {
+            c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments) };
+            t = l.createElement(r); t.async = 1; t.src = "https://www.clarity.ms/tag/" + i;
+            y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
         })(window, document, "clarity", "script", "vzpvv86vu0");
     </script>
     <!-- End Microsoft Clarity -->
@@ -1165,8 +1168,9 @@
         button#submitBtn {
             margin-top: 20px
         }
+
         /* Industries Carousel Overrides */
-        .industries-grid, 
+        .industries-grid,
         .industries-grid {
             display: flex !important;
             overflow-x: auto !important;
@@ -1201,36 +1205,632 @@
                 flex: 0 0 85% !important;
             }
         }
+
+        /* ============================================================
+           FULL FOOTER
+        ============================================================ */
+
+        /* --- Theme overrides for footer --- */
+        [data-theme="ocean"] {
+            --ft-bg: #050d1a;
+            --ft-mid: #061222;
+            --ft-primary: #80a8ff;
+            --ft-accent: #79e6d1;
+            --ft-muted: #8bafd4;
+            --ft-dim: #4a6a8a;
+        }
+
+        [data-theme="forest"] {
+            --ft-bg: #061409;
+            --ft-mid: #0a1e0e;
+            --ft-primary: #4caf50;
+            --ft-accent: #aed581;
+            --ft-muted: #7aab7e;
+            --ft-dim: #3d6640;
+        }
+
+        [data-theme="sunset"] {
+            --ft-bg: #1a080a;
+            --ft-mid: #260c10;
+            --ft-primary: #ff6584;
+            --ft-accent: #ffb347;
+            --ft-muted: #d4838a;
+            --ft-dim: #8a4a50;
+        }
+
+        [data-theme="violet"] {
+            --ft-bg: #0f0820;
+            --ft-mid: #160c2e;
+            --ft-primary: #b39ddb;
+            --ft-accent: #ea80fc;
+            --ft-muted: #9e80c0;
+            --ft-dim: #5e4a80;
+        }
+
+        :root {
+            --ft-bg: #050d1a;
+            --ft-mid: #061222;
+            --ft-primary: var(--primary);
+            --ft-accent: var(--accent);
+            --ft-muted: #8bafd4;
+            --ft-dim: #4a6a8a;
+            --ft-border: rgba(255, 255, 255, 0.07);
+        }
+
+        /* --- Color Switcher Panel --- */
+        .color-switcher {
+            position: fixed;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 9000;
+        }
+
+        .cs-toggle {
+            position: absolute;
+            right: 100%;
+            top: 50%;
+            transform: translateY(-50%) rotate(180deg);
+            background: var(--ft-primary);
+            color: #06101d;
+            border: none;
+            cursor: pointer;
+            padding: 10px 12px;
+            border-radius: 8px 0 0 8px;
+            font-size: 0.7rem;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+            writing-mode: vertical-rl;
+            text-orientation: mixed;
+            transition: background 0.3s;
+        }
+
+        .cs-toggle:hover {
+            background: var(--ft-accent);
+        }
+
+        .cs-panel {
+            background: rgba(5, 10, 22, 0.97);
+            border: 1px solid var(--ft-border);
+            border-right: none;
+            border-radius: 14px 0 0 14px;
+            padding: 18px 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            align-items: center;
+            transform: translateX(100%);
+            transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            backdrop-filter: blur(18px);
+        }
+
+        .cs-panel.open {
+            transform: translateX(0);
+        }
+
+        .cs-label {
+            font-size: 0.6rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--ft-muted);
+            white-space: nowrap;
+        }
+
+        .cs-btn {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            border: 2px solid transparent;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .cs-btn:hover,
+        .cs-btn.active {
+            border-color: #fff;
+            transform: scale(1.18);
+        }
+
+        .cs-btn[data-t="ocean"] {
+            background: linear-gradient(135deg, #0d47a1, #00bcd4);
+        }
+
+        .cs-btn[data-t="forest"] {
+            background: linear-gradient(135deg, #1b5e20, #4caf50);
+        }
+
+        .cs-btn[data-t="sunset"] {
+            background: linear-gradient(135deg, #880e0e, #ff6584);
+        }
+
+        .cs-btn[data-t="violet"] {
+            background: linear-gradient(135deg, #4a148c, #e040fb);
+        }
+
+        .cs-tip {
+            font-size: 0.58rem;
+            color: var(--ft-dim);
+            text-align: center;
+            line-height: 1.4;
+        }
+
+        /* --- Newsletter strip --- */
+        .ft-newsletter {
+            background: linear-gradient(135deg, rgba(128, 168, 255, 0.12), rgba(121, 230, 209, 0.08));
+            border-bottom: 1px solid var(--ft-border);
+            padding: 36px 0;
+        }
+
+        .ft-newsletter .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .ft-nl-text h3 {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: #fff;
+            margin: 0 0 4px;
+        }
+
+        .ft-nl-text p {
+            margin: 0;
+            font-size: 0.88rem;
+            color: var(--ft-muted);
+        }
+
+        .ft-nl-form {
+            display: flex;
+            flex: 1;
+            min-width: 260px;
+            max-width: 420px;
+        }
+
+        .ft-nl-form input {
+            flex: 1;
+            padding: 12px 18px;
+            background: rgba(255, 255, 255, 0.07);
+            border: 1.5px solid rgba(255, 255, 255, 0.14);
+            border-right: none;
+            border-radius: 50px 0 0 50px;
+            color: #fff;
+            font: inherit;
+            font-size: 0.88rem;
+            outline: none;
+            transition: background 0.3s;
+        }
+
+        .ft-nl-form input::placeholder {
+            color: var(--ft-muted);
+        }
+
+        .ft-nl-form input:focus {
+            background: rgba(255, 255, 255, 0.12);
+        }
+
+        .ft-nl-form button {
+            padding: 12px 22px;
+            background: var(--ft-primary);
+            color: #06101d;
+            font-weight: 700;
+            font-size: 0.82rem;
+            border: none;
+            border-radius: 0 50px 50px 0;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: background 0.3s, transform 0.2s;
+        }
+
+        .ft-nl-form button:hover {
+            background: var(--ft-accent);
+            transform: scale(1.03);
+        }
+
+        /* --- Main footer grid --- */
+        .site-footer {
+            background: var(--ft-bg);
+            color: var(--ft-muted);
+            font-size: 0.9rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .site-footer::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(255, 255, 255, 0.018) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.018) 1px, transparent 1px);
+            background-size: 64px 64px;
+            pointer-events: none;
+        }
+
+        .ft-main {
+            padding: 60px 0 40px;
+            display: grid;
+            grid-template-columns: 1.9fr 1fr 1fr 1.5fr;
+            gap: 3rem;
+            position: relative;
+        }
+
+        /* Brand col */
+        .ft-logo {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .ft-logo img {
+            height: 38px;
+            width: auto;
+        }
+
+        .ft-tagline {
+            font-size: 0.86rem;
+            color: var(--ft-muted);
+            line-height: 1.75;
+            margin-bottom: 1.4rem;
+        }
+
+        .ft-social {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 1.2rem;
+        }
+
+        .ft-soc-link {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--ft-border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--ft-muted);
+            font-size: 0.85rem;
+            transition: all 0.3s;
+        }
+
+        .ft-soc-link:hover {
+            background: var(--ft-primary);
+            border-color: var(--ft-primary);
+            color: #06101d;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
+        }
+
+        .ft-badges {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .ft-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 0.68rem;
+            font-weight: 600;
+            letter-spacing: 0.4px;
+            color: var(--ft-muted);
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--ft-border);
+            padding: 4px 10px;
+            border-radius: 50px;
+        }
+
+        .ft-badge i {
+            color: var(--ft-accent);
+            font-size: 0.62rem;
+        }
+
+        /* Columns */
+        .ft-col h4 {
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            color: #ffffff;
+            margin: 0 0 1.2rem;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .ft-col h4::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 24px;
+            height: 2px;
+            background: var(--ft-primary);
+            border-radius: 2px;
+        }
+
+        #ft-policies h4 {
+            background: white;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .ft-col ul {
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .ft-col ul li a {
+            color: var(--ft-muted);
+            transition: all 0.25s;
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            font-size: 0.88rem;
+        }
+
+        .ft-col ul li a i {
+            font-size: 0.65rem;
+            color: var(--ft-primary);
+            transition: transform 0.25s;
+        }
+
+        .ft-col ul li a:hover {
+            color: #fff;
+            padding-left: 4px;
+        }
+
+        .ft-col ul li a:hover i {
+            transform: translateX(3px);
+        }
+
+        /* Contact column */
+        .ft-contact-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.9rem;
+        }
+
+        .ft-ci {
+            display: flex;
+            align-items: flex-start;
+            gap: 11px;
+        }
+
+        .ft-ci-icon {
+            width: 34px;
+            height: 34px;
+            min-width: 34px;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--ft-border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--ft-primary);
+            font-size: 0.82rem;
+            transition: all 0.3s;
+        }
+
+        .ft-ci:hover .ft-ci-icon {
+            background: var(--ft-primary);
+            color: #06101d;
+            border-color: var(--ft-primary);
+        }
+
+        .ft-ci-label {
+            font-size: 0.65rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--ft-dim);
+            margin-bottom: 2px;
+        }
+
+        .ft-ci-val {
+            font-size: 0.86rem;
+            color: var(--ft-muted);
+            line-height: 1.5;
+            transition: color 0.3s;
+        }
+
+        .ft-ci:hover .ft-ci-val {
+            color: #fff;
+        }
+
+        /* Footer divider & bottom */
+        .ft-divider {
+            height: 1px;
+            background: var(--ft-border);
+            position: relative;
+        }
+
+        .ft-bottom {
+            padding: 22px 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            flex-wrap: wrap;
+            position: relative;
+        }
+
+        .ft-copy {
+            font-size: 0.8rem;
+            color: var(--ft-dim);
+        }
+
+        .ft-copy a {
+            color: var(--ft-primary);
+            transition: color 0.3s;
+        }
+
+        .ft-copy a:hover {
+            color: var(--ft-accent);
+        }
+
+        .ft-policy-links {
+            display: flex;
+            gap: 1.4rem;
+            flex-wrap: wrap;
+        }
+
+        .ft-policy-links a {
+            font-size: 0.78rem;
+            color: var(--ft-dim);
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .ft-policy-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--ft-primary);
+            transition: width 0.3s;
+        }
+
+        .ft-policy-links a:hover {
+            color: var(--ft-muted);
+        }
+
+        .ft-policy-links a:hover::after {
+            width: 100%;
+        }
+
+        .ft-back-top {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: var(--ft-primary);
+            border: none;
+            color: #06101d;
+            font-size: 0.85rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+            box-shadow: 0 4px 18px rgba(0, 0, 0, 0.35);
+            flex-shrink: 0;
+        }
+
+        .ft-back-top:hover {
+            background: var(--ft-accent);
+            transform: translateY(-3px);
+        }
+
+        /* ---- Footer Responsive ---- */
+        @media (max-width: 1024px) {
+            .ft-main {
+                grid-template-columns: 1fr 1fr;
+                gap: 2.5rem;
+            }
+
+            .ft-brand {
+                grid-column: 1 / -1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .ft-main {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                padding: 44px 0 32px;
+            }
+
+            .ft-brand {
+                grid-column: auto;
+            }
+
+            .ft-newsletter .container {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .ft-nl-form {
+                max-width: 100%;
+                width: 100%;
+            }
+
+            .ft-bottom {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .ft-policy-links {
+                gap: 0.8rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .ft-nl-form {
+                flex-direction: column;
+            }
+
+            .ft-nl-form input {
+                border-radius: 12px 12px 0 0;
+                border-right: 1.5px solid rgba(255, 255, 255, 0.14);
+                border-bottom: none;
+            }
+
+            .ft-nl-form button {
+                border-radius: 0 0 12px 12px;
+                padding: 11px 22px;
+                width: 100%;
+            }
+
+            .ft-policy-links {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+        }
     </style>
     <!-- Meta Pixel Code -->
     <script>
-    !function(f,b,e,v,n,t,s)
-    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-    n.queue=[];t=b.createElement(e);t.async=!0;
-    t.src=v;s=b.getElementsByTagName(e)[0];
-    s.parentNode.insertBefore(t,s)}(window, document,'script',
-    'https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', '1466235984886727');
-    fbq('track', 'PageView');
+        !function (f, b, e, v, n, t, s) {
+            if (f.fbq) return; n = f.fbq = function () {
+                n.callMethod ?
+                    n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+            };
+            if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0';
+            n.queue = []; t = b.createElement(e); t.async = !0;
+            t.src = v; s = b.getElementsByTagName(e)[0];
+            s.parentNode.insertBefore(t, s)
+        }(window, document, 'script',
+            'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', '1466235984886727');
+        fbq('track', 'PageView');
     </script>
     <noscript><img height="1" width="1" style="display:none"
-    src="https://www.facebook.com/tr?id=1466235984886727&ev=PageView&noscript=1"
-    /></noscript>
+            src="https://www.facebook.com/tr?id=1466235984886727&ev=PageView&noscript=1" /></noscript>
     <!-- End Meta Pixel Code -->
-    
+
 </head>
 
 <body>
     <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-N96RC9ZN"
-    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-N96RC9ZN" height="0" width="0"
+            style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
     <header class="navbar">
         <div class="container nav-inner">
             <a href="#home" class="brand">
-                <img src="https://digidox360.com/assets/brandlogo.png" alt="Digidox Digital Agency" class="brand-logo" />
+                <img src="https://digidox360.com/assets/brandlogo.png" alt="Digidox Digital Agency"
+                    class="brand-logo" />
             </a>
 
             <nav class="nav-links" id="navLinks">
@@ -1770,12 +2370,148 @@
         </section>
     </main>
 
-    <footer>
-        <div class="container footer-inner">
-            <div>© <span id="year"></span> Digidox Digital Agency. All rights reserved.</div>
-            <div>AI powered ecommerce growth agency • Shopify Partners • Enterprise Shopify Projects • Meta Ads • Google
-                Ads</div>
+    <!-- ===== COLOR SWITCHER ===== -->
+    <div class="color-switcher" id="colorSwitcher">
+        <button class="cs-toggle" id="csToggle" aria-label="Change theme">THEME</button>
+        <div class="cs-panel" id="csPanel">
+            <div class="cs-label">Themes</div>
+            <button class="cs-btn active" data-t="ocean" title="Ocean (Default)" id="ct-ocean"></button>
+            <button class="cs-btn" data-t="forest" title="Forest Green" id="ct-forest"></button>
+            <button class="cs-btn" data-t="sunset" title="Sunset" id="ct-sunset"></button>
+            <button class="cs-btn" data-t="violet" title="Royal Violet" id="ct-violet"></button>
+            <div class="cs-tip">Click to<br>switch</div>
         </div>
+    </div>
+
+    <!-- ===== FULL FOOTER ===== -->
+    <footer class="site-footer" role="contentinfo" id="footer">
+
+        <!-- Newsletter Strip -->
+        <div class="ft-newsletter">
+            <div class="container">
+                <div class="ft-nl-text">
+                    <h3>&#9993; Stay in the loop</h3>
+                    <p>Subscribe for growth insights, case studies &amp; agency updates.</p>
+                </div>
+                <form class="ft-nl-form" id="ftNlForm" onsubmit="handleFtNewsletter(event)">
+                    <input type="email" id="ftNlEmail" placeholder="your@email.com" aria-label="Email" required />
+                    <button type="submit" id="ftNlBtn">Subscribe &#x2192;</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Main Grid -->
+        <div class="container ft-main">
+
+            <!-- Brand -->
+            <div class="ft-brand">
+                <div class="ft-logo">
+                    <img src="https://digidox360.com/assets/brandlogo.png" alt="Digidox Digital Agency" />
+                </div>
+                <p class="ft-tagline">
+                    We are an AI-powered ecommerce growth agency helping brands build, market,
+                    and scale through Shopify development, performance marketing, and conversion-focused digital
+                    execution.
+                </p>
+                <div class="ft-social">
+                    <a href="https://www.instagram.com/digidox_" target="_blank" rel="noopener" class="ft-soc-link"
+                        aria-label="Instagram" id="ft-ig">&#128247;</a>
+                    <a href="https://www.facebook.com/Digidoxdigitalagency/" target="_blank" rel="noopener"
+                        class="ft-soc-link" aria-label="Facebook" id="ft-fb">f</a>
+                    <a href="https://wa.me/919643650586" target="_blank" rel="noopener" class="ft-soc-link"
+                        aria-label="WhatsApp" id="ft-wa">&#128172;</a>
+                    <a href="mailto:hello@digidox360.com" class="ft-soc-link" aria-label="Email" id="ft-em">&#9993;</a>
+                </div>
+                <div class="ft-badges">
+                    <span class="ft-badge"><i>&#10003;</i> Shopify Partners</span>
+                    <span class="ft-badge"><i>&#10003;</i> Meta Ads Certified</span>
+                    <span class="ft-badge"><i>&#10003;</i> Google Ads</span>
+                </div>
+            </div>
+
+            <!-- Quick Links -->
+            <div class="ft-col">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#home" id="ft-home"><i>&#8250;</i> Home</a></li>
+                    <li><a href="https://digidox360.com/shopify-development/" id="ft-Shopify-development"><i>&#8250;</i>
+                            Shopify Development</a></li>
+                    <li><a href="https://digidox360.com/performance-marketing/"
+                            id="ft-Performance-Marketing"><i>&#8250;</i> Performance Marketing</a></li>
+                </ul>
+            </div>
+
+            <!-- Policies -->
+            <div class="ft-col" id="ft-policies">
+                <h4>Policies</h4>
+                <ul>
+                    <li><a href="#" id="ft-privacy"><i>&#8250;</i> Privacy Policy</a></li>
+                    <li><a href="#" id="ft-terms"><i>&#8250;</i> Terms &amp; Conditions</a></li>
+                    <li><a href="#" id="ft-refund"><i>&#8250;</i> Refund Policy</a></li>
+                </ul>
+            </div>
+
+            <!-- Contact Us -->
+            <div class="ft-col" id="ft-contact-col">
+                <h4>Contact Us</h4>
+                <div class="ft-contact-list">
+                    <div class="ft-ci">
+                        <div class="ft-ci-icon">&#128205;</div>
+                        <div>
+                            <div class="ft-ci-label">Office</div>
+                            <div class="ft-ci-val">New Delhi, India</div>
+                        </div>
+                    </div>
+                    <div class="ft-ci">
+                        <div class="ft-ci-icon">&#128222;</div>
+                        <div>
+                            <div class="ft-ci-label">Phone / WhatsApp</div>
+                            <a href="tel:+919643650586" class="ft-ci-val" id="ft-phone">+91 96436 50586</a>
+                        </div>
+                    </div>
+                    <div class="ft-ci">
+                        <div class="ft-ci-icon">&#9993;</div>
+                        <div>
+                            <div class="ft-ci-label">Email</div>
+                            <a href="mailto:hello@digidox360.com" class="ft-ci-val"
+                                id="ft-email">hello@digidox360.com</a>
+                        </div>
+                    </div>
+                    <div class="ft-ci">
+                        <div class="ft-ci-icon">&#128337;</div>
+                        <div>
+                            <div class="ft-ci-label">Hours</div>
+                            <div class="ft-ci-val">Mon – Sat: 10 AM – 7 PM IST</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div><!-- /ft-main -->
+
+        <!-- Divider -->
+        <div class="container">
+            <div class="ft-divider" aria-hidden="true"></div>
+        </div>
+
+        <!-- Bottom bar -->
+        <div class="container ft-bottom">
+            <p class="ft-copy">
+                &copy; <span id="year"></span> <a href="#home">Digidox Digital Agency</a>. All rights reserved.
+                Made with &#10084; in India.
+            </p>
+            <nav class="ft-policy-links" aria-label="Policy navigation">
+                <a href="#" id="bt-privacy">Privacy Policy</a>
+                <a href="#" id="bt-terms">Terms of Service</a>
+                <a href="#" id="bt-cookie">Cookie Policy</a>
+                <a href="#" id="bt-refund">Refund Policy</a>
+            </nav>
+            <button class="ft-back-top" id="ftBackTop" aria-label="Back to top"
+                onclick="window.scrollTo({top:0,behavior:'smooth'})">
+                &#8593;
+            </button>
+        </div>
+
     </footer>
 
     <a class="whatsapp-float"
@@ -1866,6 +2602,50 @@
         window.addEventListener('scroll', setActiveLink);
         setActiveLink();
         document.getElementById('year').textContent = new Date().getFullYear();
+
+        /* ===== Color Theme Switcher ===== */
+        (function () {
+            const csToggle = document.getElementById('csToggle');
+            const csPanel = document.getElementById('csPanel');
+            const csBtns = document.querySelectorAll('.cs-btn');
+            const root = document.documentElement;
+
+            csToggle.addEventListener('click', () => csPanel.classList.toggle('open'));
+            document.addEventListener('click', e => {
+                if (!document.getElementById('colorSwitcher').contains(e.target)) csPanel.classList.remove('open');
+            });
+
+            csBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const t = btn.dataset.t;
+                    root.setAttribute('data-theme', t);
+                    csBtns.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    localStorage.setItem('digidox-theme', t);
+                });
+            });
+
+            // Restore saved theme
+            const saved = localStorage.getItem('digidox-theme');
+            if (saved) {
+                root.setAttribute('data-theme', saved);
+                const match = document.querySelector('.cs-btn[data-t="' + saved + '"]');
+                if (match) { csBtns.forEach(b => b.classList.remove('active')); match.classList.add('active'); }
+            }
+        })();
+
+        /* ===== Newsletter subscribe ===== */
+        function handleFtNewsletter(e) {
+            e.preventDefault();
+            const btn = document.getElementById('ftNlBtn');
+            btn.textContent = '&#10003; Subscribed!';
+            btn.style.background = '#22c55e';
+            setTimeout(() => {
+                btn.textContent = 'Subscribe →';
+                btn.style.background = '';
+                document.getElementById('ftNlEmail').value = '';
+            }, 3000);
+        }
 
         // AJAX form submission to prevent Formspree redirect
         const contactForm = document.getElementById('contactForm');
