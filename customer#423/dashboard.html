@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Digidox · Content Calendar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #FAF8F5; --bg-elev: #FFFFFF; --bg-sunk: #F3EFE8;
+  --ink: #1A1614; --ink-2: #4A453F; --muted: #8A8278;
+  --hairline: #E5DDD0; --hairline-2: #D4C9B5;
+  --accent: #2E5C4E; --accent-soft: #E4EDE8;
+  --done: #2E5C4E;
+  --today: #B8554B; --today-soft: #F5E4DE;
+  --scheduled: #B8954A; --scheduled-soft: #F5EBD4;
+  --missed: #9A4A4A; --missed-soft: #F0DDDA;
+  --r-sm: 6px; --r-md: 10px; --r-lg: 16px; --r-xl: 22px;
+  --serif: 'Instrument Serif', 'Times New Roman', serif;
+  --sans: 'Geist', -apple-system, BlinkMacSystemFont, sans-serif;
+  --mono: 'JetBrains Mono', ui-monospace, monospace;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+body { font-family: var(--sans); background: var(--bg); color: var(--ink); font-size: 15px; line-height: 1.6; font-weight: 400; min-height: 100vh; }
+a { color: inherit; text-decoration: none; }
+
+.topbar { border-bottom: 1px solid var(--hairline); position: sticky; top: 0; z-index: 50; backdrop-filter: blur(8px); background: rgba(250,248,245,.85); }
+.topbar-inner { max-width: 1180px; margin: 0 auto; padding: 18px 32px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+.brand { display: flex; align-items: baseline; gap: 8px; font-family: var(--serif); font-size: 26px; letter-spacing: -.02em; color: var(--ink); cursor: pointer; }
+.brand-dot { width: 7px; height: 7px; background: var(--accent); border-radius: 50%; display: inline-block; }
+.brand small { font-family: var(--sans); font-size: 11px; text-transform: uppercase; letter-spacing: .14em; color: var(--muted); font-weight: 500; }
+.nav { display: flex; align-items: center; gap: 4px; }
+.nav a { padding: 8px 14px; border-radius: var(--r-sm); font-size: 14px; color: var(--ink-2); transition: all .15s ease; font-weight: 400; cursor: pointer; }
+.nav a:hover { background: var(--bg-sunk); color: var(--ink); }
+.nav a.active { background: var(--ink); color: var(--bg); }
+
+.page { max-width: 1180px; margin: 0 auto; padding: 48px 32px 80px; }
+.page-header { margin-bottom: 40px; }
+.page-eyebrow { font-size: 11px; text-transform: uppercase; letter-spacing: .18em; color: var(--muted); font-weight: 500; margin-bottom: 12px; }
+.page-title { font-family: var(--serif); font-size: 56px; line-height: 1.05; letter-spacing: -.02em; font-weight: 400; color: var(--ink); }
+.page-title em { font-style: italic; color: var(--accent); }
+.page-subtitle { font-size: 17px; color: var(--ink-2); margin-top: 16px; max-width: 640px; }
+
+.card { background: var(--bg-elev); border: 1px solid var(--hairline); border-radius: var(--r-lg); padding: 28px; }
+
+.stat-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 32px; }
+.stat { background: var(--bg-elev); border: 1px solid var(--hairline); border-radius: var(--r-md); padding: 20px 22px; }
+.stat-label { font-size: 12px; text-transform: uppercase; letter-spacing: .12em; color: var(--muted); font-weight: 500; margin-bottom: 8px; }
+.stat-value { font-family: var(--serif); font-size: 44px; line-height: 1; letter-spacing: -.02em; font-weight: 400; color: var(--ink); }
+.stat-meta { font-size: 12px; color: var(--muted); margin-top: 6px; }
+.stat.accent { background: var(--accent-soft); border-color: transparent; }
+.stat.accent .stat-value { color: var(--accent); }
+.stat.warn { background: var(--today-soft); border-color: transparent; }
+.stat.warn .stat-value { color: var(--today); }
+.stat.sched { background: var(--scheduled-soft); border-color: transparent; }
+.stat.sched .stat-value { color: var(--scheduled); }
+
+.progress-hero { background: var(--bg-elev); border: 1px solid var(--hairline); border-radius: var(--r-xl); padding: 40px 44px; display: grid; grid-template-columns: 1.4fr 1fr; gap: 48px; align-items: center; margin-bottom: 32px; position: relative; overflow: hidden; }
+.progress-hero::before { content: ''; position: absolute; top: -120px; right: -120px; width: 280px; height: 280px; background: var(--accent-soft); border-radius: 50%; opacity: .5; }
+.progress-hero > * { position: relative; z-index: 1; }
+.progress-headline { font-family: var(--serif); font-size: 40px; line-height: 1.08; letter-spacing: -.02em; }
+.progress-headline strong { font-weight: 400; color: var(--accent); font-style: italic; }
+.progress-sub { font-size: 14px; color: var(--muted); margin-top: 14px; }
+.progress-meter { text-align: center; }
+.progress-percent { font-family: var(--serif); font-size: 84px; line-height: 1; letter-spacing: -.04em; color: var(--ink); }
+.progress-percent .pct-sign { font-size: 36px; color: var(--muted); vertical-align: super; }
+.progress-fraction { font-family: var(--mono); font-size: 13px; color: var(--muted); margin-top: 4px; letter-spacing: .04em; }
+
+.bar-wrap { margin-top: 28px; }
+.bar-label { display: flex; justify-content: space-between; align-items: center; font-size: 12px; color: var(--muted); margin-bottom: 10px; text-transform: uppercase; letter-spacing: .1em; }
+.bar-track { display: flex; gap: 3px; height: 8px; border-radius: 100px; overflow: hidden; }
+.bar-seg { flex: 1; background: var(--hairline); border-radius: 2px; }
+.bar-seg.done { background: var(--done); }
+.bar-seg.today { background: var(--today); animation: pulse 1.6s ease-in-out infinite; }
+.bar-seg.missed { background: var(--missed); }
+.bar-seg.scheduled { background: var(--hairline-2); }
+@keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: .5; } }
+.bar-legend { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 14px; font-size: 12px; color: var(--ink-2); }
+.bar-legend .dot { width: 8px; height: 8px; border-radius: 2px; display: inline-block; margin-right: 6px; vertical-align: 1px; }
+
+.section-head { display: flex; align-items: baseline; justify-content: space-between; margin: 48px 0 20px; border-bottom: 1px solid var(--hairline); padding-bottom: 14px; }
+.section-title { font-family: var(--serif); font-size: 28px; letter-spacing: -.01em; font-weight: 400; }
+.section-kicker { font-size: 12px; text-transform: uppercase; letter-spacing: .14em; color: var(--muted); font-weight: 500; }
+
+.post-list { display: flex; flex-direction: column; }
+.post-row { display: grid; grid-template-columns: 76px 1fr auto auto; gap: 20px; align-items: center; padding: 18px 0; border-bottom: 1px solid var(--hairline); transition: padding-left .2s ease; cursor: pointer; }
+.post-row:hover { padding-left: 12px; }
+.post-row:last-child { border-bottom: none; }
+.post-date { font-family: var(--mono); font-size: 12px; color: var(--muted); letter-spacing: .04em; }
+.post-date-day { font-family: var(--serif); font-size: 22px; color: var(--ink); line-height: 1; margin-top: 2px; }
+.post-body { min-width: 0; }
+.post-title { font-size: 16px; color: var(--ink); font-weight: 500; margin-bottom: 4px; letter-spacing: -.005em; }
+.post-meta { font-size: 12px; color: var(--muted); display: flex; gap: 8px; align-items: center; }
+.post-meta .sep { color: var(--hairline-2); }
+.post-arrow { color: var(--muted); font-family: var(--serif); font-size: 22px; transition: transform .2s ease, color .2s ease; }
+.post-row:hover .post-arrow { color: var(--accent); transform: translateX(4px); }
+
+.pill { display: inline-flex; align-items: center; gap: 6px; font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: .08em; padding: 4px 10px; border-radius: 100px; background: var(--bg-sunk); color: var(--ink-2); }
+.pill.done { background: var(--accent-soft); color: var(--done); }
+.pill.today { background: var(--today-soft); color: var(--today); }
+.pill.scheduled { background: var(--scheduled-soft); color: #7A6020; }
+.pill.missed { background: var(--missed-soft); color: var(--missed); }
+.pill .pill-dot { width: 5px; height: 5px; border-radius: 50%; background: currentColor; }
+
+.chip { display: inline-block; font-size: 11px; font-weight: 500; letter-spacing: .04em; padding: 3px 8px; border-radius: var(--r-sm); border: 1px solid var(--hairline-2); background: transparent; color: var(--ink-2); }
+.chip-hook { border-color: #E5C9C3; color: #8A4035; background: #FAF1ED; }
+.chip-value { border-color: #C9DBD2; color: #2E5C4E; background: #EEF4F0; }
+.chip-proof { border-color: #D2CCDE; color: #4A4068; background: #F1EEF6; }
+
+.footer { border-top: 1px solid var(--hairline); margin-top: 80px; padding: 32px; text-align: center; color: var(--muted); font-size: 13px; }
+.footer em { font-family: var(--serif); font-style: italic; color: var(--ink-2); }
+
+.cal-month { margin-bottom: 48px; }
+.cal-month-name { font-family: var(--serif); font-size: 32px; letter-spacing: -.01em; margin-bottom: 16px; }
+.cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 1px; background: var(--hairline); border: 1px solid var(--hairline); border-radius: var(--r-md); overflow: hidden; }
+.cal-head { background: var(--bg-sunk); padding: 10px 12px; font-size: 11px; text-transform: uppercase; letter-spacing: .12em; color: var(--muted); text-align: left; font-weight: 500; }
+.cal-cell { background: var(--bg-elev); min-height: 110px; padding: 10px 12px; display: flex; flex-direction: column; gap: 6px; }
+.cal-cell.has-post { cursor: pointer; transition: background .15s ease; }
+.cal-cell.has-post:hover { background: var(--bg-sunk); }
+.cal-cell.empty { background: var(--bg); opacity: .6; }
+.cal-day { font-family: var(--mono); font-size: 13px; color: var(--ink-2); }
+.cal-cell.today .cal-day { background: var(--today); color: white; border-radius: 50%; width: 22px; height: 22px; display: inline-flex; align-items: center; justify-content: center; font-size: 11px; }
+.cal-post-title { font-size: 12px; line-height: 1.35; color: var(--ink); font-weight: 400; margin-top: auto; }
+.cal-cell .pill { font-size: 9px; padding: 2px 6px; align-self: flex-start; }
+
+.breakdown-list { display: flex; flex-direction: column; gap: 14px; }
+.breakdown-row { display: grid; grid-template-columns: 160px 1fr 40px; gap: 16px; align-items: center; }
+.breakdown-label { font-size: 13px; color: var(--ink-2); }
+.breakdown-track { height: 8px; background: var(--bg-sunk); border-radius: 100px; overflow: hidden; }
+.breakdown-fill { height: 100%; border-radius: 100px; transition: width 1s cubic-bezier(.16,.84,.44,1); }
+.breakdown-count { font-family: var(--mono); font-size: 13px; color: var(--ink); text-align: right; }
+
+.post-detail-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 48px; align-items: start; }
+.post-detail-meta { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--hairline); border: 1px solid var(--hairline); border-radius: var(--r-md); overflow: hidden; margin: 24px 0 32px; }
+.post-meta-item { background: var(--bg-elev); padding: 16px 18px; }
+.post-meta-item .k { font-size: 11px; text-transform: uppercase; letter-spacing: .12em; color: var(--muted); margin-bottom: 4px; }
+.post-meta-item .v { font-size: 15px; color: var(--ink); font-weight: 500; }
+.caption-block { background: var(--bg-elev); border: 1px solid var(--hairline); border-radius: var(--r-md); padding: 28px; font-size: 15px; line-height: 1.75; white-space: pre-wrap; color: var(--ink-2); }
+.caption-empty { background: var(--bg-sunk); border: 1px dashed var(--hairline-2); border-radius: var(--r-md); padding: 28px; text-align: center; color: var(--muted); font-family: var(--serif); font-style: italic; font-size: 18px; }
+.breadcrumb { font-size: 13px; color: var(--muted); margin-bottom: 18px; }
+.breadcrumb a { cursor: pointer; }
+.breadcrumb a:hover { color: var(--accent); }
+.breadcrumb .sep { margin: 0 8px; color: var(--hairline-2); }
+.image-frame { background: var(--bg-sunk); border-radius: var(--r-md); overflow: hidden; border: 1px solid var(--hairline); aspect-ratio: 1; display: flex; align-items: center; justify-content: center; color: var(--muted); font-family: var(--serif); font-style: italic; font-size: 17px; padding: 32px; text-align: center; }
+.image-frame img { width: 100%; height: 100%; object-fit: cover; }
+
+.fade-in { opacity: 0; transform: translateY(6px); animation: fadeIn .5s ease forwards; }
+@keyframes fadeIn { to { opacity: 1; transform: translateY(0); } }
+.delay-1 { animation-delay: .05s; } .delay-2 { animation-delay: .12s; }
+.delay-3 { animation-delay: .2s; } .delay-4 { animation-delay: .28s; }
+
+.filters { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 24px; }
+.filter-btn { font-family: var(--sans); font-size: 13px; background: transparent; border: 1px solid var(--hairline-2); color: var(--ink-2); padding: 7px 14px; border-radius: 100px; cursor: pointer; transition: all .15s ease; }
+.filter-btn:hover { background: var(--bg-sunk); }
+.filter-btn.active { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+.filter-count { font-family: var(--mono); font-size: 11px; opacity: .7; margin-left: 4px; }
+
+@media (max-width: 900px) {
+  .stat-grid { grid-template-columns: repeat(2, 1fr); }
+  .progress-hero { grid-template-columns: 1fr; padding: 28px; }
+  .page-title { font-size: 40px; }
+  .progress-headline { font-size: 28px; }
+  .topbar-inner { padding: 14px 20px; flex-wrap: wrap; }
+  .page { padding: 32px 20px 60px; }
+  .post-row { grid-template-columns: 70px 1fr auto; }
+  .post-meta-mobile-hide { display: none; }
+  .post-detail-grid { grid-template-columns: 1fr; gap: 32px; }
+}
+@media (max-width: 600px) {
+  .nav a { padding: 6px 10px; font-size: 13px; }
+  .stat-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .stat { padding: 16px; }
+  .stat-value { font-size: 32px; }
+}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a href="#dashboard" class="brand">
+      <span class="brand-dot"></span>
+      Digidox <small>content ops</small>
+    </a>
+    <nav class="nav" id="nav">
+      <a href="#dashboard" data-route="dashboard">Dashboard</a>
+      <a href="#posts" data-route="posts">Posts</a>
+      <a href="#calendar" data-route="calendar">Calendar</a>
+      <a href="#analytics" data-route="analytics">Analytics</a>
+    </nav>
+  </div>
+</header>
+
+<main id="app"></main>
+
+<footer class="footer">
+  Crafted with intention. <em>Digidox content operations</em>
+</footer>
+
+<script>
+// ==========================================================
+//  DATA
+// ==========================================================
+const D = {
+  brand: "Digidox",
+  campaign: "May–June 2026 Instagram Calendar",
+  today: "2026-05-16",
+  posts: [
+    { id: 1, date: "2026-05-15", content: "Why 90% Websites Fail to Convert", theme: "Conversion Optimization", grid: "HOOK", template: "HOOK", kpi: "REACH",
+      caption: `90% of websites are leaking money every single day.
+
+You're running ads. Getting clicks. But the sales just aren't coming.
+
+The problem isn't your traffic — it's what happens after the click. Slow load times, weak copy, and zero trust signals are silently killing your conversions.
+
+Here's what we fix at Digidox:
+→ High-converting Shopify store audits
+→ Friction-free checkout optimization
+→ AI-powered CRO systems built to scale
+
+Your traffic deserves a store that actually converts.
+
+DM us "AUDIT" and let's find exactly where you're losing money. 👇
+
+#ConversionOptimization #ShopifyExperts #eCommerceGrowth #ShopifyMarketing #DigitalMarketingAgency #PerformanceMarketing #AIMarketing`,
+      imageUrl: "https://drive.google.com/uc?export=download&id=1QK2QwmUYusNm4BU7oWAPijfAofClU2WV", postId: "17986330904812221", status: "Done", notes: "" },
+    { id: 2,  date: "2026-05-16", content: "5 Google Ads Mistakes Burning Your Budget",          theme: "Performance Marketing",  grid: "VALUE", template: "LISTICLE",    kpi: "SAVES",    caption: "", imageUrl: "", postId: "", status: "Pending", notes: "" },
+    { id: 3,  date: "2026-05-17", content: "Your Website is Killing Your Sales",                  theme: "eCommerce Pain Point",   grid: "HOOK",  template: "HOOK",        kpi: "REACH",    caption: "", imageUrl: "", postId: "", status: "Pending", notes: "" },
+    { id: 4,  date: "2026-05-18", content: "Homepage Structure That Converts",                    theme: "Value Education",        grid: "VALUE", template: "LISTICLE",    kpi: "SAVES",    caption: "", imageUrl: "", postId: "", status: "Pending", notes: "" },
+    { id: 5,  date: "2026-05-19", content: "How AI is Replacing Traditional Agencies",            theme: "AI Automation",          grid: "HOOK",  template: "HOOK",        kpi: "REACH",    caption: "", imageUrl: "", postId: "", status: "Pending", notes: "" },
+    { id: 6,  date: "2026-05-20", content: "What is a High-Converting Funnel?",                   theme: "Value Education",        grid: "VALUE", template: "AUTHORITY",   kpi: "SAVES",    caption: "", imageUrl: "", postId: "", status: "Pending", notes: "" },
+    { id: 7,  date: "2026-05-21", content: "We Build Websites That Actually Sell",                theme: "Social Proof",           grid: "PROOF", template: "BEFOREAFTER", kpi: "DMs",      caption: "", imageUrl: "", postId: "", status: "Pending", notes: "Case study post" },
+    { id: 8,  date: "2026-05-22", content: "Landing Page vs Website (What You Actually Need)",    theme: "Value Education",        grid: "VALUE", template: "LISTICLE",    kpi: "SAVES",    caption: "", imageUrl: "", postId: "", status: "Pending", notes: "" },
+    { id: 9,  date: "2026-05-23", content: "Stop Running Ads Without This",                       theme: "Performance Marketing",  grid: "HOOK",  template: "HOOK",        kpi: "REACH",    caption: "", imageUrl: "", postId: "", status: "Pending", notes: "" },
+    { id: 10, date: "2026-05-24", content: "How to Reduce Cost Per Lead",                         theme: "Performance Marketing",  grid: "VALUE", template: "LISTICLE",    kpi: "SAVES",    caption: "", imageUrl: "", postId: "", status: "Pending", notes: "" },
+    { id: 11, date: "2026-05-25", content: "UI/UX Mistakes That Kill Conversion",                 theme: "eCommerce Pain Point",   grid: "HOOK",  template: "HOOK",        kpi: "REACH",    caption: "", imageUrl: "", postId: "", status: "Pending", notes: "" },
+    { id: 12, date: "2026-05-26", content: "AI Tools Every Founder Must Use",                     theme: "AI Automation",          grid: "VALUE", template: "AUTHORITY",   kpi: "SAVES",    caption: "", imageUrl: "", postId: "", status: "Pending", notes: "" },
+    { id: 13, date: "2026-05-27", content: "What Makes an Ad Go Viral",                           theme: "Performance Marketing",  grid: "HOOK",  template: "HOOK",        kpi: "REACH",    caption: "", imageUrl: "", postId: "", status: "Pending", notes: "" },
+    { id: 14, date: "2026-05-28", content: "150+ Brands Scaled — Here is How",                    theme: "Social Proof",           grid: "PROOF", template: "RELATABLE",   kpi: "COMMENTS", caption: "", imageUrl: "", postId: "", status: "Pending", notes: "Big achievement post" },
+    { id: 15, date: "2026-05-29", content: "Static Websites vs Dynamic Growth Systems",           theme: "Value Education",        grid: "VALUE", template: "LISTICLE",    kpi: "SAVES",    caption: "", imageUrl: "", postId: "", status: "Pending", notes: "" },
+    { id: 16, date: "2026-05-30", content: "Old Agencies Are Dead",                               theme: "Industry Insight",       grid: "HOOK",  template: "HOOK",        kpi: "REACH",    caption: "", imageUrl: "", postId: "", status: "Pending", notes: "" },
+    { id: 17, date: "2026-05-31", content: "Scaling Ads from 1x to 5x ROAS",                      theme: "Performance Marketing",  grid: "VALUE", template: "AUTHORITY",   kpi: "SAVES",    caption: "", imageUrl: "", postId: "", status: "Pending", notes: "" },
+    { id: 18, date: "2026-06-01", content: "How Fast Website Speed Impacts Sales",                theme: "Conversion Optimization", grid: "HOOK", template: "HOOK",        kpi: "REACH",    caption: "", imageUrl: "", postId: "", status: "Pending", notes: "" },
+    { id: 19, date: "2026-06-02", content: "AI Automation for Lead Generation",                   theme: "AI Automation",          grid: "VALUE", template: "AUTHORITY",   kpi: "SAVES",    caption: "", imageUrl: "", postId: "", status: "Pending", notes: "" },
+    { id: 20, date: "2026-06-03", content: "Retargeting Strategy That Prints ROI",                theme: "Performance Marketing",  grid: "PROOF", template: "BEFOREAFTER", kpi: "DMs",      caption: "", imageUrl: "", postId: "", status: "Pending", notes: "" },
+    { id: 21, date: "2026-06-04", content: "Mobile Optimization Secrets",                         theme: "Conversion Optimization", grid: "VALUE", template: "LISTICLE",   kpi: "SAVES",    caption: "", imageUrl: "", postId: "", status: "Pending", notes: "" },
+    { id: 22, date: "2026-06-05", content: "Why Your Ads Do Not Convert",                         theme: "Performance Marketing",  grid: "HOOK",  template: "HOOK",        kpi: "REACH",    caption: "", imageUrl: "", postId: "", status: "Pending", notes: "" },
+    { id: 23, date: "2026-06-06", content: "Funnel vs Website Deep Breakdown",                    theme: "Value Education",        grid: "VALUE", template: "LISTICLE",    kpi: "SAVES",    caption: "", imageUrl: "", postId: "", status: "Pending", notes: "" },
+    { id: 24, date: "2026-06-07", content: "3 Elements Every Sales Page Needs",                   theme: "Conversion Optimization", grid: "PROOF", template: "AUTHORITY",  kpi: "DMs",      caption: "", imageUrl: "", postId: "", status: "Pending", notes: "" },
+    { id: 25, date: "2026-06-08", content: "Future of AI in Marketing",                           theme: "AI Automation",          grid: "HOOK",  template: "HOOK",        kpi: "REACH",    caption: "", imageUrl: "", postId: "", status: "Pending", notes: "" },
+    { id: 26, date: "2026-06-09", content: "Audience Targeting That Actually Works",              theme: "Performance Marketing",  grid: "VALUE", template: "AUTHORITY",   kpi: "SAVES",    caption: "", imageUrl: "", postId: "", status: "Pending", notes: "" },
+    { id: 27, date: "2026-06-10", content: "Stop Wasting Money on Ads",                           theme: "Performance Marketing",  grid: "HOOK",  template: "HOOK",        kpi: "REACH",    caption: "", imageUrl: "", postId: "", status: "Pending", notes: "" },
+    { id: 28, date: "2026-06-11", content: "Before vs After Website Case Study",                  theme: "Social Proof",           grid: "PROOF", template: "BEFOREAFTER", kpi: "DMs",      caption: "", imageUrl: "", postId: "", status: "Pending", notes: "" },
+    { id: 29, date: "2026-06-12", content: "Get High-Converting Website and Ads System",          theme: "Social Proof",           grid: "PROOF", template: "RELATABLE",   kpi: "DMs",      caption: "", imageUrl: "", postId: "", status: "Pending", notes: "CTA post" },
+    { id: 30, date: "2026-06-13", content: "Ready to Scale Your Business?",                       theme: "Social Proof",           grid: "PROOF", template: "RELATABLE",   kpi: "DMs",      caption: "", imageUrl: "", postId: "", status: "Pending", notes: "Closing CTA" }
+  ]
+};
+
+// ==========================================================
+//  HELPERS
+// ==========================================================
+const H = {
+  TODAY: new Date("2026-05-16T00:00:00"),
+  themeColor(t) {
+    return {
+      "Conversion Optimization": "#2E5C4E", "Performance Marketing": "#B8554B",
+      "Value Education": "#7A6B3D", "Social Proof": "#5B4E7A",
+      "AI Automation": "#3D6B7A", "eCommerce Pain Point": "#A04D3A",
+      "Industry Insight": "#4A4A4A"
+    }[t] || "#6B6560";
+  },
+  formatDate(iso) { return new Date(iso + "T00:00:00").toLocaleDateString("en-US", { weekday: "short", day: "numeric", month: "short" }); },
+  formatDateLong(iso) { return new Date(iso + "T00:00:00").toLocaleDateString("en-US", { weekday: "long", day: "numeric", month: "long", year: "numeric" }); },
+  effectiveStatus(p) {
+    if (p.status === "Done") return "Done";
+    const d = new Date(p.date + "T00:00:00");
+    if (d.getTime() === H.TODAY.getTime()) return "Today";
+    if (d < H.TODAY) return "Missed";
+    return "Scheduled";
+  },
+  stats() {
+    const total = D.posts.length;
+    const done = D.posts.filter(p => p.status === "Done").length;
+    const today = D.posts.filter(p => H.effectiveStatus(p) === "Today").length;
+    const scheduled = D.posts.filter(p => H.effectiveStatus(p) === "Scheduled").length;
+    const missed = D.posts.filter(p => H.effectiveStatus(p) === "Missed").length;
+    return { total, done, today, scheduled, missed, percent: Math.round((done / total) * 100) };
+  },
+  groupBy(key) {
+    const out = {};
+    D.posts.forEach(p => { out[p[key]] = (out[p[key]] || 0) + 1; });
+    return out;
+  }
+};
+
+// Shared post-row template (used on dashboard + posts page)
+function postRow(p) {
+  const eff = H.effectiveStatus(p);
+  const d = new Date(p.date + 'T00:00:00');
+  const month = d.toLocaleDateString('en-US', { month: 'short' }).toUpperCase();
+  const day = d.getDate();
+  const dow = d.toLocaleDateString('en-US', { weekday: 'short' });
+  return `
+    <a href="#post/${p.id}" class="post-row">
+      <div class="post-date">
+        <div>${dow} · ${month}</div>
+        <div class="post-date-day">${day}</div>
+      </div>
+      <div class="post-body">
+        <div class="post-title">${p.content}</div>
+        <div class="post-meta">
+          <span class="chip chip-${p.grid.toLowerCase()}">${p.grid}</span>
+          <span class="post-meta-mobile-hide">${p.theme}</span>
+          <span class="sep post-meta-mobile-hide">·</span>
+          <span class="post-meta-mobile-hide">Goal · ${p.kpi}</span>
+        </div>
+      </div>
+      <span class="pill ${eff.toLowerCase()}"><span class="pill-dot"></span>${eff}</span>
+      <span class="post-arrow">→</span>
+    </a>
+  `;
+}
+
+// ==========================================================
+//  VIEWS
+// ==========================================================
+const views = {
+  dashboard() {
+    const s = H.stats();
+    const segs = D.posts.map(p => {
+      const e = H.effectiveStatus(p).toLowerCase();
+      return `<div class="bar-seg ${e}" title="${H.formatDate(p.date)} · ${p.content}"></div>`;
+    }).join('');
+    const done = D.posts.find(p => p.status === 'Done');
+    const today = D.posts.find(p => H.effectiveStatus(p) === 'Today');
+    const next5 = D.posts.filter(p => H.effectiveStatus(p) === 'Scheduled').slice(0, 5);
+    return `
+      <div class="page">
+        <div class="page-header fade-in">
+          <div class="page-eyebrow">May — June 2026 · Instagram automation</div>
+          <h1 class="page-title">Good morning. Here's where the <em>campaign</em> stands.</h1>
+        </div>
+        <section class="progress-hero fade-in delay-1">
+          <div>
+            <p class="progress-headline">One post live, <strong>twenty-nine</strong> in the pipeline.</p>
+            <p class="progress-sub">Auto-triggers fire on each post's scheduled date. Last published 15 May, next ${H.formatDate(D.posts[1].date)}.</p>
+            <div class="bar-wrap">
+              <div class="bar-label"><span>Campaign timeline</span><span>15 May → 13 Jun</span></div>
+              <div class="bar-track">${segs}</div>
+              <div class="bar-legend">
+                <span><span class="dot" style="background: var(--done);"></span> Published</span>
+                <span><span class="dot" style="background: var(--today);"></span> Today</span>
+                <span><span class="dot" style="background: var(--hairline-2);"></span> Scheduled</span>
+              </div>
+            </div>
+          </div>
+          <div class="progress-meter">
+            <div class="progress-percent">${s.percent}<span class="pct-sign">%</span></div>
+            <div class="progress-fraction">${s.done} / ${s.total} PUBLISHED</div>
+          </div>
+        </section>
+        <section class="stat-grid fade-in delay-2">
+          <div class="stat"><div class="stat-label">Total posts</div><div class="stat-value">${s.total}</div><div class="stat-meta">Across 30 days</div></div>
+          <div class="stat accent"><div class="stat-label">Published</div><div class="stat-value">${s.done}</div><div class="stat-meta">All-time on Instagram</div></div>
+          <div class="stat warn"><div class="stat-label">Triggering today</div><div class="stat-value">${s.today}</div><div class="stat-meta">Scheduled for May 16</div></div>
+          <div class="stat sched"><div class="stat-label">Scheduled ahead</div><div class="stat-value">${s.scheduled}</div><div class="stat-meta">Future auto-triggers</div></div>
+        </section>
+        <div class="section-head"><h2 class="section-title">Latest published</h2><span class="section-kicker">15 May 2026</span></div>
+        ${done ? `<div class="card fade-in delay-3" style="padding: 0;">${postRow(done)}</div>` : ''}
+        <div class="section-head"><h2 class="section-title">Today's queue</h2><span class="section-kicker">16 May · in flight</span></div>
+        ${today ? `<div class="card fade-in delay-3" style="padding: 0; border-color: var(--today-soft); background: linear-gradient(180deg, var(--today-soft) 0%, var(--bg-elev) 60%);">${postRow(today)}</div>` : ''}
+        <div class="section-head"><h2 class="section-title">Next up</h2><span class="section-kicker">The week ahead</span></div>
+        <div class="post-list fade-in delay-4">${next5.map(postRow).join('')}</div>
+      </div>
+    `;
+  },
+
+  posts(filter = 'all') {
+    const filterDefs = [
+      { key: 'all', label: 'All' },
+      { key: 'done', label: 'Published' },
+      { key: 'today', label: 'Today' },
+      { key: 'scheduled', label: 'Scheduled' },
+      { key: 'hook', label: 'Hook' },
+      { key: 'value', label: 'Value' },
+      { key: 'proof', label: 'Proof' }
+    ];
+    const matches = (p, f) => {
+      if (f === 'all') return true;
+      const eff = H.effectiveStatus(p).toLowerCase();
+      if (['done','today','scheduled','missed'].includes(f)) return eff === f;
+      if (['hook','value','proof'].includes(f)) return p.grid.toLowerCase() === f;
+      return true;
+    };
+    const filtered = D.posts.filter(p => matches(p, filter));
+    const filters = filterDefs.map(f => {
+      const count = D.posts.filter(p => matches(p, f.key)).length;
+      return `<a class="filter-btn ${f.key === filter ? 'active' : ''}" href="#posts/${f.key}">${f.label}<span class="filter-count">${count}</span></a>`;
+    }).join('');
+    return `
+      <div class="page">
+        <div class="page-header fade-in">
+          <div class="page-eyebrow">All content · 30 posts</div>
+          <h1 class="page-title">The <em>full</em> editorial calendar.</h1>
+          <p class="page-subtitle">Every post planned for the 30-day push. Click any row to open captions, image previews, and scheduling notes.</p>
+        </div>
+        <div class="filters fade-in delay-1">${filters}</div>
+        <div class="card" style="padding: 0 28px;">
+          <div class="post-list">${filtered.map(postRow).join('')}</div>
+        </div>
+        <p style="text-align: center; margin-top: 28px; font-size: 13px; color: var(--muted);">Showing ${filtered.length} of ${D.posts.length} posts</p>
+      </div>
+    `;
+  },
+
+  calendar() {
+    const postsByDate = {};
+    D.posts.forEach(p => { postsByDate[p.date] = p; });
+    const months = [{ year: 2026, month: 4, label: 'May 2026' }, { year: 2026, month: 5, label: 'June 2026' }];
+    const buildMonth = ({ year, month, label }) => {
+      const firstDay = new Date(year, month, 1);
+      const lastDay = new Date(year, month + 1, 0).getDate();
+      const startDow = firstDay.getDay();
+      const heads = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'].map(d => `<div class="cal-head">${d}</div>`).join('');
+      let cells = '';
+      for (let i = 0; i < startDow; i++) cells += `<div class="cal-cell empty"></div>`;
+      for (let day = 1; day <= lastDay; day++) {
+        const iso = `${year}-${String(month + 1).padStart(2,'0')}-${String(day).padStart(2,'0')}`;
+        const p = postsByDate[iso];
+        const isToday = iso === '2026-05-16';
+        if (p) {
+          const eff = H.effectiveStatus(p);
+          cells += `
+            <a href="#post/${p.id}" class="cal-cell has-post ${isToday ? 'today' : ''}">
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <span class="cal-day">${day}</span>
+                <span class="pill ${eff.toLowerCase()}"><span class="pill-dot"></span>${eff}</span>
+              </div>
+              <div class="cal-post-title">${p.content}</div>
+              <div><span class="chip chip-${p.grid.toLowerCase()}">${p.grid}</span></div>
+            </a>`;
+        } else {
+          cells += `<div class="cal-cell ${isToday ? 'today' : ''}"><span class="cal-day">${day}</span></div>`;
+        }
+      }
+      const totalCells = startDow + lastDay;
+      const trailing = (7 - (totalCells % 7)) % 7;
+      for (let i = 0; i < trailing; i++) cells += `<div class="cal-cell empty"></div>`;
+      return `<section class="cal-month fade-in delay-1"><h2 class="cal-month-name">${label}</h2><div class="cal-grid">${heads}${cells}</div></section>`;
+    };
+    return `
+      <div class="page">
+        <div class="page-header fade-in">
+          <div class="page-eyebrow">Month view · May & June 2026</div>
+          <h1 class="page-title">A <em>thirty-day</em> rhythm.</h1>
+          <p class="page-subtitle">One post per day, no gaps. Hover any day to preview the title, click to open the full post.</p>
+        </div>
+        <div class="bar-legend fade-in delay-1" style="margin-bottom: 32px;">
+          <span><span class="dot" style="background: var(--done);"></span> Published</span>
+          <span><span class="dot" style="background: var(--today);"></span> Today</span>
+          <span><span class="dot" style="background: var(--hairline-2);"></span> Scheduled</span>
+          <span><span class="dot" style="background: #E5C9C3;"></span> Hook</span>
+          <span><span class="dot" style="background: #C9DBD2;"></span> Value</span>
+          <span><span class="dot" style="background: #D2CCDE;"></span> Proof</span>
+        </div>
+        ${months.map(buildMonth).join('')}
+      </div>
+    `;
+  },
+
+  analytics() {
+    const grid = H.groupBy('grid');
+    const themes = H.groupBy('theme');
+    const kpis = H.groupBy('kpi');
+    const templates = H.groupBy('template');
+    const breakdown = (groups, colorFn) => {
+      const max = Math.max(...Object.values(groups));
+      const sorted = Object.entries(groups).sort((a, b) => b[1] - a[1]);
+      return sorted.map(([label, count], i) => {
+        const pct = (count / max) * 100;
+        return `<div class="breakdown-row" style="animation: fadeIn .5s ease forwards; animation-delay: ${i * 0.05}s; opacity: 0;">
+          <div class="breakdown-label">${label}</div>
+          <div class="breakdown-track"><div class="breakdown-fill" style="width: ${pct}%; background: ${colorFn(label)};"></div></div>
+          <div class="breakdown-count">${count}</div>
+        </div>`;
+      }).join('');
+    };
+    const kpiColor = (l) => ({ REACH: '#B8554B', SAVES: '#2E5C4E', DMs: '#5B4E7A', COMMENTS: '#B8954A' }[l] || '#6B6560');
+    const tplPalette = ['#2E5C4E', '#B8554B', '#5B4E7A', '#3D6B7A', '#B8954A', '#7A6B3D'];
+    const tplKeys = Object.keys(templates);
+    const tplColor = (l) => tplPalette[tplKeys.indexOf(l) % tplPalette.length];
+    return `
+      <div class="page">
+        <div class="page-header fade-in">
+          <div class="page-eyebrow">Mix analysis · 30 posts</div>
+          <h1 class="page-title">How the <em>thirty days</em> break down.</h1>
+          <p class="page-subtitle">A balanced calendar mixes attention-grabbing hooks, educational value, and social proof. Here's the shape of yours.</p>
+        </div>
+        <div class="stat-grid fade-in delay-1">
+          <div class="stat"><div class="stat-label">Hook posts</div><div class="stat-value">${grid.HOOK || 0}</div><div class="stat-meta">Attention-grabbers · drive reach</div></div>
+          <div class="stat accent"><div class="stat-label">Value posts</div><div class="stat-value">${grid.VALUE || 0}</div><div class="stat-meta">Educational · drive saves</div></div>
+          <div class="stat sched"><div class="stat-label">Proof posts</div><div class="stat-value">${grid.PROOF || 0}</div><div class="stat-meta">Social proof · drive DMs</div></div>
+          <div class="stat warn"><div class="stat-label">Themes covered</div><div class="stat-value">${Object.keys(themes).length}</div><div class="stat-meta">Distinct content pillars</div></div>
+        </div>
+        <div class="section-head"><h2 class="section-title">By theme</h2><span class="section-kicker">Content pillars</span></div>
+        <div class="card fade-in delay-2"><div class="breakdown-list">${breakdown(themes, H.themeColor)}</div></div>
+        <div class="section-head"><h2 class="section-title">By goal</h2><span class="section-kicker">KPI distribution</span></div>
+        <div class="card fade-in delay-2"><div class="breakdown-list">${breakdown(kpis, kpiColor)}</div></div>
+        <div class="section-head"><h2 class="section-title">By template</h2><span class="section-kicker">Production formats</span></div>
+        <div class="card fade-in delay-2"><div class="breakdown-list">${breakdown(templates, tplColor)}</div></div>
+      </div>
+    `;
+  },
+
+  post(id) {
+    const post = D.posts.find(p => p.id === id);
+    if (!post) {
+      return `<div class="page"><div class="page-header"><h1 class="page-title">Not found.</h1><p class="page-subtitle"><a href="#posts" style="color: var(--accent);">← Back to all posts</a></p></div></div>`;
+    }
+    const prev = D.posts.find(p => p.id === id - 1);
+    const next = D.posts.find(p => p.id === id + 1);
+    const eff = H.effectiveStatus(post);
+    const titleHtml = post.content.replace(/\b(actually|secrets|why|how|stop|future|never)\b/i, m => `<em>${m}</em>`);
+    const captionHtml = post.caption ? `<div class="caption-block">${post.caption}</div>` : `<div class="caption-empty">Caption to be written closer to publish date.</div>`;
+    const imageHtml = post.imageUrl
+      ? `<div class="image-frame"><img src="${post.imageUrl}" alt="${post.content}" onerror="this.parentElement.innerHTML='Asset preview not embeddable.<br><a href=&quot;${post.imageUrl}&quot; target=&quot;_blank&quot; style=&quot;color: var(--accent); font-family: var(--sans); font-size: 13px; font-style: normal;&quot;>Open in Drive →</a>'"></div>`
+      : `<div class="image-frame">Creative pending.<br><span style="font-family: var(--sans); font-size: 13px; color: var(--muted); font-style: normal;">Design will be uploaded when assigned to designer.</span></div>`;
+    const postIdHtml = post.postId ? `<div class="post-meta-item"><div class="k">Instagram post ID</div><div class="v" style="font-family: var(--mono); font-size: 13px;">${post.postId}</div></div>` : '';
+    const notesHtml = post.notes ? `<div class="post-meta-item"><div class="k">Notes</div><div class="v" style="font-style: italic; color: var(--ink-2); font-weight: 400;">${post.notes}</div></div>` : '';
+    return `
+      <div class="page">
+        <div class="breadcrumb fade-in">
+          <a href="#dashboard">Dashboard</a><span class="sep">/</span>
+          <a href="#posts">Posts</a><span class="sep">/</span>
+          <span>${post.content}</span>
+        </div>
+        <div class="page-header fade-in delay-1">
+          <div class="page-eyebrow">${H.formatDateLong(post.date)} · post #${String(post.id).padStart(2,'0')} of 30</div>
+          <h1 class="page-title">${titleHtml}</h1>
+          <div style="margin-top: 20px; display: flex; gap: 8px; align-items: center; flex-wrap: wrap;">
+            <span class="pill ${eff.toLowerCase()}"><span class="pill-dot"></span>${eff}</span>
+            <span class="chip chip-${post.grid.toLowerCase()}">${post.grid}</span>
+            <span class="chip">${post.theme}</span>
+          </div>
+        </div>
+        <div class="post-detail-meta fade-in delay-2">
+          <div class="post-meta-item"><div class="k">Theme</div><div class="v">${post.theme}</div></div>
+          <div class="post-meta-item"><div class="k">Goal · KPI</div><div class="v">${post.kpi}</div></div>
+          <div class="post-meta-item"><div class="k">Grid type</div><div class="v">${post.grid}</div></div>
+          <div class="post-meta-item"><div class="k">Template</div><div class="v">${post.template}</div></div>
+          ${postIdHtml}${notesHtml}
+        </div>
+        <div class="post-detail-grid fade-in delay-3">
+          <div><h3 style="font-family: var(--serif); font-size: 24px; margin-bottom: 14px; font-weight: 400;">Caption</h3>${captionHtml}</div>
+          <div><h3 style="font-family: var(--serif); font-size: 24px; margin-bottom: 14px; font-weight: 400;">Creative</h3>${imageHtml}</div>
+        </div>
+        <div style="display: flex; justify-content: space-between; margin-top: 64px; padding-top: 32px; border-top: 1px solid var(--hairline); gap: 16px;">
+          ${prev ? `<a href="#post/${prev.id}" style="flex: 1; padding: 18px; border: 1px solid var(--hairline); border-radius: var(--r-md); background: var(--bg-elev); transition: background .15s ease;" onmouseover="this.style.background='var(--bg-sunk)'" onmouseout="this.style.background='var(--bg-elev)'">
+            <div style="font-size: 11px; text-transform: uppercase; letter-spacing: .12em; color: var(--muted); margin-bottom: 6px;">← Previous</div>
+            <div style="font-size: 15px; font-weight: 500;">${prev.content}</div>
+            <div style="font-size: 12px; color: var(--muted); margin-top: 4px;">${H.formatDate(prev.date)}</div>
+          </a>` : '<div style="flex: 1;"></div>'}
+          ${next ? `<a href="#post/${next.id}" style="flex: 1; padding: 18px; border: 1px solid var(--hairline); border-radius: var(--r-md); background: var(--bg-elev); transition: background .15s ease; text-align: right;" onmouseover="this.style.background='var(--bg-sunk)'" onmouseout="this.style.background='var(--bg-elev)'">
+            <div style="font-size: 11px; text-transform: uppercase; letter-spacing: .12em; color: var(--muted); margin-bottom: 6px;">Next →</div>
+            <div style="font-size: 15px; font-weight: 500;">${next.content}</div>
+            <div style="font-size: 12px; color: var(--muted); margin-top: 4px;">${H.formatDate(next.date)}</div>
+          </a>` : '<div style="flex: 1;"></div>'}
+        </div>
+      </div>
+    `;
+  }
+};
+
+// ==========================================================
+//  ROUTER
+// ==========================================================
+function setActiveNav(route) {
+  document.querySelectorAll('#nav a').forEach(a => {
+    a.classList.toggle('active', a.dataset.route === route);
+  });
+}
+
+function render() {
+  const hash = (window.location.hash || '#dashboard').replace(/^#/, '');
+  const [route, ...rest] = hash.split('/');
+  const app = document.getElementById('app');
+  let html = '';
+  if (route === 'dashboard' || route === '') {
+    html = views.dashboard(); setActiveNav('dashboard');
+    document.title = 'Dashboard · Digidox';
+  } else if (route === 'posts') {
+    html = views.posts(rest[0] || 'all'); setActiveNav('posts');
+    document.title = 'Posts · Digidox';
+  } else if (route === 'calendar') {
+    html = views.calendar(); setActiveNav('calendar');
+    document.title = 'Calendar · Digidox';
+  } else if (route === 'analytics') {
+    html = views.analytics(); setActiveNav('analytics');
+    document.title = 'Analytics · Digidox';
+  } else if (route === 'post') {
+    const id = parseInt(rest[0], 10);
+    html = views.post(id); setActiveNav('');
+    const p = D.posts.find(x => x.id === id);
+    document.title = p ? `${p.content} · Digidox` : 'Post · Digidox';
+  } else {
+    html = views.dashboard(); setActiveNav('dashboard');
+  }
+  app.innerHTML = html;
+  window.scrollTo(0, 0);
+}
+
+window.addEventListener('hashchange', render);
+window.addEventListener('DOMContentLoaded', render);
+</script>
+
+</body>
+</html>
