@@ -29,6 +29,14 @@
     <priority>0.9</priority>
   </url>
 
+  <!-- Ecommerce Marketplace Management -->
+  <url>
+    <loc>https://digidox360.com/ecommerce-marketplace-management/</loc>
+    <lastmod>2026-10-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
   <!-- WordPress Development -->
   <url>
     <loc>https://digidox360.com/wordpress-development/</loc>

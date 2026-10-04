@@ -1,0 +1,1256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ecommerce Marketplace Management | DigiDox Digital Agency</title>
+<meta name="description" content="Launch, manage and scale your ecommerce business with DigiDox. End-to-end marketplace management, PPC, inventory, creative and profitability analytics.">
+<link rel="canonical" href="https://digidox360.com/ecommerce-marketplace-management/">
+<meta property="og:type" content="website"><meta property="og:title" content="Ecommerce Marketplace Management | DigiDox">
+<meta property="og:description" content="Grow Your Brand. Manage Your Marketplace. Scale Your Business.">
+<meta property="og:url" content="https://digidox360.com/ecommerce-marketplace-management/">
+<meta name="twitter:card" content="summary"><meta name="twitter:title" content="Ecommerce Marketplace Management | DigiDox">
+<meta name="twitter:description" content="End-to-end marketplace management, advertising, inventory, creative and analytics.">
+<link rel="icon" href="https://digidox360.com/assets/fevicon.png">
+<style>
+        :root {
+            --bg: #07111f;
+            --bg-soft: #0c1728;
+            --panel: rgba(255, 255, 255, 0.05);
+            --panel-2: rgba(255, 255, 255, 0.07);
+            --border: rgba(255, 255, 255, 0.1);
+            --text: #f6f8ff;
+            --muted: #aeb9d2;
+            --primary: #80a8ff;
+            --accent: #79e6d1;
+            --success: #25d366;
+            --shadow: 0 18px 50px rgba(0, 0, 0, 0.28);
+            --radius: 24px;
+            --max: 1160px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            color: var(--text);
+            background:
+                radial-gradient(circle at top left, rgba(128, 168, 255, 0.16), transparent 26%),
+                radial-gradient(circle at top right, rgba(121, 230, 209, 0.12), transparent 22%),
+                linear-gradient(180deg, #06101d 0%, #0a1423 100%);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        img {
+            display: block;
+            max-width: 100%;
+        }
+
+        .container {
+            width: min(var(--max), calc(100% - 32px));
+            margin: 0 auto;
+        }
+
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            background: rgba(6, 12, 23, 0.82);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .nav-inner {
+            min-height: 78px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+        }
+
+        .brand {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 800;
+            letter-spacing: 0.2px;
+            min-width: 0;
+        }
+
+        .brand-mark {
+            width: 42px;
+            height: 42px;
+            border-radius: 14px;
+            display: grid;
+            place-items: center;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: #06101d;
+            font-weight: 900;
+            box-shadow: var(--shadow);
+            flex-shrink: 0;
+        }
+
+        .brand span:last-child {
+            white-space: nowrap;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 22px;
+            color: var(--muted);
+            font-size: 15px;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--text);
+        }
+
+        /* Dropdown styles */
+        .has-dropdown {
+            position: relative;
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: calc(100% + 6px);
+            left: 0;
+            min-width: 240px;
+            background: rgba(6, 12, 23, 0.98);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 14px;
+            padding: 8px 0;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: opacity 0.2s ease, transform 0.2s ease, visibility 0s linear 0.2s;
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4);
+            z-index: 100;
+            pointer-events: none;
+        }
+
+        .has-dropdown:hover .dropdown-menu,
+        .has-dropdown.dropdown-open .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+            transition: opacity 0.2s ease, transform 0.2s ease, visibility 0s linear 0s;
+            pointer-events: auto;
+        }
+
+        .dropdown-menu a {
+            display: block;
+            padding: 10px 20px;
+            color: var(--muted) !important;
+            transition: background 0.2s ease, color 0.2s ease;
+            font-size: 14px;
+        }
+
+        .dropdown-menu a:hover {
+            background: rgba(255, 255, 255, 0.06);
+            color: var(--text) !important;
+        }
+
+        .brand-logo {
+            max-height: 42px;
+            width: auto;
+        }
+
+        .menu-toggle {
+            display: none;
+            width: 42px;
+            height: 42px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--text);
+            font-size: 18px;
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            border-radius: 999px;
+            padding: 14px 22px;
+            font-weight: 700;
+            border: 1px solid transparent;
+            transition: 0.22s ease;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: #06101d;
+            box-shadow: var(--shadow);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.04);
+            border-color: var(--border);
+            color: var(--text);
+        }
+
+        .btn-primary:hover,
+        .btn-secondary:hover {
+            transform: translateY(-2px);
+        }
+
+        .hero {
+            padding: 72px 0 36px;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1.02fr) minmax(0, 0.98fr);
+            gap: 24px;
+            align-items: stretch;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 14px;
+            border-radius: 999px;
+            background: rgba(128, 168, 255, 0.1);
+            border: 1px solid rgba(128, 168, 255, 0.18);
+            color: #d8e4ff;
+            font-size: 13px;
+            margin-bottom: 18px;
+        }
+
+        .eyebrow-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--accent);
+            box-shadow: 0 0 0 0 rgba(121, 230, 209, 0.7);
+            animation: pulse 1.8s infinite;
+            flex-shrink: 0;
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(121, 230, 209, 0.7);
+            }
+
+            70% {
+                box-shadow: 0 0 0 10px rgba(121, 230, 209, 0);
+            }
+
+            100% {
+                box-shadow: 0 0 0 0 rgba(121, 230, 209, 0);
+            }
+        }
+
+        h1 {
+            margin: 0 0 18px;
+            font-size: clamp(38px, 5.6vw, 66px);
+            line-height: 1.02;
+            letter-spacing: -1.8px;
+            max-width: 720px;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #ffffff 0%, #bed1ff 48%, #7de9d4 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .hero-copy p {
+            margin: 0 0 22px;
+            color: var(--muted);
+            font-size: 18px;
+            max-width: 690px;
+        }
+
+        .hero-actions,
+        .hero-chips,
+        .chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .hero-actions {
+            margin-bottom: 20px;
+        }
+
+        .chip {
+            padding: 10px 14px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            color: #dce5fb;
+            font-size: 14px;
+        }
+
+        .panel,
+        .mini-card,
+        .value-card,
+        .service-card,
+        .feature-card,
+        .faq-card,
+        .testimonial-card,
+        .cta-card {
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.04));
+            border: 1px solid var(--border);
+            border-radius: 22px;
+            box-shadow: var(--shadow);
+        }
+
+        .hero-content-card,
+        .form-panel {
+            padding: 28px;
+            height: 100%;
+        }
+
+        .hero-mini-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 12px;
+            margin-top: 18px;
+        }
+
+        .mini-card {
+            padding: 15px;
+            min-height: 112px;
+        }
+
+        .mini-card strong {
+            display: block;
+            font-size: 16px;
+            color: #8ff0dd;
+            margin-bottom: 6px;
+        }
+
+        .mini-card span {
+            display: block;
+            color: var(--muted);
+            font-size: 13px;
+            line-height: 1.45;
+        }
+
+        .form-panel h3,
+        .section-head h2,
+        .cta-card h3 {
+            margin: 0 0 10px;
+            line-height: 1.2;
+        }
+
+        .form-panel h3 {
+            font-size: 30px;
+        }
+
+        form {
+            display: grid;
+            gap: 14px;
+            margin-top: 18px;
+        }
+
+        .field {
+            display: grid;
+            gap: 8px;
+        }
+
+        label {
+            font-size: 14px;
+            color: #dfe8ff;
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+            padding: 15px 16px;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            background: rgba(7, 14, 26, 0.82);
+            color: white;
+            font: inherit;
+            outline: none;
+            transition: 0.2s ease;
+        }
+
+        textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            border-color: rgba(128, 168, 255, 0.45);
+            box-shadow: 0 0 0 4px rgba(128, 168, 255, 0.12);
+        }
+
+        .section {
+            padding: 38px 0;
+        }
+
+        .section-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: end;
+            gap: 18px;
+            margin-bottom: 24px;
+        }
+
+        .section-head h2 {
+            font-size: clamp(28px, 4vw, 46px);
+            letter-spacing: -1.2px;
+        }
+
+        .section-head p,
+        .muted {
+            margin: 0;
+            color: var(--muted);
+        }
+
+        .value-grid,
+        .services-grid,
+        .feature-grid,
+        .faq-grid,
+        .testimonials-grid,
+        .cta-grid {
+            display: grid;
+            gap: 18px;
+        }
+
+        .value-grid {
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+        }
+
+        .services-grid {
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+
+        .feature-grid {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .faq-grid {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .testimonials-grid {
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+
+        .cta-grid {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .value-card,
+        .service-card,
+        .feature-card,
+        .faq-card,
+        .testimonial-card,
+        .cta-card {
+            padding: 24px;
+            transition: transform 0.22s ease, border-color 0.22s ease;
+        }
+
+        .value-card:hover,
+        .service-card:hover,
+        .feature-card:hover,
+        .faq-card:hover,
+        .testimonial-card:hover,
+        .cta-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(128, 168, 255, 0.3);
+        }
+
+        .value-card small {
+            display: block;
+            color: var(--muted);
+            margin-bottom: 8px;
+        }
+
+        .value-card strong {
+            display: block;
+            font-size: 40px;
+            line-height: 1;
+            margin-bottom: 8px;
+            color: #18d5ff;
+            letter-spacing: -1px;
+        }
+
+        .service-icon,
+        .feature-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 18px;
+            display: grid;
+            place-items: center;
+            background: linear-gradient(135deg, rgba(128, 168, 255, 0.18), rgba(121, 230, 209, 0.12));
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            font-size: 24px;
+            margin-bottom: 16px;
+        }
+
+        .service-card h3,
+        .feature-card h3,
+        .faq-card h3,
+        .testimonial-card h3 {
+            margin: 0 0 10px;
+            font-size: 26px;
+            line-height: 1.2;
+        }
+
+        .service-card p,
+        .feature-card p,
+        .faq-card p,
+        .testimonial-card p,
+        .cta-card p {
+            color: var(--muted);
+            margin: 0 0 14px;
+        }
+
+        .service-card ul,
+        .feature-card ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: grid;
+            gap: 10px;
+            color: #e7eeff;
+            font-size: 14px;
+        }
+
+        .service-card li::before,
+        .feature-card li::before {
+            content: "•";
+            color: var(--accent);
+            margin-right: 10px;
+            font-weight: 900;
+        }
+
+        .testimonial-card strong {
+            display: block;
+            margin-top: 12px;
+            color: #edf2ff;
+        }
+
+        footer {
+            padding: 28px 0 88px;
+            color: var(--muted);
+        }
+
+        .footer-inner {
+            display: flex;
+            justify-content: space-between;
+            gap: 16px;
+            align-items: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            padding-top: 20px;
+        }
+
+        .whatsapp-float {
+            position: fixed;
+            right: 18px;
+            bottom: 18px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #ffffff;
+            box-shadow: 0 18px 40px rgba(0, 0, 0, 0.18);
+            border: 2px solid #e6f7ef;
+            z-index: 60;
+            transition: transform 0.22s ease;
+        }
+
+        .whatsapp-float:hover {
+            transform: translateY(-2px);
+        }
+
+        .whatsapp-float svg {
+            width: 28px;
+            height: 28px;
+            display: block;
+            fill: #25d366;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .reveal.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (max-width: 1024px) {
+
+            .hero-grid,
+            .value-grid,
+            .services-grid,
+            .feature-grid,
+            .faq-grid,
+            .testimonials-grid,
+            .cta-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .value-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 820px) {
+            .container {
+                width: min(var(--max), calc(100% - 24px));
+            }
+
+            .nav-links {
+                position: absolute;
+                top: calc(100% + 8px);
+                left: 12px;
+                right: 12px;
+                display: none;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 14px;
+                padding: 16px;
+                border-radius: 18px;
+                background: rgba(6, 12, 23, 0.98);
+                border: 1px solid rgba(255, 255, 255, 0.08);
+            }
+
+            .dropdown-menu {
+                position: static;
+                display: none;
+                opacity: 1 !important;
+                visibility: visible !important;
+                transform: none !important;
+                transition: none !important;
+                box-shadow: none;
+                background: transparent;
+                border: none;
+                padding: 4px 0 0 16px;
+                min-width: auto;
+                pointer-events: auto !important;
+                margin-top: 8px;
+            }
+
+            .dropdown-open .dropdown-menu {
+                display: block;
+            }
+
+            .dropdown-menu a {
+                padding: 8px 12px;
+            }
+
+            .nav-links.open {
+                display: flex;
+            }
+
+            .menu-toggle {
+                display: inline-grid;
+                place-items: center;
+            }
+
+            .nav-cta {
+                display: none;
+            }
+
+            .hero,
+            .section {
+                padding: 28px 0;
+            }
+
+            .hero-grid,
+            .value-grid,
+            .services-grid,
+            .feature-grid,
+            .faq-grid,
+            .testimonials-grid,
+            .cta-grid,
+            .hero-mini-grid {
+                grid-template-columns: 1fr;
+            }
+
+            h1 {
+                font-size: clamp(32px, 10vw, 44px);
+                letter-spacing: -1.2px;
+            }
+
+            .hero-copy p {
+                font-size: 16px;
+            }
+
+            .hero-content-card,
+            .form-panel,
+            .value-card,
+            .service-card,
+            .feature-card,
+            .faq-card,
+            .testimonial-card,
+            .cta-card {
+                padding: 20px;
+                border-radius: 20px;
+            }
+
+            .form-panel h3,
+            .service-card h3,
+            .feature-card h3,
+            .faq-card h3,
+            .testimonial-card h3,
+            .cta-card h3 {
+                font-size: 24px;
+            }
+
+            .value-card strong {
+                font-size: 34px;
+            }
+
+            .footer-inner {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            footer {
+                padding-bottom: 92px;
+            }
+        }
+
+        @media (max-width: 520px) {
+            .nav-inner {
+                min-height: 70px;
+            }
+
+            .brand-logo {
+                height: 34px;
+            }
+
+            .brand span:last-child {
+                max-width: 180px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+
+            .eyebrow,
+            .chip {
+                font-size: 12px;
+            }
+
+            .btn {
+                width: 100%;
+            }
+
+            .hero-actions {
+                flex-direction: column;
+            }
+
+            .section-head h2 {
+                font-size: 30px;
+            }
+
+            .whatsapp-float {
+                right: 14px;
+                bottom: 14px;
+                width: 54px;
+                height: 54px;
+                border-radius: 50%;
+            }
+
+            .whatsapp-float svg {
+                width: 26px;
+                height: 26px;
+            }
+        }
+
+        select {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            padding-right: 44px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23a0aec0' d='M1.41 0L6 4.58 10.59 0 12 1.41l-6 6-6-6z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 16px center;
+            cursor: pointer;
+        }
+
+        .phone-group {
+            display: flex;
+            gap: 10px;
+        }
+
+        .phone-group select {
+            width: 130px;
+            min-width: 130px;
+            flex-shrink: 0;
+            font-size: 14px;
+            padding: 15px 36px 15px 14px;
+            background-position: right 10px center;
+        }
+
+        .phone-group input {
+            flex: 1;
+        }
+
+        .form-success {
+            display: none;
+            background: rgba(34, 197, 94, 0.12);
+            border: 1px solid rgba(34, 197, 94, 0.4);
+            border-radius: 14px;
+            padding: 20px 24px;
+            margin-top: 16px;
+            text-align: center;
+            animation: fadeInUp 0.4s ease;
+        }
+
+        .form-success .success-icon {
+            font-size: 32px;
+            margin-bottom: 8px;
+        }
+
+        .form-success h4 {
+            color: #22c55e;
+            margin: 0 0 6px;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+
+/* Marketplace page additions; base design reused from the Shopify service page. */
+html { scroll-padding-top: 100px; }
+section[id], #contact { scroll-margin-top: 100px; }
+button { font: inherit; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+.skip-link { position: fixed; top: -100px; left: 16px; z-index: 100; padding: 12px 20px; background: var(--accent); color: var(--bg); border-radius: 12px; }
+.skip-link:focus { top: 10px; }
+.hero-grid { align-items: start; }
+.hero-content-card > p { color: var(--muted); margin: 0 0 18px; }
+.hero-content-card .hero-lead { color: #dfe8ff; font-size: 17px; }
+.form-panel h2 { font-size: 30px; line-height: 1.2; margin: 0 0 10px; }
+.form-note { font-size: 13px; color: var(--muted); margin: 12px 0 0; }
+.form-status { color: var(--accent); margin: 12px 0 0; }
+.form-status:empty { display: none; }
+.phone-group input { min-width: 0; }
+.brand-fallback { font-size: 26px; font-weight: 800; letter-spacing: -1px; color: var(--text); }
+.brand-fallback span { color: var(--accent); }
+[hidden] { display: none !important; }
+.dropdown-toggle { background: none; border: 0; padding: 0; color: inherit; cursor: pointer; font: inherit; }
+.has-dropdown::after { content: ""; position: absolute; height: 10px; top: 100%; width: 100%; left: 0; }
+.dropdown-menu { min-width: 290px; }
+.platforms-grid { display: grid; grid-template-columns: repeat(6, minmax(0,1fr)); gap: 12px; }
+.platform { min-height: 156px; padding: 24px 14px 20px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; text-align: center; color: #e7eeff; border-radius: 20px; border: 1px solid var(--border); background: linear-gradient(180deg, rgba(255,255,255,.065), rgba(255,255,255,.025)); box-shadow: 0 8px 32px rgba(0,0,0,.12); transition: transform .22s ease, border-color .22s ease, background .22s ease; }
+.platform:hover { transform: translateY(-4px); border-color: rgba(128,168,255,.4); background: linear-gradient(180deg,rgba(255,255,255,.1),rgba(255,255,255,.04)); }
+.platform-logo-wrap { width: 100%; height: 68px; display: flex; align-items: center; justify-content: center; }
+.platform-logo { display: block; width: auto; height: auto; max-width: 68px; max-height: 68px; object-fit: contain; border-radius: 10px; }
+.platform-logo-wide { max-width: 112px; max-height: 60px; border-radius: 6px; }
+.platform-logo-light { background: #fff; padding: 7px; }
+.platform-name { font-size: 14px; font-weight: 600; letter-spacing: .1px; }
+.platform-more-symbol { display: grid; place-items: center; width: 60px; height: 60px; border: 1px dashed rgba(121,230,209,.5); border-radius: 50%; color: var(--accent); font-size: 38px; line-height: 1; font-weight: 300; }
+@media (max-width:520px) { .platform { min-height: 142px; padding: 20px 10px 16px; gap: 12px; } .platform-logo-wide { max-width: 104px; } }
+.marketplace-services { grid-template-columns: repeat(2,minmax(0,1fr)); }
+.service-kicker { color: var(--accent) !important; font-weight: 600; }
+.marketplace-services > :last-child { grid-column: 1 / -1; }
+.marketplace-services > :last-child ul { grid-template-columns: repeat(2,minmax(0,1fr)); }
+.section-label { color: var(--accent); text-transform: uppercase; font-size: 12px; letter-spacing: 2px; font-weight: 700; display: block; margin-bottom: 10px; }
+.strategy-panel { padding: 28px; }
+.growth-flow { list-style: none; padding: 0; margin: 22px 0 28px; display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 10px; counter-reset: growth; }
+.growth-flow li { counter-increment: growth; padding: 14px; background: var(--panel); border: 1px solid var(--border); border-radius: 12px; font-size: 14px; }
+.growth-flow li::before { content: counter(growth, decimal-leading-zero) "  /  "; color: var(--accent); font-weight: 700; }
+.strategy-list { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 12px; list-style: none; padding: 0; margin-bottom: 0; }
+.strategy-list li::before { content: "•"; color: var(--accent); margin-right: 10px; }
+.why-grid > :last-child { grid-column: 1 / -1; }
+.process-grid { display: grid; grid-template-columns: repeat(5,minmax(0,1fr)); gap: 14px; padding: 0; list-style: none; }
+.process-card { padding: 20px; }
+.process-card h3 { font-size: 21px; margin: 18px 0 10px; }
+.process-card p { color: var(--muted); font-size: 14px; margin: 0; }
+.step-number { font-size: 30px; font-weight: 800; color: var(--accent); }
+.closing-cta { padding: 36px; }
+.closing-cta h2 { font-size: clamp(28px,4vw,46px); line-height: 1.15; letter-spacing: -1px; margin: 0 0 18px; max-width: 720px; }
+.closing-cta p { max-width: 780px; }
+.cta-subtitle { color: var(--text) !important; font-size: 21px; font-weight: 700; }
+.footer-links { display: flex; gap: 20px; flex-wrap: wrap; margin-top: 12px; font-size: 14px; }
+.footer-links a:hover { color: var(--accent); }
+.whatsapp-float { background: #25d366; border-color: #25d366; width: auto; height: 48px; padding: 0 20px; color: #06101d; font-weight: 700; border-radius: 999px; }
+@media (max-width:1024px) { .platforms-grid { grid-template-columns: repeat(4,minmax(0,1fr)); } .process-grid { grid-template-columns: repeat(3,minmax(0,1fr)); } .nav-links { gap: 16px; } }
+@media (max-width:820px) {
+ .marketplace-services, .process-grid { grid-template-columns: 1fr; }
+ .marketplace-services > :last-child, .why-grid > :last-child { grid-column: auto; }
+ .marketplace-services > :last-child ul { grid-template-columns: 1fr; }
+ .platforms-grid { grid-template-columns: repeat(3,minmax(0,1fr)); }
+ .growth-flow { grid-template-columns: repeat(2,minmax(0,1fr)); }
+ .strategy-panel, .closing-cta { padding: 20px; }
+ .form-panel h2 { font-size: 26px; }
+ .nav-links.open { max-height: calc(100dvh - 100px); overflow-y: auto; }
+ .dropdown-menu { min-width: 0; }
+ .has-dropdown::after { display: none; }
+}
+@media (max-width:520px) {
+ .platforms-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
+ .strategy-list { grid-template-columns: 1fr; }
+ .phone-group select { width: 105px; min-width: 105px; padding-left: 10px; }
+ .hero-mini-grid { grid-template-columns: 1fr; }
+ .eyebrow { max-width: 100%; }
+ .closing-cta .eyebrow { border-radius: 14px; }
+ .platform { font-size: 16px; }
+}
+@media (prefers-reduced-motion:reduce) {
+ html { scroll-behavior: auto; }
+ *, *::before, *::after { animation: none !important; transition: none !important; }
+}
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="navbar"><div class="container nav-inner">
+ <a href="https://digidox360.com/" class="brand" aria-label="Digidox Digital Agency home"><img src="https://digidox360.com/assets/brandlogo.png" alt="Digidox Digital Agency" class="brand-logo"><span class="brand-fallback" hidden>Digi<span>Dox</span></span></a>
+ <nav class="nav-links" id="navLinks" aria-label="Main navigation">
+  <a href="https://digidox360.com/">Home</a>
+  <div class="has-dropdown"><button class="dropdown-toggle" aria-expanded="false" aria-controls="servicesMenu">Services ⌄</button><div class="dropdown-menu" id="servicesMenu">
+   <a href="https://digidox360.com/shopify-development/">Shopify Development</a>
+   <a href="https://digidox360.com/performance-marketing/">Performance Marketing</a>
+   <a href="https://digidox360.com/ecommerce-marketplace-management/" aria-current="page">Ecommerce Marketplace Management</a>
+  </div></div>
+  <a href="#why-us">Why Us</a><a href="#process">Our Process</a><a href="#contact">Contact</a>
+ </nav>
+ <div><a href="#contact" class="btn btn-primary nav-cta">Book a Free Consultation</a><button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="navLinks">☰</button></div>
+</div></header>
+<main id="main"><section class="hero" id="home">
+ <div class="container hero-grid">
+  <div class="panel hero-content-card">
+   <div class="eyebrow"><span class="eyebrow-dot"></span> Ecommerce Marketplace Management</div>
+   <h1>Grow Your Brand.<br><span class="gradient-text">Manage Your Marketplace.</span><br>Scale Your Business.</h1>
+   <p class="hero-lead">We provide end-to-end Ecommerce Marketplace Management services to help brands launch, manage, optimize and scale their business across leading marketplaces in India and international markets.</p>
+   <p>From product listing and advertising to inventory, fulfillment, profitability and business analytics — we manage the complete marketplace ecosystem so you can focus on growing your brand.</p>
+   <div class="hero-actions"><a class="btn btn-primary" href="#contact">Book a Strategy Call</a><a class="btn btn-secondary" href="#services">Explore Our Services</a></div>
+   <div class="hero-chips"><span class="chip">End-to-End Management</span><span class="chip">India &amp; International Markets</span><span class="chip">Growth &amp; Profit Focused</span></div>
+   <div class="hero-mini-grid">
+    <div class="mini-card"><strong>Marketplace Management</strong><span>Product listings, catalog optimization and account health.</span></div>
+    <div class="mini-card"><strong>Advertising &amp; PPC</strong><span>Campaigns built around visibility, conversions and profitability.</span></div>
+    <div class="mini-card"><strong>Inventory &amp; Fulfillment</strong><span>Keep the right products available at the right time.</span></div>
+    <div class="mini-card"><strong>Business Analytics</strong><span>Understand sales, costs and product-level performance.</span></div>
+   </div>
+  </div>
+  <div class="panel form-panel" id="contact">
+   <div class="eyebrow">Get a free ecommerce growth consultation</div>
+   <h2>Tell us about your <span class="gradient-text">ecommerce business</span></h2>
+   <p class="muted">Share your marketplaces, current challenges and growth goals. Let’s plan your next step.</p>
+   <form id="contactForm" action="https://formspree.io/f/xlgpkeow" method="POST">
+    <div class="field"><label for="name">Full Name</label><input id="name" name="name" autocomplete="name" placeholder="Your name" required></div>
+    <div class="field"><label for="email">Email Address</label><input id="email" name="email" type="email" autocomplete="email" placeholder="you@example.com" required></div>
+    <div class="field"><label for="phone">Phone Number</label><div class="phone-group"><select id="countryCode" name="country_code" aria-label="Country calling code" autocomplete="tel-country-code">
+                                    <option value="+93">🇦🇫 +93</option>
+                                    <option value="+355">🇦🇱 +355</option>
+                                    <option value="+213">🇩🇿 +213</option>
+                                    <option value="+376">🇦🇩 +376</option>
+                                    <option value="+244">🇦🇴 +244</option>
+                                    <option value="+54">🇦🇷 +54</option>
+                                    <option value="+374">🇦🇲 +374</option>
+                                    <option value="+61">🇦🇺 +61</option>
+                                    <option value="+43">🇦🇹 +43</option>
+                                    <option value="+994">🇦🇿 +994</option>
+                                    <option value="+973">🇧🇭 +973</option>
+                                    <option value="+880">🇧🇩 +880</option>
+                                    <option value="+375">🇧🇾 +375</option>
+                                    <option value="+32">🇧🇪 +32</option>
+                                    <option value="+501">🇧🇿 +501</option>
+                                    <option value="+229">🇧🇯 +229</option>
+                                    <option value="+975">🇧🇹 +975</option>
+                                    <option value="+591">🇧🇴 +591</option>
+                                    <option value="+387">🇧🇦 +387</option>
+                                    <option value="+55">🇧🇷 +55</option>
+                                    <option value="+673">🇧🇳 +673</option>
+                                    <option value="+359">🇧🇬 +359</option>
+                                    <option value="+855">🇰🇭 +855</option>
+                                    <option value="+237">🇨🇲 +237</option>
+                                    <option value="+1">🇨🇦 +1</option>
+                                    <option value="+56">🇨🇱 +56</option>
+                                    <option value="+86">🇨🇳 +86</option>
+                                    <option value="+57">🇨🇴 +57</option>
+                                    <option value="+506">🇨🇷 +506</option>
+                                    <option value="+385">🇭🇷 +385</option>
+                                    <option value="+53">🇨🇺 +53</option>
+                                    <option value="+357">🇨🇾 +357</option>
+                                    <option value="+420">🇨🇿 +420</option>
+                                    <option value="+45">🇩🇰 +45</option>
+                                    <option value="+593">🇪🇨 +593</option>
+                                    <option value="+20">🇪🇬 +20</option>
+                                    <option value="+503">🇸🇻 +503</option>
+                                    <option value="+372">🇪🇪 +372</option>
+                                    <option value="+251">🇪🇹 +251</option>
+                                    <option value="+358">🇫🇮 +358</option>
+                                    <option value="+33">🇫🇷 +33</option>
+                                    <option value="+995">🇬🇪 +995</option>
+                                    <option value="+49">🇩🇪 +49</option>
+                                    <option value="+233">🇬🇭 +233</option>
+                                    <option value="+30">🇬🇷 +30</option>
+                                    <option value="+502">🇬🇹 +502</option>
+                                    <option value="+504">🇭🇳 +504</option>
+                                    <option value="+852">🇭🇰 +852</option>
+                                    <option value="+36">🇭🇺 +36</option>
+                                    <option value="+354">🇮🇸 +354</option>
+                                    <option value="+91" selected>🇮🇳 +91</option>
+                                    <option value="+62">🇮🇩 +62</option>
+                                    <option value="+98">🇮🇷 +98</option>
+                                    <option value="+964">🇮🇶 +964</option>
+                                    <option value="+353">🇮🇪 +353</option>
+                                    <option value="+972">🇮🇱 +972</option>
+                                    <option value="+39">🇮🇹 +39</option>
+                                    <option value="+81">🇯🇵 +81</option>
+                                    <option value="+962">🇯🇴 +962</option>
+                                    <option value="+7">🇰🇿 +7</option>
+                                    <option value="+254">🇰🇪 +254</option>
+                                    <option value="+965">🇰🇼 +965</option>
+                                    <option value="+996">🇰🇬 +996</option>
+                                    <option value="+856">🇱🇦 +856</option>
+                                    <option value="+371">🇱🇻 +371</option>
+                                    <option value="+961">🇱🇧 +961</option>
+                                    <option value="+218">🇱🇾 +218</option>
+                                    <option value="+370">🇱🇹 +370</option>
+                                    <option value="+352">🇱🇺 +352</option>
+                                    <option value="+60">🇲🇾 +60</option>
+                                    <option value="+960">🇲🇻 +960</option>
+                                    <option value="+52">🇲🇽 +52</option>
+                                    <option value="+976">🇲🇳 +976</option>
+                                    <option value="+212">🇲🇦 +212</option>
+                                    <option value="+258">🇲🇿 +258</option>
+                                    <option value="+95">🇲🇲 +95</option>
+                                    <option value="+977">🇳🇵 +977</option>
+                                    <option value="+31">🇳🇱 +31</option>
+                                    <option value="+64">🇳🇿 +64</option>
+                                    <option value="+505">🇳🇮 +505</option>
+                                    <option value="+234">🇳🇬 +234</option>
+                                    <option value="+850">🇰🇵 +850</option>
+                                    <option value="+47">🇳🇴 +47</option>
+                                    <option value="+968">🇴🇲 +968</option>
+                                    <option value="+92">🇵🇰 +92</option>
+                                    <option value="+507">🇵🇦 +507</option>
+                                    <option value="+595">🇵🇾 +595</option>
+                                    <option value="+51">🇵🇪 +51</option>
+                                    <option value="+63">🇵🇭 +63</option>
+                                    <option value="+48">🇵🇱 +48</option>
+                                    <option value="+351">🇵🇹 +351</option>
+                                    <option value="+974">🇶🇦 +974</option>
+                                    <option value="+40">🇷🇴 +40</option>
+                                    <option value="+7">🇷🇺 +7</option>
+                                    <option value="+966">🇸🇦 +966</option>
+                                    <option value="+381">🇷🇸 +381</option>
+                                    <option value="+65">🇸🇬 +65</option>
+                                    <option value="+421">🇸🇰 +421</option>
+                                    <option value="+386">🇸🇮 +386</option>
+                                    <option value="+27">🇿🇦 +27</option>
+                                    <option value="+82">🇰🇷 +82</option>
+                                    <option value="+34">🇪🇸 +34</option>
+                                    <option value="+94">🇱🇰 +94</option>
+                                    <option value="+249">🇸🇩 +249</option>
+                                    <option value="+46">🇸🇪 +46</option>
+                                    <option value="+41">🇨🇭 +41</option>
+                                    <option value="+963">🇸🇾 +963</option>
+                                    <option value="+886">🇹🇼 +886</option>
+                                    <option value="+992">🇹🇯 +992</option>
+                                    <option value="+255">🇹🇿 +255</option>
+                                    <option value="+66">🇹🇭 +66</option>
+                                    <option value="+216">🇹🇳 +216</option>
+                                    <option value="+90">🇹🇷 +90</option>
+                                    <option value="+993">🇹🇲 +993</option>
+                                    <option value="+256">🇺🇬 +256</option>
+                                    <option value="+380">🇺🇦 +380</option>
+                                    <option value="+971">🇦🇪 +971</option>
+                                    <option value="+44">🇬🇧 +44</option>
+                                    <option value="+1">🇺🇸 +1</option>
+                                    <option value="+598">🇺🇾 +598</option>
+                                    <option value="+998">🇺🇿 +998</option>
+                                    <option value="+58">🇻🇪 +58</option>
+                                    <option value="+84">🇻🇳 +84</option>
+                                    <option value="+967">🇾🇪 +967</option>
+                                    <option value="+260">🇿🇲 +260</option>
+                                    <option value="+263">🇿🇼 +263</option>
+                                </select><input id="phone" name="phone" type="tel" autocomplete="tel-national" placeholder="Your phone number" required></div></div>
+    <div class="field"><label for="business">Business Stage</label><select id="business" name="business_stage" required><option value="">Select your business stage</option><option>Launching my first product</option><option>Growing an existing marketplace business</option><option>Expanding to new marketplaces</option><option>Looking for complete marketplace management</option></select></div>
+    <div class="field"><label for="marketplaces">Marketplaces</label><input id="marketplaces" name="marketplaces" placeholder="e.g. Amazon, Flipkart, Noon"></div>
+    <div class="field"><label for="requirements">Business Goals &amp; Requirements</label><textarea id="requirements" name="message" placeholder="Tell us about your products, marketplaces and challenges..."></textarea></div>
+    <input type="hidden" name="service" value="Ecommerce Marketplace Management">
+    <input type="hidden" name="_subject" value="New Ecommerce Marketplace Management inquiry from Digidox website">
+    <input type="hidden" name="source_page" value="ecommerce-marketplace-management">
+    <button type="submit" disabled id="submitBtn" class="btn btn-primary">Request Free Consultation</button>
+   </form>
+   <p class="form-note" id="previewNote" hidden>Local preview: this form will not send an inquiry.</p>
+   <noscript><p class="form-note">JavaScript is required to send this inquiry safely. Please contact hello@digidox360.com.</p></noscript>
+   <p class="form-status" id="formStatus" role="status" aria-live="polite" tabindex="-1"></p>
+  </div>
+ </div>
+</section>
+<section class="section" id="platforms"><div class="container"><div class="section-head"><div><span class="section-label">India &amp; International Markets</span><h2>Platforms <span class="gradient-text">We Manage</span></h2></div></div><div class="platforms-grid">
+<div class="platform"><div class="platform-logo-wrap"><img class="platform-logo platform-logo-light" src="assets/marketplaces/amazon.svg" alt="" width="112" height="68" loading="lazy" decoding="async"></div><span class="platform-name">Amazon</span></div>
+<div class="platform"><div class="platform-logo-wrap"><img class="platform-logo " src="assets/marketplaces/flipkart.png" alt="" width="112" height="68" loading="lazy" decoding="async"></div><span class="platform-name">Flipkart</span></div>
+<div class="platform"><div class="platform-logo-wrap"><img class="platform-logo " src="assets/marketplaces/myntra.png" alt="" width="112" height="68" loading="lazy" decoding="async"></div><span class="platform-name">Myntra</span></div>
+<div class="platform"><div class="platform-logo-wrap"><img class="platform-logo " src="assets/marketplaces/meesho.png" alt="" width="112" height="68" loading="lazy" decoding="async"></div><span class="platform-name">Meesho</span></div>
+<div class="platform"><div class="platform-logo-wrap"><img class="platform-logo " src="assets/marketplaces/shopify.svg" alt="" width="112" height="68" loading="lazy" decoding="async"></div><span class="platform-name">Shopify</span></div>
+<div class="platform"><div class="platform-logo-wrap"><img class="platform-logo " src="assets/marketplaces/blinkit.svg" alt="" width="112" height="68" loading="lazy" decoding="async"></div><span class="platform-name">Blinkit</span></div>
+<div class="platform"><div class="platform-logo-wrap"><img class="platform-logo platform-logo-wide" src="assets/marketplaces/firstcry.png" alt="" width="112" height="68" loading="lazy" decoding="async"></div><span class="platform-name">FirstCry</span></div>
+<div class="platform"><div class="platform-logo-wrap"><img class="platform-logo " src="assets/marketplaces/noon.png" alt="" width="112" height="68" loading="lazy" decoding="async"></div><span class="platform-name">Noon</span></div>
+<div class="platform"><div class="platform-logo-wrap"><img class="platform-logo platform-logo-wide" src="assets/marketplaces/namshi.png" alt="" width="112" height="68" loading="lazy" decoding="async"></div><span class="platform-name">Namshi</span></div>
+<div class="platform"><div class="platform-logo-wrap"><img class="platform-logo platform-logo-wide platform-logo-light" src="assets/marketplaces/trendyol.svg" alt="" width="112" height="68" loading="lazy" decoding="async"></div><span class="platform-name">Trendyol</span></div>
+<div class="platform platform-more"><div class="platform-logo-wrap"><span class="platform-more-symbol" aria-hidden="true">+</span></div><span class="platform-name">&amp; More</span></div>
+</div></div></section><section class="section" id="services"><div class="container"><div class="section-head"><div><span class="section-label">End-to-End Ecommerce</span><h2>Our <span class="gradient-text">Ecommerce Services</span></h2></div></div><div class="services-grid marketplace-services"><article class="service-card"><div class="service-icon" aria-hidden="true">01</div><h3>Marketplace Management</h3><p class="service-kicker">Build a Strong &amp; Optimized Marketplace Presence</p><p>We manage your marketplace catalog and ensure your products are optimized for better visibility, conversions and sales.</p><ul><li>Product Listing &amp; Catalog Management</li>
+<li>Bulk Product Listing</li>
+<li>Variation &amp; Parent-Child Creation</li>
+<li>Product Title, Bullet &amp; Description Optimization</li>
+<li>SEO Keyword Research &amp; Optimization</li>
+<li>Category &amp; Attribute Management</li>
+<li>Listing Quality &amp; Error Management</li>
+<li>Order, Cancellation &amp; Return Management</li>
+<li>Account Health Monitoring</li></ul></article>
+<article class="service-card"><div class="service-icon" aria-hidden="true">02</div><h3>Inventory &amp; Fulfillment Management</h3><p class="service-kicker">Keep the Right Products Available at the Right Time</p><p>Effective inventory management helps prevent stockouts, excess inventory and lost sales opportunities.</p><ul><li>Inventory Monitoring</li>
+<li>Sales &amp; Run Rate Analysis</li>
+<li>Demand &amp; Inventory Planning</li>
+<li>Replenishment Planning</li>
+<li>FBA / FBN Inventory Management</li>
+<li>Shipment Planning</li>
+<li>Warehouse Inbound Management</li>
+<li>Shipment Tracking</li>
+<li>Out-of-Stock Prevention</li></ul></article>
+<article class="service-card"><div class="service-icon" aria-hidden="true">03</div><h3>Marketplace Advertising &amp; PPC</h3><p class="service-kicker">Turn Advertising Spend Into Profitable Growth</p><p>Our data-driven advertising approach focuses on improving visibility, conversions and profitability.</p><ul><li>PPC Campaign Setup &amp; Structure</li>
+<li>Keyword Research</li>
+<li>Automatic &amp; Manual Campaigns</li>
+<li>Sponsored Products &amp; Sponsored Brands</li>
+<li>Product Targeting</li>
+<li>Campaign Optimization</li>
+<li>Bid &amp; Budget Management</li>
+<li>Search Term Analysis</li>
+<li>Negative Keyword Management</li>
+<li>ACOS &amp; ROAS Optimization</li></ul></article>
+<article class="service-card"><div class="service-icon" aria-hidden="true">04</div><h3>Creative &amp; Brand Growth</h3><p class="service-kicker">Make Your Products Stand Out</p><p>High-quality creatives and strong brand presentation help improve product visibility, customer trust and conversion rates.</p><ul><li>A+ Content</li>
+<li>Brand Story</li>
+<li>Brand Store / Storefront</li>
+<li>Premium Product Images</li>
+<li>Product Infographics</li>
+<li>Lifestyle Images</li>
+<li>Video Creatives</li>
+<li>Product Launch Creatives</li>
+<li>Store Optimization</li></ul></article>
+<article class="service-card"><div class="service-icon" aria-hidden="true">05</div><h3>Profitability &amp; Business Analytics</h3><p class="service-kicker">Make Better Decisions With Your Data</p><p>We go beyond sales reporting and help you understand where your business is making money and where it is losing it.</p><ul><li>Sales Performance Reports</li>
+<li>Profit &amp; Loss Analysis</li>
+<li>Marketplace Fee Analysis</li>
+<li>Advertising Performance Reports</li>
+<li>Inventory Reports</li>
+<li>Return Reports</li>
+<li>MTR Reports</li>
+<li>Profitability Analysis</li>
+<li>Product-Level Performance Analysis</li>
+<li>Business Performance Dashboards</li></ul></article></div></div></section><section class="section" id="growth"><div class="container"><div class="section-head"><div><span class="section-label">Growth Strategy</span><h2>From Selling Products to Building a <span class="gradient-text">Scalable Ecommerce Business</span></h2><p>We help brands identify growth opportunities and build strategies based on real marketplace data.</p></div></div><div class="panel strategy-panel"><h3>Our Growth Approach</h3><ol class="growth-flow"><li>Product Research</li>
+<li>Listing</li>
+<li>Launch</li>
+<li>Advertising</li>
+<li>Optimization</li>
+<li>Inventory Planning</li>
+<li>Profitability</li>
+<li>Scale</li></ol><p class="muted">Our growth strategies include:</p><ul class="strategy-list"><li>Product Launch Strategy</li>
+<li>Marketplace Expansion</li>
+<li>Competitor Analysis</li>
+<li>Pricing Strategy</li>
+<li>Product &amp; Keyword Research</li>
+<li>Sales Growth Planning</li>
+<li>Marketplace Expansion Strategy</li>
+<li>Performance Optimization</li></ul></div></div></section><section class="section" id="why-us"><div class="container"><div class="section-head"><div><span class="section-label">Why Choose DigiDox?</span><h2>One Team. <span class="gradient-text">Complete Ecommerce Management.</span></h2><p>Instead of managing multiple agencies for different parts of your ecommerce business, DigiDox brings everything under one roof.</p></div></div><div class="feature-grid why-grid"><article class="feature-card"><div class="feature-icon" aria-hidden="true">01</div><h3>End-to-End Management</h3><p>From product listing to advertising, inventory and reporting, we manage your complete marketplace operations.</p></article>
+<article class="feature-card"><div class="feature-icon" aria-hidden="true">02</div><h3>Data-Driven Decisions</h3><p>Our strategies are based on sales, advertising, inventory and profitability data.</p></article>
+<article class="feature-card"><div class="feature-icon" aria-hidden="true">03</div><h3>Multi-Marketplace Expertise</h3><p>Manage and expand your brand across multiple marketplaces from a single team.</p></article>
+<article class="feature-card"><div class="feature-icon" aria-hidden="true">04</div><h3>Growth &amp; Profit Focused</h3><p>We don't focus only on increasing sales. We focus on sustainable growth and better profitability.</p></article>
+<article class="feature-card"><div class="feature-icon" aria-hidden="true">05</div><h3>Dedicated Account Management</h3><p>Get a dedicated team focused on monitoring, optimizing and growing your ecommerce business.</p></article></div></div></section><section class="section" id="process"><div class="container"><div class="section-head"><div><span class="section-label">From Analysis to Scale</span><h2>Our <span class="gradient-text">Ecommerce Process</span></h2></div></div><ol class="process-grid"><li class="panel process-card"><span class="step-number" aria-hidden="true">01</span><h3>Analyse</h3><p>We understand your products, marketplace performance, competitors and current challenges.</p></li>
+<li class="panel process-card"><span class="step-number" aria-hidden="true">02</span><h3>Strategize</h3><p>We create a customized strategy for listings, advertising, inventory and growth.</p></li>
+<li class="panel process-card"><span class="step-number" aria-hidden="true">03</span><h3>Execute</h3><p>Our team implements the strategy across your selected marketplaces.</p></li>
+<li class="panel process-card"><span class="step-number" aria-hidden="true">04</span><h3>Optimize</h3><p>We continuously monitor campaigns, listings, inventory and business performance.</p></li>
+<li class="panel process-card"><span class="step-number" aria-hidden="true">05</span><h3>Scale</h3><p>Once we identify what's working, we scale the winning products, campaigns and marketplaces.</p></li></ol></div></section><section class="section" id="consultation"><div class="container"><div class="cta-card closing-cta"><div class="eyebrow">Get Your Free Ecommerce Growth Consultation</div><h2>Ready to Grow Your <span class="gradient-text">Ecommerce Business?</span></h2><p>Whether you're launching your first product or managing an established marketplace business, our team can help you build, optimize and scale your ecommerce operations.</p><p class="cta-subtitle">Let's Build Your Next Growth Story.</p><a class="btn btn-primary" href="#contact">Book a Strategy Call</a></div></div></section>
+</main>
+<footer><div class="container footer-inner"><div>© <span id="year">2026</span> Digidox Digital Agency. All rights reserved.<div class="footer-links"><a href="https://digidox360.com/">Home</a><a href="#services">Ecommerce Services</a><a href="mailto:hello@digidox360.com">hello@digidox360.com</a></div></div><div>Marketplace Management • Advertising • Growth</div></div></footer>
+<a class="whatsapp-float" href="https://wa.me/919643650586?text=Hi%20DigiDox%2C%20I%20want%20to%20discuss%20ecommerce%20marketplace%20management." target="_blank" rel="noopener noreferrer" aria-label="Chat about ecommerce on WhatsApp">WhatsApp ↗</a>
+<script>const menuToggle = document.getElementById('menuToggle');
+const navLinks = document.getElementById('navLinks');
+const dropdown = document.querySelector('.has-dropdown');
+const dropdownToggle = document.querySelector('.dropdown-toggle');
+function closeMenus() {
+ navLinks.classList.remove('open');
+ menuToggle.setAttribute('aria-expanded', 'false');
+ dropdown.classList.remove('dropdown-open');
+ dropdownToggle.setAttribute('aria-expanded', 'false');
+}
+menuToggle.addEventListener('click', () => {
+ const open = navLinks.classList.toggle('open');
+ menuToggle.setAttribute('aria-expanded', String(open));
+});
+dropdownToggle.addEventListener('click', () => {
+ const open = dropdown.classList.toggle('dropdown-open');
+ dropdownToggle.setAttribute('aria-expanded', String(open));
+});
+navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenus));
+document.addEventListener('click', e => { if (!e.target.closest('.navbar')) closeMenus(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeMenus(); if (getComputedStyle(menuToggle).display !== 'none') menuToggle.focus(); else dropdownToggle.focus(); } });
+const logo = document.querySelector('.brand-logo');
+function showBrandFallback() { logo.hidden = true; document.querySelector('.brand-fallback').hidden = false; }
+logo.addEventListener('error', showBrandFallback);
+if (logo.complete && logo.naturalWidth === 0) showBrandFallback();
+const year = document.getElementById('year');
+if (year) year.textContent = new Date().getFullYear();
+const form = document.getElementById('contactForm');
+const submitBtn = document.getElementById('submitBtn');
+const status = document.getElementById('formStatus');
+const isLocalPreview = ['localhost', '127.0.0.1', '[::1]'].includes(location.hostname) || location.protocol === 'file:';
+document.getElementById('previewNote').hidden = !isLocalPreview;
+// Fail closed without JS; restore POST only when submission handler is installed.
+form.addEventListener('submit', async e => {
+ e.preventDefault();
+ if (!form.reportValidity()) return;
+ if (isLocalPreview) {
+  status.textContent = 'Preview only — your inquiry has not been sent.';
+  status.focus();
+  return;
+ }
+ submitBtn.disabled = true;
+ submitBtn.textContent = 'Sending…';
+ status.textContent = '';
+ const controller = new AbortController();
+ const timeout = setTimeout(() => controller.abort(), 15000);
+ try {
+  const response = await fetch(form.action, { method: 'POST', body: new FormData(form), headers: { Accept: 'application/json' }, signal: controller.signal });
+  if (!response.ok) throw new Error('Inquiry could not be sent');
+  window.location.href = 'https://digidox360.com/thank-you.html';
+ } catch (error) {
+  status.textContent = 'We could not confirm your inquiry was sent. Please try again or email hello@digidox360.com.';
+ } finally {
+  clearTimeout(timeout);
+  submitBtn.disabled = false;
+  submitBtn.textContent = 'Request Free Consultation';
+  status.focus();
+ }
+});
+submitBtn.disabled = false;</script>
+</body></html>
